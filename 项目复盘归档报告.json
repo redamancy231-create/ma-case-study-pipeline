@@ -28,7 +28,11 @@
     },
     "reuse_pack": {
       "dir": "流水线复用包/",
-      "files": ["多模型论文流水线_playbook.md", "多模型论文流水线_playbook.json", "阶段模板件.md"],
+      "files": [
+        "多模型论文流水线_playbook.md",
+        "多模型论文流水线_playbook.json",
+        "阶段模板件.md"
+      ],
       "nature": "通用、任务自适配、不绑模型(角色=槽位每项目重配)",
       "new_phases_vs_this_project": {
         "Phase0": "选题+数据溯源/文献时效门禁前置(落地Phase7病根上移设计阶段教训)",
@@ -43,7 +47,10 @@
         "杜邦:中车2014 4.27%×0.78×2.59=8.63%≠ROE10.42%(口径混用)；权益乘数案例间漂移",
         "CAR:表t值硬编码、三窗口反解出三个σ互不自洽、仍标***(正文稳健性表述已软化为示例)"
       ],
-      "original_residuals_also_open": ["R1 CAR真实日度数据并重算", "R2 近5年文献≥30%"],
+      "original_residuals_also_open": [
+        "R1 CAR真实日度数据并重算",
+        "R2 近5年文献≥30%"
+      ],
       "lesson": "诊断不落地=白诊断；复用包据此把Phase9设为不可砍阶段"
     },
     "v2_quality_highlights_corrected": "原4.2节'数据勾稽合理/CAR稳健/杜邦到位'三条质量亮点后被Phase8证伪、实为硬伤，md版已就地勘误标注",
@@ -930,5 +937,41 @@
     "post_close_polish": "2026-05-29 图表分辨率由140dpi提至300dpi(figure1 2670×2520/245KB、figure2 2670×1470/133KB，数值与版式不变)；v2.docx重生成(236KB→388KB)；v1.docx保留内嵌140dpi图，v2.md/v2.json内容不变(按文件名引用图，无需重生成)",
     "archive_timestamp_v2_2": "2026-05-30T12:00:00+08:00",
     "post_close_data_upgrade": "2026-05-30 通过 akshare/东方财富获取中国中车(601766)、美的集团(000333)、宝钢股份(600019)真实财务数据,替换 generate_docx_v2.py 中 DATA_CRRC/DATA_MIDEA/DATA_BAOWU 的营收/净利润/商誉/ROE为真实公开数据[R];表4新增'数据标识'行逐行标注[R]/[S];摘要/英文摘要/6.3数据披露更新为混合来源说明;CAR及衍生指标仍为[S]估算值"
+  },
+  "github_publishing": {
+    "date": "2026-07-02",
+    "sessions": 2,
+    "repo": "redamancy231-create/ma-case-study-pipeline",
+    "license": "CC BY 4.0",
+    "session_1": {
+      "summary": "Initial publish — attic cleanup, README (trilingual), LICENSE, .gitignore, .gitattributes, .githooks, CLAUDE.md rewrite (126→59 lines), docx metadata sanitization, cross-backend sensitive scan (3 absolute paths fixed)",
+      "initial_commit": "86 files",
+      "release": "v1.0 with docx"
+    },
+    "session_2": {
+      "summary": "Page optimization — 13 topics, bilingual description, CITATION.cff, custom OG image (1280×640), Discussions enabled, squash merge, structured release notes, 3 cross-repo backlinks, GitHub MCP configured",
+      "topics": [
+        "multi-model",
+        "academic-pipeline",
+        "llm",
+        "prompt-engineering",
+        "peer-review",
+        "methodology",
+        "open-science",
+        "controlled-experiment",
+        "ai-collaboration",
+        "mergers-and-acquisitions",
+        "case-study",
+        "research-workflow",
+        "academic-writing"
+      ],
+      "cross_links": [
+        "ai-collaboration-framework",
+        "independent-review-toolkit",
+        "prompt-tdd-methodology"
+      ],
+      "og_image": "docs/social-preview.png"
+    },
+    "pending": "Translation proofreading batch (34 files across 3 projects) — P1, next session"
   }
 }
