@@ -1,0 +1,135 @@
+{
+  "spec_name": "数据溯源方案模板",
+  "spec_type": "data_provenance_spec",
+  "paired_markdown_file": "数据溯源方案模板.md",
+  "version": "v1",
+  "created": "2026-05-29",
+  "author": "Claude-opus-4.7（Phase 6 整合裁决角色）",
+  "applicable_to": "多阶段多模型学术报告流水线（Phase 1 设计 → Phase 3/4 数据落地 → Phase 5 审查 → Phase 6 裁决）",
+  "purpose": "杜绝‘构造/模拟数据被标注为真实来源’的学术诚信风险；保证每个数字可溯、可核、可复算。",
+  "responsibility": {
+    "fill_registry": "Phase 4（数据落地）",
+    "verify": "Phase 5-A（合规事实层审查）",
+    "sign_off_gate": "Phase 6（整合裁决）"
+  },
+  "provenance_tiers": [
+    {
+      "code": "R",
+      "name": "真实",
+      "definition": "取自数据库/年报的原始值",
+      "mandatory_source_note": "数据来源：<库名/年报> <版本·年度>，取数日期 YYYY-MM-DD",
+      "allows_empirical_claims": true,
+      "requires_worksheet": true
+    },
+    {
+      "code": "S",
+      "name": "模拟",
+      "definition": "按合理区间构造，非抓取",
+      "mandatory_source_note": "基于公开信息与行业合理区间构造的模拟数据，仅用于方法演示（非真实数据库抓取）",
+      "allows_empirical_claims": false,
+      "requires_worksheet": false
+    },
+    {
+      "code": "E",
+      "name": "估算",
+      "definition": "由 R 或公开值推导、折算",
+      "mandatory_source_note": "由 <来源> 经 <方法> 测算，非原始披露值",
+      "allows_empirical_claims": false,
+      "requires_worksheet": true
+    },
+    {
+      "code": "P",
+      "name": "公开事实",
+      "definition": "公告/法规/年报披露的定性事实",
+      "mandatory_source_note": "据 <公告或法规名称及条号>",
+      "allows_empirical_claims": false,
+      "requires_worksheet": false
+    }
+  ],
+  "red_lines": [
+    "S 类不得出现 Wind/CSMAR/年报等真实来源字样",
+    "S 类不得简写为‘经作者整理计算’以掩盖其模拟性质",
+    "R 类必须保留可复算底稿",
+    "实证性措辞（显著/研究发现/x%水平显著）仅 R 类可用"
+  ],
+  "data_registry_schema": {
+    "id": "数据序列唯一编号，如 D-001",
+    "field": "字段/指标名称",
+    "locations": "出现位置（表/图/正文），列表",
+    "tier": "溯源等级代码 R/S/E/P",
+    "source_or_method": "来源（R/P/E）或构造方法（S）",
+    "date": "取数或构造日期 YYYY-MM-DD，可为 null",
+    "worksheet": "底稿链接或脚本变量位置，可为 null",
+    "source_note": "实际写入 docx 的‘资料来源’文字，须与 tier 强制文本一致",
+    "owner_phase": "责任阶段编号"
+  },
+  "data_registry": [
+    {
+      "id": "D-001",
+      "field": "中国中车 ROE 2013–2017",
+      "locations": ["表4(a)", "图1"],
+      "tier": "S",
+      "source_or_method": "行业合理区间构造，与净利/净资产勾稽",
+      "date": "2026-05-28",
+      "worksheet": "DATA_CRRC@generate_docx_v2.py",
+      "source_note": "基于公开信息与行业合理区间构造的模拟数据，仅用于方法演示（非真实数据库抓取）",
+      "owner_phase": 4
+    },
+    {
+      "id": "D-002",
+      "field": "美的购买日/期末商誉",
+      "locations": ["摘要", "4.2.2", "表4(b)"],
+      "tier": "P",
+      "source_or_method": "据美的 2017 年报口径（购买日新增约259亿元 / 期末余额289.34亿元）",
+      "date": null,
+      "worksheet": "美的集团2017年年报",
+      "source_note": "据美的集团2017年年报披露口径",
+      "owner_phase": 4
+    },
+    {
+      "id": "D-003",
+      "field": "三案例 CAR、t 值、显著性",
+      "locations": ["表5", "图2"],
+      "tier": "S",
+      "source_or_method": "事件研究框架下构造的演示值，三窗口方向一致",
+      "date": "2026-05-28",
+      "worksheet": "CAR_DATA@generate_docx_v2.py",
+      "source_note": "基于公开信息构造的模拟行情数据，仅用于演示事件研究的检验形式，不代表真实市场实证结论",
+      "owner_phase": 4
+    }
+  ],
+  "labeling_consistency_rules": [
+    "同一序列在正文/表/图/摘要四处的等级与来源标注必须一致（一处改、全处改）",
+    "图表‘资料来源/数据来源’行文字 = 该序列等级的强制标注文本",
+    "实证性措辞仅 R 类可用；S/E 类一律改为‘演示性/示例值’表述"
+  ],
+  "reconciliation_checks": [
+    {"id": "C1", "item": "跨表/图/正文数值一致（商誉余额、资产负债率、净利润等）"},
+    {"id": "C2", "item": "内部恒等式成立（ROE=净利率×周转率×权益乘数；CAR 与事件窗口口径自洽）"},
+    {"id": "C3", "item": "单位、口径、基准年(T) 全文统一"},
+    {"id": "C4", "item": "R 类有底稿可复算；S 类有构造规则可复现"}
+  ],
+  "publication_gate": {
+    "rule": "5-A 审查 + Phase 6 签字，缺一不发",
+    "checklist": [
+      {"id": "G1", "item": "全部数据序列已登记，无‘未登记即入稿’"},
+      {"id": "G2", "item": "无 S 类被标为 R 类（诚信红线）"},
+      {"id": "G3", "item": "R 类底稿齐备；S 类已在研究局限处显式披露"},
+      {"id": "G4", "item": "审查官(5-A)与裁决官(Phase 6)签字 + 日期"}
+    ],
+    "signoff": [
+      {"reviewer": "5-A", "role": "合规事实层审查官", "signed": false, "date": null},
+      {"reviewer": "Phase 6", "role": "整合裁决官", "signed": false, "date": null}
+    ]
+  },
+  "machine_check": {
+    "description": "Phase 4 输出本 JSON 与 docx 并存；Phase 5 校验脚本逐序列比对 docx 内‘资料来源’文字与 tier 是否匹配，自动拦截 S↔R 错配。",
+    "rules": [
+      "对每个 registry 项：docx 中该 locations 的来源标注须包含对应 tier 的 mandatory_source_note 关键短语",
+      "tier=S 的序列：docx 对应位置不得出现 ‘Wind’ / ‘CSMAR’ / ‘年报，经作者整理计算’ 等真实来源关键词",
+      "tier!=R 的序列：其 locations 邻近文本不得出现 ‘显著’ / ‘x%水平显著’ / ‘研究发现’ 等实证断言",
+      "G2 失败即阻断发布（exit_code != 0）"
+    ]
+  },
+  "reusability_note": "可复用于任何‘数据驱动 + 多阶段生成’的报告流水线，只需替换 data_registry 与 responsibility 的阶段映射。"
+}

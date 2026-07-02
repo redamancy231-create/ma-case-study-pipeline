@@ -1,0 +1,188 @@
+{
+  "phase": 6,
+  "model": "Claude-opus-4.7",
+  "role": "双审整合裁决与修订迭代",
+  "task_id": "phase6_integration_and_revision",
+  "role_rotation": {
+    "previous_role": "Phase 4 总装+审查+交付",
+    "rotation_rationale": "Phase 4作者切换为'陌生整合官'姿态，冷静接受5-A/5-B对自己Phase 4工作的批评，照规则裁决，不为旧决策辩护",
+    "companion_reviews": [
+      {
+        "phase": "5-A",
+        "model": "GPT-5.5",
+        "scope": "法律合规+会计准则+案例事实+数据合理性",
+        "integration_weight": 0.60
+      },
+      {
+        "phase": "5-B",
+        "model": "GLM-5.1",
+        "scope": "学术写作规范+论文结构+论证逻辑+文献规范+术语图表",
+        "integration_weight": 0.40
+      }
+    ],
+    "weight_rationale": "5-A覆盖事实/合规/数据等硬指标（一票否决可能性高）权重60%；5-B覆盖写作规范等软指标（可修订快速改善）权重40%；下限保护40%因211盲审实践中文献综述缺失/参考文献严重不足/引文格式混乱足以单独触发修改后通过"
+  },
+  "input": {
+    "primary_target": "中国上市公司并购重组成功案例研究.docx",
+    "review_reports": [
+      "phase5a_gpt5.5_review.md",
+      "phase5b_glm5.1_review.md"
+    ],
+    "reference_files": [
+      "phase1_design.md",
+      "phase2_expert_review.md",
+      "phase3_draft_report.md",
+      "generate_docx.py",
+      "项目复盘归档报告.md",
+      "项目复盘归档报告.json"
+    ]
+  },
+  "deliverables": {
+    "primary": [
+      {
+        "file": "phase6_integration_review.md",
+        "format": "markdown",
+        "description": "整合审查报告：双审映射+冲突裁决+修改清单+修订changelog+二次自检+评分整合+终审签字"
+      },
+      {
+        "file": "中国上市公司并购重组成功案例研究_v2.docx",
+        "format": "Microsoft Word (.docx)",
+        "description": "修订后终稿（v1保留为历史版本）"
+      },
+      {
+        "file": "generate_docx_v2.py",
+        "format": "Python script",
+        "description": "更新后的生成脚本（v1保留为历史版本）"
+      }
+    ],
+    "optional": [
+      {
+        "file": "phase6_diff_v1_to_v2.md",
+        "format": "markdown",
+        "description": "v1→v2章节级diff摘要，便于答辩前自查"
+      }
+    ]
+  },
+  "workflow": {
+    "stage_a": {
+      "name": "双审整合与冲突裁决",
+      "tasks": {
+        "a1_opinion_mapping": "将两份审查报告所有修改建议按'章节-段落-问题类型'归一化到统一表格",
+        "a2_arbitration_rules": {
+          "in_domain_solo": "该领域专家提出、对方未涉及→默认采纳",
+          "out_of_domain_solo": "跨界单方意见降权处理；与该领域专家明示冲突→不采纳跨界",
+          "co_directional": "两人同向提出→必改，按更尖锐措辞执行",
+          "opposing": "同点反向→独立判断，优先级：原文/Phase2→211评审规范→学术常识",
+          "complementary": "两人不同角度提同一处→合并为单一修改项",
+          "out_of_bounds_rejection": "跨界批评侵入对方专长→标注'越界，不采纳'并说明理由"
+        },
+        "a3_change_list_format": "ID|位置|分级|来源|问题描述|改前|改后|裁决依据"
+      },
+      "priority_tiers": {
+        "必改": [
+          "双方同向重大问题",
+          "任一方明确严重偏差/学术不端嫌疑",
+          "数值/主体/时间事实错误",
+          "引文严重缺失"
+        ],
+        "建议改": [
+          "单方重大问题",
+          "双方同向一般问题",
+          "措辞优化"
+        ],
+        "观察": [
+          "争议性学术观点",
+          "风格偏好",
+          "可改可不改"
+        ]
+      }
+    },
+    "stage_b": {
+      "name": "修订实施",
+      "tasks": {
+        "b1_revision_targets": {
+          "phase3_draft": "不再回溯修改，所有修订在docx输出端落地",
+          "generate_docx_py": "必须同步更新DATA字典/章节生成函数/图表生成逻辑",
+          "v2_docx": "通过更新后脚本重新生成，命名为_v2.docx，保留v1"
+        },
+        "b2_execution_rules": [
+          "逐条对应：每实施一条修改清单项，changelog记录已执行/未执行/部分执行",
+          "不擅自扩张：仅修改清单内容，不顺手优化未被批评段落",
+          "数据修订连锁反应：指标数值修订必须沿文本/表格/图表/勾稽链全文回扫",
+          "图表更新：数据修订涉及图表必须重新生成PNG",
+          "文献修订：新增文献优先从Phase1候选+Phase2补充选取，须有真实正文引用位置"
+        ],
+        "b3_self_check": "用5-A的4维度+5-B的5维度检查表自查；未落实项必须在终审报告说明理由，不可静默跳过"
+      }
+    },
+    "stage_c": {
+      "name": "终审签字",
+      "tasks": {
+        "c1_score_integration": "整合得分 = 5-A得分×0.60 + 5-B得分×0.40",
+        "c2_score_table": "并列展示修订前/修订后得分及提升说明（10维度+小计+加权总分）",
+        "c3_final_conclusion_tiers": {
+          "直接通过": "修订后加权≥85且无未落实必改项→可送答辩",
+          "修改后通过": "修订后加权70-84或仍有≤2项必改未落实→列残余项交还作者",
+          "退回重写": "修订后加权<70或仍有≥3项必改未落实或存在学术不端嫌疑→列系统性问题"
+        },
+        "c4_signature_block": {
+          "包含字段": [
+            "项目名称",
+            "版本号",
+            "依据（5-A+5-B+本阶段裁决）",
+            "学术标尺",
+            "终审结论",
+            "加权得分",
+            "裁决官",
+            "日期",
+            "残余修改项（如有）"
+          ]
+        }
+      }
+    }
+  },
+  "integration_report_structure": [
+    "整合概述（200字内说明双审整合方法、裁决原则、修订范围）",
+    "第1部分 双审意见映射表",
+    "第2部分 冲突与裁决记录（反向、跨界情形单独列出）",
+    "第3部分 统一修改清单v1",
+    "第4部分 修订执行changelog",
+    "第5部分 二次自检结果",
+    "第6部分 整合评分表（修订前/后并列）",
+    "第7部分 终审签字"
+  ],
+  "discipline_rules": {
+    "no_self_defense_for_phase4": "Phase 4作者不得为旧决策辩护；模拟数据、图表布局、引文格式问题首先针对自己产出，照规则照单全收",
+    "no_voting": "5-A/5-B意见不是投票；不用'两位审稿人都没强烈反对'作为不改依据",
+    "no_compromise_on_opposition": "反向意见不找'中间道路'；必须给独立裁决理由",
+    "blind_integration_posture": "裁决阶段以陌生整合官姿态读两份审查报告，不为修订便利偏向某一方",
+    "academic_integrity_red_line": "若5-A指出'宣称Wind来源但实为模拟'构成学术不端嫌疑→必改，在修订版明确数据性质（如'模拟数据，基于行业合理区间构造'）",
+    "no_silent_skip": "任何'未落实'修改清单项必须在changelog写明理由"
+  },
+  "quality_assurance": {
+    "v2_deliverable_checklist": [
+      "phase6_integration_review.md 完整产出，含7个章节",
+      "v2.docx 通过更新后脚本重新生成，未直接编辑docx",
+      "generate_docx_v2.py 与v2.docx一一对应可重复执行",
+      "v1版本保留，未被覆盖",
+      "整合评分表含修订前/后并列对照",
+      "终审结论必有'通过/修改后通过/退回重写'三档之一",
+      "如'通过'档则无残余必改项",
+      "如'修改后通过'档则列残余必改清单",
+      "如'退回重写'档则列系统性问题清单",
+      "学术不端嫌疑（若有）明确处理",
+      "双审意见100%映射到修改清单或明确标注'不采纳+理由'"
+    ]
+  },
+  "academic_tier": "211院校会计学本科毕业论文答辩前评议",
+  "metadata": {
+    "project": "中国上市公司并购重组成功案例研究",
+    "phase_name": "双审整合裁决与修订迭代",
+    "discipline": "会计学",
+    "review_target_file": "中国上市公司并购重组成功案例研究.docx",
+    "output_versioning": "v1保留+v2新生成",
+    "created": "2026-05-29",
+    "depends_on_phase": [1, 2, 3, 4, "5-A", "5-B"],
+    "is_final_phase": true
+  }
+}

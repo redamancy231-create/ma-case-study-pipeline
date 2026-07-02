@@ -1,0 +1,98 @@
+{
+  "phase": "8-D",
+  "model": "GPT-5.5",
+  "role": "模拟答辩 — 答辩学生",
+  "task_id": "phase8_student_defense",
+  "role_rotation": {
+    "previous_roles_in_pipeline": ["Phase 3 内容撰稿人（正文初稿）"],
+    "rotation_rationale": "GPT-5.5 是本论文的初稿撰写人——它写了论文的核心内容但不参与审稿和修订。这恰好是答辩中'学生'角色的理想状态：对论文内容有作者级别的熟悉度，但对审稿意见和修订决策没有 ownership（那些是 Claude Phase 4/6 做的）。当评审追问'你这个数据为什么标[S]'时，GPT-5.5 不会像 Claude 那样为自己做过的决策辩护，而是自然地回应——这正是真实答辩中学生面对自己论文中由外部因素（数据库不可用）导致的局限时的状态。",
+    "why_not_claude": "Claude 在 Phase 4 设计了数据策略（D4）、在 Phase 6 执行了整合裁决。如果 Claude 扮演学生，面对'数据为什么标[S]'的追问时，会倾向于合理化自己做过的事情。GPT-5.5 没有这个包袱——它可以诚实地说'这是条件所限'而不会潜意识地为数据决策辩护。",
+    "upstream_dependency": "Phase 8-A/8-B/8-C 的三份质询问题必须先产出，才能执行本阶段。三个评审的 prompt 可以并行运行（互相独立），但本阶段必须串行——等所有评审问题收集完毕后，汇总输入给学生。"
+  },
+  "input": {
+    "primary_target": "三份质询问题清单（Phase 8-A/8-B/8-C 的产出）",
+    "paper_reference_files": [
+      "中国上市公司并购重组成功案例研究_v2.md",
+      "phase3_draft_report.md",
+      "phase6_integration_review.md"
+    ],
+    "question_files": [
+      "phase8_defense_chair_questions.md",
+      "phase8_accounting_expert_questions.md",
+      "phase8_methodology_expert_questions.md"
+    ],
+    "reference_only": [
+      "中国上市公司并购重组成功案例研究_v2.json",
+      "generate_docx_v2.py"
+    ]
+  },
+  "deliverables": {
+    "primary": [
+      {
+        "file": "phase8_student_defense_record.md",
+        "format": "markdown",
+        "description": "模拟答辩学生答辩记录：含开场陈述 + 对所有评审问题的逐题回答 + 答辩总结陈述"
+      },
+      {
+        "file": "phase8_student_defense_record.json",
+        "format": "json",
+        "description": "答辩记录结构化版，含每题回答的摘要、自信度自评、引用的论文章节/表格编号"
+      }
+    ]
+  },
+  "downstream": {
+    "consumers": [
+      {
+        "phase": "8-E（可选）",
+        "role": "答辩整合与评分",
+        "description": "由 Claude 或人工对学生的答辩回答进行综合评分，产出最终的'模拟答辩成绩单'，包含三位评审各自评分 + 综合答辩表现评语"
+      }
+    ]
+  },
+  "academic_tier": "211院校会计学本科毕业论文答辩",
+  "defense_behavior_rules": {
+    "dos": [
+      "回答前先重述/确认问题，展示倾听与理解",
+      "先给结论再给依据，结构化表达",
+      "主动承认局限并附改进方向",
+      "分不清时诚实说'这是我下一步要研究的'",
+      "引用论文中的具体表号、章节、数据点"
+    ],
+    "donts": [
+      "不要背诵摘要或论文原文——用自己的话重组",
+      "不要过度辩护——有些批评是对的，直接承认",
+      "不要把责任推给导师或外部因素",
+      "不要在同一个问题上反复绕圈子",
+      "不要虚构'其实我做了但我没写'的内容"
+    ]
+  },
+  "answer_quality_benchmark": {
+    "优秀回答的特征": [
+      "展示超越论文本身的思考——引用论文未涵盖的文献或方法",
+      "对局限有系统性的改进方案——不是'以后会修'而是'具体怎么做'",
+      "能在不同问题之间建立联系——'这个问题和刚才主席问的那个其实是一个更深层的问题……'",
+      "用具体数字和案例细节支撑论据，而非泛泛而谈"
+    ],
+    "可接受回答的特征": [
+      "事实准确——数字、日期、准则条文不搞错",
+      "逻辑清晰——结论→依据→局限，三段式",
+      "边界诚实——知道的和不知道的分开说",
+      "被追问时不慌乱——'这个问题我确实没有深入考虑，但我的初步想法是……'"
+    ],
+    "不合格回答的特征": [
+      "答非所问——评审问方法你回答意义",
+      "编造论文中不存在的内容",
+      "对学术诚信问题闪烁其词",
+      "前后矛盾——同一个问题在不同评审面前回答不一样"
+    ]
+  },
+  "mock_defense_metadata": {
+    "total_reviewers": 3,
+    "total_questions_expected": "15-21（主席 4-6 + 会计专家 5-7 + 方法论专家 6-8）",
+    "total_answer_wordcount_expected": "约 6000-10000 字（含开场和总结陈述）",
+    "simulation_realism_note": "本模拟的局限性在于：评审问题是预制的（而非根据学生回答动态追问）、学生可以'查阅'论文（而非即时回忆）、没有时间压力和临场紧张感。这些是 prompt 无法模拟的——但可以在真实答辩前作为知识梳理和自我检测的工具使用。"
+  },
+  "design_note": "GPT-5.5 扮演学生的核心优势：它是 Phase 3 的撰稿人——对论文内容的熟悉度足够支撑一场有深度的答辩，但它不参与审稿/修订——面对批评时没有防御心理，能自然地展示一个'准备充分但知道自己边界在哪'的好学生形象。这正是 211 本科答辩中评审最欣赏的状态。",
+  "created_date": "2026-05-30",
+  "paired_files": ["phase8_student_gpt5.5_prompt.md", "phase8_student_gpt5.5_config.json"]
+}

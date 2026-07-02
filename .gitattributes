@@ -1,0 +1,11 @@
+# 方法论文档仓库 — 强制 linguist 检测 Markdown
+*.md linguist-detectable
+
+# Python 脚本
+*.py linguist-detectable
+
+# JSON 双件
+*.json linguist-detectable
+
+# 换行符统一
+* text=auto

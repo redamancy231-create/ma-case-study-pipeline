@@ -1,0 +1,71 @@
+{
+  "phase": "8-B",
+  "model": "GLM-5.1",
+  "role": "模拟答辩评审 — 会计学领域专家",
+  "task_id": "phase8_accounting_expert",
+  "role_rotation": {
+    "previous_roles_in_pipeline": ["Phase 2 领域专家审核", "Phase 5-B 交叉复审（学术规范层）"],
+    "rotation_rationale": "GLM-5.1 在 Phase 2 完成了最具价值的会计/法律前置审核（抓出美的-小天鹅分类错误等 3 项严重修正），在 Phase 5-B 完成了学术规范层盲审。本阶段回归其核心专长——会计学——以答辩评审身份追问合并会计处理。Phase 2 的记忆作为参照系（检验 v2 是否解决了当年的关切），但不限制本阶段发现新问题。",
+    "companion_reviewers": [
+      {
+        "phase": "8-A",
+        "model": "Claude-opus-4.7",
+        "role": "答辩委员会主席",
+        "scope": "研究设计、学术贡献、学术诚信、逻辑一致性"
+      },
+      {
+        "phase": "8-C",
+        "model": "Claude-opus-4.7（第二份独立 prompt）",
+        "role": "实证方法论评审",
+        "scope": "CAR 事件研究、财务指标体系、因果推断、统计检验"
+      }
+    ],
+    "phase2_handover_note": "Phase 2 的 3 项核心修正（案例替换/破产法补全/证券法补全）已在 v2 全部落地。本阶段的焦点不再是'修什么'，而是'对 v2 终稿的会计处理进行答辩级追问'——如果 Phase 2 是审设计蓝图，Phase 8-B 就是审成品房的结构安全。"
+  },
+  "input": {
+    "primary_target": "中国上市公司并购重组成功案例研究_v2.md",
+    "supplementary_files": [
+      "phase2_expert_review.md",
+      "phase6_integration_review.md",
+      "generate_docx_v2.py"
+    ],
+    "reference_only": [
+      "中国上市公司并购重组成功案例研究_v2.json",
+      "phase5a_gpt5.5_review.md"
+    ]
+  },
+  "deliverables": {
+    "primary": [
+      {
+        "file": "phase8_accounting_expert_questions.md",
+        "format": "markdown",
+        "description": "会计学领域专家质询问题清单：含 Phase 2 关切闭合核查表 + 5-7 个问题覆盖四个会计维度"
+      },
+      {
+        "file": "phase8_accounting_expert_questions.json",
+        "format": "json",
+        "description": "质询问题清单结构化版，便于 Phase 8-D 学生角色解析和逐题作答"
+      }
+    ]
+  },
+  "downstream": {
+    "consumers": [
+      {
+        "phase": "8-D",
+        "model": "GPT-5.5",
+        "role": "答辩学生",
+        "usage": "会计学专家的问题将与其他两位评审的问题合并，统一提交给学生作答"
+      }
+    ]
+  },
+  "academic_tier": "211院校会计学本科毕业论文答辩",
+  "scoring_rubric": {
+    "合并类型判定与会计方法": {"max": 35, "key_focus": "同一控制vs非同一控制的判定逻辑、权益结合法vs购买法的具体应用、合并日/购买日判定"},
+    "商誉确认与后续计量": {"max": 30, "key_focus": "购买对价分配(PPA)、商誉初始计量、减值测试方法、CAS 8 vs IAS 36对比"},
+    "财务指标分析质量": {"max": 20, "key_focus": "指标计算口径一致性、会计效应vs经济效应的区分、比率解读深度"},
+    "准则知识准确性与完整性": {"max": 15, "key_focus": "CAS 20/33/8/12 的精准引用、准则灰色地带的处理判断、IFRS对比"}
+  },
+  "design_note": "GLM-5.1 的会计学造诣是本流水线中最强的——Phase 2 证明了它能在设计阶段就发现会计分类错误。本阶段利用这一优势，让它从'审设计'切换为'审成品'，追问 v2 终稿中的会计处理逻辑。问题设计鼓励追问'为什么'而非'对不对'——测试学生是否真正理解会计处理背后的商业实质。",
+  "created_date": "2026-05-30",
+  "paired_files": ["phase8_accounting_expert_glm5.1_prompt.md", "phase8_accounting_expert_glm5.1_config.json"]
+}

@@ -1,0 +1,58 @@
+{
+  "phase": 2,
+  "model": "GLM-5.1",
+  "role": "领域专家",
+  "task_id": "phase2_expert_review",
+  "input": {
+    "source": "phase1",
+    "dependency_file": "phase1_design.md",
+    "description": "接收Phase 1方案设计输出，对其中涉及的法律条款、会计准则、财务指标选用进行专业审核和校正",
+    "context_provided": [
+      "Phase 1 的报告大纲与章节结构",
+      "Phase 1 的分析框架设计",
+      "Phase 1 的案例候选推荐",
+      "Phase 1 的论述逻辑链",
+      "Phase 1 的参考文献候选清单"
+    ]
+  },
+  "output": {
+    "file": "phase2_expert_review.md",
+    "format": "markdown",
+    "sections": [
+      "法律制度条文准确性核验（公司法、破产法、证券法、美国破产法）",
+      "会计准则与财务分析合规性检查（CAS 20/8/33、财务指标体系）",
+      "案例建议的可行性评估（法律可行性、数据可获取性、典型性、学术引用支持）",
+      "学术规范与研究方法建议（事件研究法、财务指标分析法、图表设计等）"
+    ]
+  },
+  "downstream": {
+    "consumers": ["Phase 3 - GPT-5.5", "Phase 4 - Claude-opus-4.7"],
+    "usage": "Phase 3使用审核结果确保内容法律合规性和财务分析专业性；Phase 4使用审核结果进行交叉验证"
+  },
+  "expertise_areas": [
+    "中国公司法（2018/2023修订版）",
+    "企业破产法（2007）",
+    "证券法（2019修订）",
+    "上市公司重大资产重组管理办法（2023修订）",
+    "美国破产法 Chapter 7/11",
+    "企业会计准则 CAS 20/8/33",
+    "IFRS 3 Business Combinations",
+    "并购重组绩效评价指标体系",
+    "事件研究法（Event Study）",
+    "财务比率分析"
+  ],
+  "constraints": {
+    "legal_accuracy": "所有法律条款引用必须标注具体条款编号",
+    "accounting_accuracy": "会计准则引用必须标注具体准则编号",
+    "review_depth": "逐项审核，不泛泛而谈",
+    "output_length": "审核报告约2500-3500字"
+  },
+  "metadata": {
+    "project": "中国上市公司并购重组成功案例研究",
+    "report_type": "学术研究报告/案例分析",
+    "discipline": "会计学",
+    "legal_jurisdictions": ["中国", "美国"],
+    "accounting_standards": ["CAS", "IFRS"],
+    "created": "2026-05-28"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "phase": 3,
+  "model": "GPT-5.5",
+  "role": "内容撰写",
+  "task_id": "phase3_draft_report",
+  "input": {
+    "source": "phase1_and_phase2",
+    "dependency_files": [
+      "phase1_design.md",
+      "phase2_expert_review.md"
+    ],
+    "description": "接收Phase 1方案设计和Phase 2专家审核意见，以此为基础撰写完整的报告正文初稿",
+    "context_provided": [
+      "Phase 1: 报告大纲、分析框架、案例候选、论述逻辑链、文献候选清单",
+      "Phase 2: 法律条款核验与校正、会计准则合规检查、财务指标体系、案例可行性评估、研究方法建议"
+    ]
+  },
+  "output": {
+    "file": "phase3_draft_report.md",
+    "format": "markdown",
+    "required_sections": {
+      "title": "报告标题（从候选标题中确定或优化）",
+      "abstract_cn": "中文摘要（200-300字）",
+      "abstract_en": "英文摘要（与中文对应）",
+      "keywords": "中英文关键词各5-8个",
+      "chapter_1": "引言（研究背景、意义、方法、结构）",
+      "chapter_2": "企业重组的概念界定与理论基础",
+      "chapter_3": "企业重组的制度法规环境（中外比较）",
+      "chapter_4": "中国上市公司并购重组成功案例研究（3个案例）",
+      "chapter_5": "并购重组的财务影响与绩效分析",
+      "chapter_6": "成功经验、启示与展望",
+      "references": "参考文献（至少8篇学术论文，GB/T 7714 + APA 7th格式）"
+    },
+    "special_markers": {
+      "data_placeholder": "【数据待填：指标名称，年份，数值】— 用于标注需要Phase 4补全的财务数据",
+      "chart_placeholder": "【图表N：标题描述】— 用于标注图表插入位置和内容要求",
+      "editor_note": "【编者注：建议补充XXX内容，理由：XXX】— 用于标注超出方案但建议补充的内容"
+    }
+  },
+  "downstream": {
+    "consumers": ["Phase 4 - Claude-opus-4.7"],
+    "usage": "Phase 4基于初稿进行数据补全、交叉验证、图表制作、docx排版和终审"
+  },
+  "writing_style": {
+    "language": "学术化中文，专业术语准确统一",
+    "citation_style_cn": "GB/T 7714-2015 参考文献著录规则",
+    "citation_style_en": "APA 7th Edition",
+    "tone": "正式、客观、严谨",
+    "special_instructions": "每个观点需有理论/法规/数据支撑；章节间需有过渡语句"
+  },
+  "quality_checklist": [
+    "总字数（不含参考文献）≥3000字",
+    "正文包含全部6个章节",
+    "中文摘要和英文Abstract完整",
+    "至少3个上市公司案例",
+    "五维度财务分析指标体系",
+    "中外法律制度比较（中国 vs 美国）",
+    "参考文献≥8篇学术论文且有正文引用标记",
+    "语言流畅学术化，逻辑严谨"
+  ],
+  "constraints": {
+    "min_word_count_body": 3000,
+    "abstract_cn_range": "200-300字",
+    "case_study_count": 3,
+    "min_reference_count": 8,
+    "financial_indicator_dimensions": ["盈利能力", "偿债能力", "营运能力", "成长能力", "市场表现"],
+    "legal_jurisdictions": ["中国", "美国"],
+    "forbidden_sources": ["网页", "报刊", "非学术来源"],
+    "allowed_sources": ["学术论文", "CSSCI/SSCI期刊", "相关法律条文", "会计准则"]
+  },
+  "metadata": {
+    "project": "中国上市公司并购重组成功案例研究",
+    "report_type": "学术研究报告/案例分析",
+    "discipline": "会计学",
+    "created": "2026-05-28"
+  }
+}

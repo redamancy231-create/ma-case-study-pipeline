@@ -1,0 +1,45 @@
+{
+  "phase": 1,
+  "model": "Kimi-k2.6",
+  "role": "方案设计",
+  "task_id": "phase1_design",
+  "input": {
+    "source": "independent",
+    "description": "本阶段为初始阶段，无需上游输入。模型根据项目总体要求独立完成方案设计。",
+    "context_provided": [
+      "研究报告主题：中国上市公司并购重组成功案例研究",
+      "报告规范要求（字数、格式、结构等）",
+      "学科领域：会计学"
+    ]
+  },
+  "output": {
+    "file": "phase1_design.md",
+    "format": "markdown",
+    "sections": [
+      "报告大纲设计（含候选标题、摘要框架、关键词、章节结构）",
+      "分析框架设计（含逻辑框架、核心论点、数据分析维度、图表方案）",
+      "案例候选推荐（3-4个案例，含选择理由与数据来源）",
+      "论述逻辑链设计（含论述路径图、过渡要点）",
+      "参考文献候选清单（8-10篇真实可检索文献）"
+    ]
+  },
+  "downstream": {
+    "consumers": ["Phase 2 - GLM-5.1", "Phase 3 - GPT-5.5", "Phase 4 - Claude-opus-4.7"],
+    "usage": "大纲与分析框架供Phase 2审核和Phase 3撰写参考；案例候选和文献清单供Phase 3和Phase 4使用"
+  },
+  "constraints": {
+    "word_count": "方案文档本身约2000-3000字",
+    "academic_standard": "需符合会计学学术规范",
+    "data_requirement": "案例需涉及真实上市公司财务数据场景",
+    "reference_requirement": "文献推荐需为真实学术论文，非网页或报刊"
+  },
+  "metadata": {
+    "project": "中国上市公司并购重组成功案例研究",
+    "report_type": "学术研究报告/案例分析",
+    "discipline": "会计学",
+    "min_word_count": 3000,
+    "language": "中文（摘要含英文关键词）",
+    "deadline": "无硬性截止日期",
+    "created": "2026-05-28"
+  }
+}

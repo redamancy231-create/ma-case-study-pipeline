@@ -1,0 +1,384 @@
+{
+  "phase": "5-A",
+  "model": "GPT-5.5",
+  "task_id": "phase5a_cross_review_compliance_and_facts",
+  "output_file": "phase5a_gpt5.5_review.json",
+  "paired_markdown_file": "phase5a_gpt5.5_review.md",
+  "review_target": "中国上市公司并购重组成功案例研究.docx",
+  "created_date": "2026-05-29",
+  "review_scope": {
+    "scope_summary": "以终稿docx为对象，参照Phase 2、生成脚本与归档材料，对法律制度引用、会计准则适用、案例事实时间线、财务数据合理性与勾稽关系进行反向复核。",
+    "included_dimensions": [
+      "法律制度引用准确性",
+      "会计准则适用与处理逻辑",
+      "案例事实与时间线准确性",
+      "财务数据合理性与勾稽关系"
+    ],
+    "excluded_dimensions": [
+      "写作风格",
+      "文献格式",
+      "章节结构",
+      "术语统一性"
+    ],
+    "authority_hierarchy": [
+      "phase2_expert_review.md",
+      "中国上市公司并购重组成功案例研究.docx",
+      "generate_docx.py",
+      "项目复盘归档报告.md",
+      "公开法规与案例事实"
+    ]
+  },
+  "overall_result": {
+    "score": 68,
+    "max_score": 100,
+    "conclusion": "退回重写",
+    "reason": "核心财务与CAR数据经上游归档和生成脚本确认属于模拟数据，但终稿按Wind/CSMAR/年报来源呈现并据此作出显著性结论；同时存在《证券法》条文编号和要约价格规则引用错误。"
+  },
+  "scoring_table": [
+    {
+      "dimension": "法律法规引用准确性",
+      "max_score": 25,
+      "score": 17,
+      "deduction_reason": "公司法、破产法基本准确；证券法第67条、要约价格规则和重组办法第12条表述存在硬伤。"
+    },
+    {
+      "dimension": "会计准则适用与处理",
+      "max_score": 25,
+      "score": 21,
+      "deduction_reason": "三案合并类型正确；商誉金额口径、EPS公式、商誉后续计量说明仍需修正。"
+    },
+    {
+      "dimension": "案例事实与时间线",
+      "max_score": 25,
+      "score": 20,
+      "deduction_reason": "核心事实基本正确；多个关键日期未精确到日，宝钢-武钢T年口径需澄清。"
+    },
+    {
+      "dimension": "数据合理性与勾稽",
+      "max_score": 15,
+      "score": 5,
+      "deduction_reason": "数据勾稽自洽，但模拟数据以真实数据库来源呈现，CAR显著性不可采信。"
+    },
+    {
+      "dimension": "整体严谨性",
+      "max_score": 10,
+      "score": 5,
+      "deduction_reason": "主体框架完整，但数据来源问题和证券法硬伤削弱盲审可信度。"
+    }
+  ],
+  "legal_review": [
+    {
+      "location": "第3.1.1节 P096",
+      "content": "2018年《公司法》第172-175条，涵盖合并方式、合并协议、债权人通知、债务承继、分立程序。",
+      "verification": "Phase 2要求补全第172-175条；2018年版条文编号与内容基本匹配。",
+      "status": "一致",
+      "recommendation": "可保留；建议在第175条处明确其为分立条款，避免误读。"
+    },
+    {
+      "location": "第3.1.1节 P097",
+      "content": "《公司法》第142条与异议股东现金选择权、股份回购相关。",
+      "verification": "Phase 2要求补充第142条；2018年版第142条确为股份回购例外条款。",
+      "status": "一致",
+      "recommendation": "补充说明现金选择权的具体安排仍以重组方案和交易所规则为准。"
+    },
+    {
+      "location": "第3.1.1节 P097",
+      "content": "2023年修订《公司法》自2024年7月1日生效，新增授权资本制（第152-157条）、类别股（第144-146条）。",
+      "verification": "生效日期正确；类别股条款范围基本可接受；但“授权资本制（第152-157条）”表述过宽。",
+      "status": "需补充",
+      "recommendation": "改为“第144-146条涉及类别股，第152-153条涉及公司章程或股东会授权董事会决定发行新股等机制”。"
+    },
+    {
+      "location": "第3.1.2节 P099",
+      "content": "《证券法》第62条、第65条、第67条、第73-80条；第65条规定30%触发要约及6个月最高价；第67条规定协议收购。",
+      "verification": "30%继续增持触发要约方向正确；但6个月最高价属于《上市公司收购管理办法》规则，不宜归入《证券法》第65条；2019年《证券法》第67条并非协议收购规则。",
+      "status": "不一致",
+      "recommendation": "重新核对2019年《证券法》和《上市公司收购管理办法》，拆分要约触发、协议收购和价格下限依据。"
+    },
+    {
+      "location": "第3.1.3节 P101",
+      "content": "《上市公司重大资产重组管理办法》第12条重大资产重组标准、第13条重组上市、第14条发行股份购买资产。",
+      "verification": "方向正确，但第12条门槛压缩表述不够精确。",
+      "status": "需补充",
+      "recommendation": "按资产总额、营业收入、资产净额三项分别写明50%及金额门槛。"
+    },
+    {
+      "location": "第3.1.4节 P103",
+      "content": "《企业破产法》第70-94条重整、第95-106条和解；第75条担保权暂停行使。",
+      "verification": "已区分重整与和解，并准确说明第75条不是美国式自动中止。",
+      "status": "一致",
+      "recommendation": "可保留。"
+    },
+    {
+      "location": "第3.2节 P105-P106、表2",
+      "content": "Chapter 11的DIP、自动中止、DIP融资、绝对优先权规则；对比中国第75条。",
+      "verification": "与Phase 2要求一致，未发生明显法律移植错误。",
+      "status": "一致",
+      "recommendation": "建议标注U.S. Code条款来源，提升可核验性。"
+    }
+  ],
+  "accounting_review": {
+    "combination_type_checks": [
+      {
+        "case": "中国南车吸收合并中国北车",
+        "final_determination": "同一控制下企业合并，权益结合法/账面价值法，不确认商誉。",
+        "review_result": "正确",
+        "basis": "合并前后均受国务院国资委最终控制。"
+      },
+      {
+        "case": "美的集团收购德国库卡",
+        "final_determination": "非同一控制下企业合并，购买法，确认商誉。",
+        "review_result": "正确",
+        "basis": "美的与库卡合并前不存在共同最终控制方。"
+      },
+      {
+        "case": "宝钢股份吸收合并武钢股份",
+        "final_determination": "同一控制下企业合并，不形成新商誉。",
+        "review_result": "基本正确",
+        "basis": "交易完成时处于国资体系/中国宝武整合框架下。"
+      }
+    ],
+    "logic_checks": [
+      {
+        "location": "P020、P125、表5 R04",
+        "issue": "美的-库卡商誉金额口径混用。",
+        "severity": "重要",
+        "recommendation": "统一为购买日新增/确认约259亿元，2017年末商誉余额约289.34亿元。"
+      },
+      {
+        "location": "P127、P176",
+        "issue": "商誉减值测试未明确“不摊销、每年至少测试”的准则口径。",
+        "severity": "一般",
+        "recommendation": "增补商誉后续计量不摊销、至少每年进行减值测试、减值不得转回。"
+      },
+      {
+        "location": "表3 R13",
+        "issue": "EPS公式口径偏粗。",
+        "severity": "一般",
+        "recommendation": "改为归属于母公司普通股股东的净利润/发行在外普通股加权平均数。"
+      },
+      {
+        "location": "P159、表7",
+        "issue": "CAR事件研究方法框架合格，但数据真实性未解决前不应保留显著性结论。",
+        "severity": "重要",
+        "recommendation": "使用真实行情数据重算；未重算前删除显著性和t统计量。"
+      }
+    ]
+  },
+  "case_fact_review": [
+    {
+      "case": "中国南车吸收合并中国北车",
+      "facts": [
+        {
+          "fact_point": "首次公告日",
+          "final_statement": "2014年12月30日首次公告",
+          "review_result": "无偏差",
+          "recommendation": "可保留。"
+        },
+        {
+          "fact_point": "换股比例",
+          "final_statement": "每1股中国北车A股换取1.10股中国南车A股，H股同等比例。",
+          "review_result": "无偏差",
+          "recommendation": "可保留。"
+        },
+        {
+          "fact_point": "完成日",
+          "final_statement": "2015年6月正式完成。",
+          "review_result": "轻微偏差",
+          "recommendation": "补齐具体完成节点，区分合并协议生效、公司成立、A/H股上市等日期。"
+        }
+      ]
+    },
+    {
+      "case": "美的集团收购德国库卡",
+      "facts": [
+        {
+          "fact_point": "要约公告时间",
+          "final_statement": "2016年5月",
+          "review_result": "无偏差",
+          "recommendation": "正文可同步写为2016年5月18日。"
+        },
+        {
+          "fact_point": "要约价格",
+          "final_statement": "每股115欧元",
+          "review_result": "无偏差",
+          "recommendation": "可保留。"
+        },
+        {
+          "fact_point": "最终持股比例",
+          "final_statement": "累计持有库卡94.55%股权",
+          "review_result": "无偏差",
+          "recommendation": "可保留。"
+        },
+        {
+          "fact_point": "商誉金额",
+          "final_statement": "摘要写确认289.34亿元；正文写购买日确认约259亿元、年末余额289.34亿元。",
+          "review_result": "严重偏差",
+          "recommendation": "统一区分新增商誉、购买日商誉和期末商誉余额。"
+        }
+      ]
+    },
+    {
+      "case": "宝钢股份吸收合并武钢股份",
+      "facts": [
+        {
+          "fact_point": "方案公告",
+          "final_statement": "2016年9月公布，表7用2016-09-22。",
+          "review_result": "无偏差",
+          "recommendation": "正文同步写具体日期。"
+        },
+        {
+          "fact_point": "换股比例",
+          "final_statement": "每1股武钢股份换取0.56股宝钢股份。",
+          "review_result": "无偏差",
+          "recommendation": "可保留。"
+        },
+        {
+          "fact_point": "财务窗口",
+          "final_statement": "表3(c)写T=2016方案/2017完成，表6使用2016为T。",
+          "review_result": "轻微至重要偏差",
+          "recommendation": "明确财务表以公告年为T，或改按完成年重排。"
+        }
+      ]
+    }
+  ],
+  "data_review": [
+    {
+      "case": "中国中车",
+      "check_point": "ROE vs 净利润",
+      "final_values": "净利润2014年51.16亿元、2015年117.97亿元；ROE 10.42%升至10.85%后回落。",
+      "judgement": "基本合理",
+      "recommendation": "保留勾稽解释，但需注明数据是否真实抓取。"
+    },
+    {
+      "case": "美的-库卡",
+      "check_point": "ROE、ROA与杠杆",
+      "final_values": "ROE维持25%以上，ROA 2017年降至7.18%，资产负债率升至66.81%。",
+      "judgement": "基本合理",
+      "recommendation": "使用真实年报数据核验。"
+    },
+    {
+      "case": "宝钢-武钢",
+      "check_point": "ROE与行业周期",
+      "final_values": "ROE 2015年1.42%升至2018年13.42%；P135另提2019年降至7.68%。",
+      "judgement": "需要补充",
+      "recommendation": "若保留2019年判断，应增补2019年数据或注明为年报外部事实。"
+    },
+    {
+      "case": "全体数据表/图",
+      "check_point": "数据来源标注",
+      "final_values": "终稿标注Wind、CSMAR、上市公司年度报告；生成脚本和归档报告说明为模拟数据。",
+      "judgement": "重大异常",
+      "recommendation": "必须改用真实数据重算；若坚持模拟，应改为“模拟数据，仅用于方法演示”，并撤回实证结论和显著性判断。"
+    }
+  ],
+  "major_issues": [
+    {
+      "priority": "重大",
+      "issue": "模拟数据被呈现为Wind/CSMAR/年报数据，存在学术不端嫌疑。",
+      "locations": [
+        "P150",
+        "P153",
+        "P161",
+        "P164",
+        "表4-表7",
+        "generate_docx.py第45行",
+        "项目复盘归档报告第112、126、155行"
+      ],
+      "basis": "生成脚本和归档报告均承认数据为模拟，终稿来源标注却指向数据库和年报。",
+      "required_action": "用真实Wind/CSMAR/年报数据重算并保留底稿；或明确标注模拟数据并删除实证性结论。"
+    },
+    {
+      "priority": "重大",
+      "issue": "《证券法》条文引用存在硬错误。",
+      "locations": [
+        "P099",
+        "表1 R04"
+      ],
+      "basis": "第67条被写成协议收购规则；6个月最高价规则被归入《证券法》第65条。",
+      "required_action": "重新核对2019年《证券法》和《上市公司收购管理办法》，修正文中和表1所有相关条文。"
+    },
+    {
+      "priority": "重要",
+      "issue": "美的-库卡商誉金额口径混用。",
+      "locations": [
+        "P020",
+        "P125",
+        "表5 R04"
+      ],
+      "basis": "摘要把289.34亿元写成确认商誉，正文又称购买日确认约259亿元、2017年末余额289.34亿元。",
+      "required_action": "统一为购买日新增/确认约259亿元；2017年末商誉余额约289.34亿元。"
+    },
+    {
+      "priority": "重要",
+      "issue": "《重大资产重组管理办法》第12条门槛表述过度压缩。",
+      "locations": [
+        "P101"
+      ],
+      "basis": "第12条应按资产总额、营业收入、资产净额等项目分别表述。",
+      "required_action": "重写第12条阈值表述，并注明适用版本。"
+    },
+    {
+      "priority": "重要",
+      "issue": "2023年《公司法》新增制度条文范围不精确。",
+      "locations": [
+        "P097"
+      ],
+      "basis": "“授权资本制（第152-157条）”范围过宽。",
+      "required_action": "改为第152-153条授权董事会发行新股机制；类别股保留第144-146条。"
+    },
+    {
+      "priority": "重要",
+      "issue": "宝钢-武钢财务窗口T年口径不清。",
+      "locations": [
+        "表3(c)",
+        "表6",
+        "P132"
+      ],
+      "basis": "案例完成于2017年2月，财务表以2016为T但未说明公告年口径。",
+      "required_action": "明确T=公告年，或改按T=完成年重排。"
+    }
+  ],
+  "revision_suggestions": [
+    {
+      "section": "摘要 P020",
+      "before": "美的-库卡案例确认289.34亿元商誉。",
+      "after": "美的-库卡交易购买日新增/确认商誉约259亿元，2017年末商誉余额升至约289.34亿元。"
+    },
+    {
+      "section": "3.1.1 P097",
+      "before": "授权资本制（第152-157条）。",
+      "after": "第152-153条体现公司章程或股东会授权董事会决定发行新股的机制；第144-146条涉及类别股。"
+    },
+    {
+      "section": "3.1.2 P099",
+      "before": "第65条规定要约价格不得低于提示性公告前6个月最高价；第67条规定协议收购规则。",
+      "after": "第65条规定30%继续增持触发要约收购；要约价格下限另见《上市公司收购管理办法》；协议收购规则改引《证券法》对应条款。"
+    },
+    {
+      "section": "3.1.3 P101",
+      "before": "任一指标达到50%或净资产达50%且超5000万元即构成重大。",
+      "after": "按资产总额、营业收入、资产净额三项分别列示50%及金额门槛。"
+    },
+    {
+      "section": "5.2 表4-表6、图1",
+      "before": "数据来源：Wind数据库、CSMAR数据库、上市公司年度报告，经作者整理计算。",
+      "after": "若为真实数据，保留并附底稿；若为模拟数据，改为“模拟数据，仅用于方法演示”，并删除实证结论。"
+    },
+    {
+      "section": "5.4 P159-166、表7、图2",
+      "before": "直接报告CAR、t值和显著性。",
+      "after": "用真实行情数据重算；未重算前删除“显著”“5%水平”等统计推断。"
+    }
+  ],
+  "minimum_pass_conditions": [
+    "以真实Wind/CSMAR/年报和股票交易数据替换表4-表7及图1-图2，并保留计算底稿。",
+    "修正第3.1.2节《证券法》和《上市公司收购管理办法》条文引用。",
+    "统一美的-库卡商誉“新增确认额”和“期末余额”口径。",
+    "澄清三案例T年口径，尤其是宝钢-武钢公告年与完成年的区分。"
+  ],
+  "generated_files": [
+    "phase5a_gpt5.5_review.md",
+    "phase5a_gpt5.5_review.json"
+  ]
+}

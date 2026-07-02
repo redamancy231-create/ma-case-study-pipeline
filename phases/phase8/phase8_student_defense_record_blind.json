@@ -1,0 +1,204 @@
+{
+  "phase": "8-D-blind",
+  "title": "Phase 8-D（盲答版）：模拟答辩学生答辩记录",
+  "variant": "blind",
+  "created_date": "2026-05-31",
+  "identity": "211院校会计学大四学生，《中国上市公司并购重组成功案例研究》的作者兼初稿撰写人",
+  "input_discipline": {
+    "forbidden_inputs_read": false,
+    "forbidden_files": [
+      "phase8_defense_chair_questions.md",
+      "phase8_accounting_expert_questions.md",
+      "phase8_methodology_expert_questions.md"
+    ],
+    "allowed_inputs_used": [
+      "phase8d_student_gpt5.5_blind_prompt.md",
+      "phase8d_student_gpt5.5_blind_config.json",
+      "phase8d_blind_question_sheet.md",
+      "中国上市公司并购重组成功案例研究_v2.md",
+      "phase3_draft_report.md",
+      "phase6_integration_review.md"
+    ]
+  },
+  "opening_summary": "开场陈述说明论文以中国中车、美的库卡、宝钢武钢三个案例解释并购重组成功机制，核心观点是价值创造不来自交易完成本身，而来自真实战略动因、匹配的会计处理和持续整合；同时主动披露CAR为演示性、部分指标为估算、缺少失败对照等局限。",
+  "sections": [
+    {
+      "reviewer": "答辩委员会主席",
+      "focus": "设计层",
+      "answers": [
+        {
+          "id": "chair_Q1",
+          "question_focus": "2+1案例结构是否合理，以及第四案例类型选择",
+          "answer_summary": "承认2+1结构从会计分类上可成立，但从研究设计看存在结构遗憾。若只能补一个案例，优先补失败或中止案例作为对照，以校准成功标准；若仅修复会计对称性，则可补境内非同一控制收购。",
+          "confidence_self_assessment": "中等偏高",
+          "references": ["4.4 三案例比较", "6.3 研究局限", "表1 企业重组方法分类"]
+        },
+        {
+          "id": "chair_Q2",
+          "question_focus": "四个理论支点与三个案例的对应关系",
+          "answer_summary": "将中国中车、宝钢武钢主要对应效率理论和市场势力理论，宝钢还体现交易费用理论，美的库卡体现效率理论与代理理论的风险镜像。承认终稿理论回扣偏概述，代理理论应进一步嵌入美的高溢价和商誉风险分析。",
+          "confidence_self_assessment": "中等偏高",
+          "references": ["2.2 并购重组相关理论", "6.1 研究结论与理论回扣"]
+        },
+        {
+          "id": "chair_Q3",
+          "question_focus": "数据溯源规则对论文质量的影响",
+          "answer_summary": "认为强制数据溯源会让论文更可信但更精简，会迫使放弃CAR显著性和部分[S]指标的强表述。保留研究框架，明确区分真实数据、估算数据和模拟演示，是更合规的取舍。",
+          "confidence_self_assessment": "高",
+          "references": ["摘要数据说明", "6.3 研究局限", "phase6 M01"]
+        },
+        {
+          "id": "chair_Q4",
+          "question_focus": "成功标准的操作化与失败案例的作用",
+          "answer_summary": "将成功界定为交易合规、战略协同、整合路径和中长期财务市场表现的组合，而非单一CAR或交易完成。华泽钴镍不应放入成功样本，可作为失败对照；加入失败案例后结论应改写为成功条件总结。",
+          "confidence_self_assessment": "中等偏高",
+          "references": ["1.2 研究意义", "4.4 三案例比较", "6.3 幸存者偏差"]
+        },
+        {
+          "id": "chair_Q5",
+          "question_focus": "数据版本演进对可信度和可复现性的影响",
+          "answer_summary": "承认v1削弱信任，v2和v2.2通过如实标注与akshare真实数据增强信任，但复现链仍未闭环。当前不能保证现场逐格指认CSV来源，正式送审应附CSV、脚本和计算底稿。",
+          "confidence_self_assessment": "中等",
+          "references": ["表4 数据标识", "phase6 R1", "phase6 数据溯源升级说明"]
+        },
+        {
+          "id": "chair_Q6",
+          "question_focus": "从零重写时只改一个设计决策",
+          "answer_summary": "选择优先修改数据溯源规则，而不是案例或章节结构，因为数据可信度是论文底线。强制所有非直接可核验数据标为模拟并附底稿，会牺牲部分实证完整度，但能提升答辩可承受度。",
+          "confidence_self_assessment": "高",
+          "references": ["6.3 研究局限", "phase6 学术诚信红线处理"]
+        }
+      ]
+    },
+    {
+      "reviewer": "会计学领域专家",
+      "focus": "准则层",
+      "answers": [
+        {
+          "id": "accounting_Q1",
+          "question_focus": "南北车同一控制判断、控制链条和追溯重述口径",
+          "answer_summary": "承认论文未展开控制链条和各层持股比例，只论证到国资委最终控制且非暂时。表4(a)的T-2/T-1数据更像趋势展示而非严格追溯重述合并报表，正式版应重做统一追溯口径。",
+          "confidence_self_assessment": "中等偏低",
+          "references": ["4.1.2 交易方案与会计处理", "表4(a)", "CAS 20"]
+        },
+        {
+          "id": "accounting_Q2",
+          "question_focus": "美的库卡PPA、可辨认无形资产和分步取得控制",
+          "answer_summary": "承认论文只概述商誉反映品牌、技术、客户关系和协同预期，未列示PPA类别和金额。若存在可辨认无形资产，应单独确认；要约前少数股权及原权益重计量也未在文中展开，需补年报附注和交易结构明细。",
+          "confidence_self_assessment": "中等偏低",
+          "references": ["4.2.2 交易方案与会计处理", "CAS 20", "CAS 33"]
+        },
+        {
+          "id": "accounting_Q3",
+          "question_focus": "商誉289.34与289.04口径不一致",
+          "answer_summary": "承认摘要和正文有旧口径残留，应以表4(b)的2017年末289.04亿元为准。259亿元购买日新增商誉与30.21亿元期初商誉不能简单勾稽到期末余额，需回年报附注拆分外币折算、PPA后续调整和其他业务变动。",
+          "confidence_self_assessment": "中等",
+          "references": ["摘要", "4.2.2", "表4(b)", "phase6 M03"]
+        },
+        {
+          "id": "accounting_Q4",
+          "question_focus": "库卡营收下降但商誉未大额减值的解释",
+          "answer_summary": "承认论文没有披露VIU、FVLCD、WACC、增长率等减值测试参数，不能证明无需减值。现有结论只能说商誉减值风险值得关注，不能据收入下降单独判定减值必然发生；后续应补资产组划分和关键假设。",
+          "confidence_self_assessment": "中等",
+          "references": ["4.2.3 案例评价", "表4(b)", "CAS 8"]
+        },
+        {
+          "id": "accounting_Q5",
+          "question_focus": "杜邦分解与ROE口径不一致",
+          "answer_summary": "承认杜邦分解口径不够统一，部分因子无法精确乘回ROE。正式分析应统一平均净资产、平均总资产、归母或全口径权益等口径；在未统一前，杜邦只能作为演示性拆解，不应做强因果判断。",
+          "confidence_self_assessment": "中等",
+          "references": ["5.3 杜邦分析", "表4(a)", "表4(b)", "表4(c)"]
+        },
+        {
+          "id": "accounting_Q6",
+          "question_focus": "宝钢2016营收增长是否属于并购后效果",
+          "answer_summary": "承认2016是方案公告年而非交割完成后，不能直接称为并购后增长。该年变化更可能混合行业回升、政策预期和公司经营改善；2017以后才可讨论并表因素，但仍需区分并表效应、钢价和供给侧改革。",
+          "confidence_self_assessment": "高",
+          "references": ["4.3.2 交易方案", "表4(c)", "5.2 财务绩效对比"]
+        },
+        {
+          "id": "accounting_Q7",
+          "question_focus": "CAS 33同一控制列报和库卡资产组认定",
+          "answer_summary": "承认论文对CAS 33只写到合并范围，未展开同一控制下视同自最终控制方开始控制时一直存在的列报逻辑。库卡资产组划分也未细化，正式版应按现金流生成单元识别并说明商誉分摊。",
+          "confidence_self_assessment": "中等",
+          "references": ["4.2.2", "4.3.2", "CAS 33", "CAS 8"]
+        }
+      ]
+    },
+    {
+      "reviewer": "实证方法论专家",
+      "focus": "方法层",
+      "answers": [
+        {
+          "id": "method_Q1",
+          "question_focus": "Brown-Warner t统计量与同一sigma约束",
+          "answer_summary": "说明CAR的t值应使用同一估计窗残差标准差，当前表5三个窗口反推出不同日波动率，说明其只是演示值且内部约束不足。真实数据下应固定估计窗sigma，再统一计算各窗口t值。",
+          "confidence_self_assessment": "中等偏高",
+          "references": ["5.4 事件研究", "表5"]
+        },
+        {
+          "id": "method_Q2",
+          "question_focus": "停牌、涨跌停板、iid假设和稳健性检验",
+          "answer_summary": "承认A股停牌和连续涨跌停会污染估计窗、拉长日历窗口并引入强自相关，裸t检验可能高估显著性。BMP更适合多事件横截面，单事件下应更多使用bootstrap、随机化或仅呈示经济量级。",
+          "confidence_self_assessment": "中等",
+          "references": ["5.4 事件研究", "6.3 方法局限"]
+        },
+        {
+          "id": "method_Q3",
+          "question_focus": "单因子模型和美的库卡测量对象",
+          "answer_summary": "明确表5测的是收购方美的A股市场反应，不测标的方库卡。若测库卡，应换用其所在市场收益率和德国市场基准。单因子模型在国改、一带一路等行情中可能高估CAR，严谨版应使用多因子模型检验。",
+          "confidence_self_assessment": "高",
+          "references": ["5.4 事件研究", "表5", "6.3 研究局限"]
+        },
+        {
+          "id": "method_Q4",
+          "question_focus": "现金流指标缺失和跨行业可比性",
+          "answer_summary": "承认表3没有现金流指标是明显缺口，应补经营现金流/收入、经营现金流/净利润、自由现金流等。跨行业比较不宜一把尺子，应做行业中位数调整、行业内匹配或标准化z-score。",
+          "confidence_self_assessment": "高",
+          "references": ["表3 指标体系", "5.1 财务分析指标体系"]
+        },
+        {
+          "id": "method_Q5",
+          "question_focus": "EPS加权股数、换股时点和[S]基准噪声",
+          "answer_summary": "承认EPS公式虽已改为加权平均股数口径，但正文未充分处理换股登记时点和同一控制追溯重述分母。T-2/T-1的[S]指标用于差分会放大误差，应先统一口径并做敏感性分析。",
+          "confidence_self_assessment": "中等",
+          "references": ["表3 EPS口径", "表4(a)", "表4(c)", "phase6 M08"]
+        },
+        {
+          "id": "method_Q6",
+          "question_focus": "杜邦恒等式不能承担因果识别",
+          "answer_summary": "承认杜邦分解只能做现象拆解，不能证明净利率变化来自真实经营改善。论文中关于规模效应和采购优化的解释是额外经济故事，需结合非经常性损益、行业价格、会计政策和成本结构验证。",
+          "confidence_self_assessment": "高",
+          "references": ["5.3 杜邦分析", "表4", "phase6 M27"]
+        },
+        {
+          "id": "method_Q7",
+          "question_focus": "无对照组、无反事实与DID可行性",
+          "answer_summary": "承认单样本前后对比无法分离并购贡献与行业周期贡献。更严谨做法是DID或合成控制，选择同业、规模、政策暴露和产品结构接近且未重组的公司作为对照；现有论文应降级为案例解释而非强因果识别。",
+          "confidence_self_assessment": "高",
+          "references": ["6.3 研究局限", "5.2 财务绩效对比"]
+        },
+        {
+          "id": "method_Q8",
+          "question_focus": "稳健性理解、二选一资源分配和重做优先级",
+          "answer_summary": "承认仅换窗口宽度不是严格稳健性，长窗CAR更大反而提示泄露或漂移。二选一优先增加行业对照组；真实数据到位后重做顺序为事件日修正、估计窗清洗、再替换显著性检验方法。",
+          "confidence_self_assessment": "高",
+          "references": ["5.4 稳健性表述", "表5", "6.3 研究局限"]
+        }
+      ]
+    }
+  ],
+  "closing_summary": "总结陈述感谢评审，并将论文边界归纳为：案例事实和会计分类较有把握，商誉明细、控制链条、减值参数和严格实证仍需补强。后续优先补数据底稿、失败或行业对照组、现金流指标和事件研究真实数据。",
+  "known_limitations_disclosed": [
+    "CAR及显著性仍为演示性结果",
+    "部分早期财务指标和杜邦子指标为[S]估算",
+    "缺少失败案例或行业对照组",
+    "缺少近五年文献",
+    "商誉PPA、减值测试参数和资产组划分未充分展开",
+    "EPS、ROE和权益乘数等口径需要统一"
+  ],
+  "deliverables": [
+    "phase8_student_defense_record_blind.md",
+    "phase8_student_defense_record_blind.json"
+  ]
+}

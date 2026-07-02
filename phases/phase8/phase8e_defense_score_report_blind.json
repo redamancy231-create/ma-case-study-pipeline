@@ -1,0 +1,151 @@
+{
+  "phase": "8-E-blind",
+  "model": "Qwen3.7-Max",
+  "role": "模拟答辩 — 评分整合官（校外答辩评分专家）— 闭卷重跑版",
+  "scorer": "Qwen3.7-Max",
+  "date": "2026-05-31",
+  "variant": "blind",
+  "paper_impression": "结构完整的211本科案例研究，四层框架搭建到位，数据标注诚实。但分析深度停留在描述层：CAR全为模拟且t值三窗口互不自洽，杜邦三因子乘积≠ROE，商誉金额摘要与正文矛盾，无现金流指标与对照组。84分终审合理。",
+
+  "stage_1_cold_scoring": {
+    "protocol": "仅依据论文v2+三份问题单+闭卷学生记录独立完成，未打开开卷成绩单",
+    "tier_1_per_reviewer": {
+      "weight": 0.60,
+      "chair": {
+        "reviewer": "Kimi-k2.6",
+        "role": "答辩委员会主席",
+        "reviewer_original_score": null,
+        "reviewer_original_note": "评审原分留空",
+        "dimensions": {
+          "研究设计与案例选择": {"max": 35, "blind_score": 29, "delta_from_reviewer": null, "rationale": "Q1准确识别2+1结构政策同质性问题，优先补失败案例做对照；Q4给出四维度成功操作化定义并以华泽钴镍为例。未展开政策同质性对比较分析锐度的具体影响。"},
+          "学术贡献与文献对话": {"max": 30, "blind_score": 24, "delta_from_reviewer": null, "rationale": "Q2提出主解释理论/风险约束理论二分重构，代理理论重新定位为风险镜子。交易费用理论在宝钢案例中论证略单薄。"},
+          "学术诚信与数据演进": {"max": 25, "blind_score": 21, "delta_from_reviewer": null, "rationale": "Q3是整场最出色回答之一，具体指出溯源规则对论文的约束效应。Q5坦诚承认做不到完整闭环但未提出分层存储方案。"},
+          "结构性自我认知": {"max": 10, "blind_score": 9, "delta_from_reviewer": null, "rationale": "Q6选择数据溯源规则为唯一修改项，理由精准且推演连锁改善效果。"}
+        },
+        "subtotal": 83
+      },
+      "accounting": {
+        "reviewer": "GLM-5.1",
+        "role": "会计学领域专家",
+        "reviewer_original_score": 60,
+        "dimensions": {
+          "合并类型判定与会计方法": {"max": 35, "reviewer_original": 21, "blind_score": 23, "delta": 2, "rationale": "Q1正确构建控制链方向并主动识别追溯重述口径问题；Q2识别PPA问题并引用CAS 33第48-50条分步控制规则。+2分反映对追溯重述和分步控制的主动识别。"},
+          "商誉确认与减值": {"max": 30, "reviewer_original": 18, "blind_score": 20, "delta": 2, "rationale": "Q3给出三类差额来源分析并提出勾稽表方案；Q4讨论VIU关键假设和不得转回规则对周期性行业的两难。+2分反映建设性修复方案。"},
+          "财务指标分析质量": {"max": 20, "reviewer_original": 12, "blind_score": 13, "delta": 1, "rationale": "Q5承认杜邦不自洽并识别口径混用原因；Q6区分并表效应与真实协同并将措辞降级。+1分反映措辞降级的自觉性。"},
+          "准则知识准确性": {"max": 15, "reviewer_original": 9, "blind_score": 11, "delta": 2, "rationale": "Q7准确阐述CAS 33第22条视同一体存续要求并讨论资产组认定两种路径。+2分反映准则知识深度显著高于论文呈现。"}
+        },
+        "subtotal": 67
+      },
+      "methodology": {
+        "reviewer": "Claude-opus-4.7",
+        "role": "实证方法论专家",
+        "reviewer_original_score": 56,
+        "reviewer_original_note": "基线分评论文方法论现状，答辩可显著上修",
+        "dimensions": {
+          "CAR事件研究设计": {"max": 35, "reviewer_original": 20, "blind_score": 26, "delta": 6, "rationale": "Q1正确推导Brown-Warner公式σ约束；Q2全面回应停牌/涨跌停对iid的破坏；Q3承认单因子风险并分清测量对象。+6分反映公式推导和微观结构分析能力。"},
+          "财务指标体系设计": {"max": 25, "reviewer_original": 14, "blind_score": 19, "delta": 5, "rationale": "Q4承认现金流缺口并提出含金量比率；Q5正确解释换股加权平均股数和追溯重述处理。+5分反映诊断精准性和方案具体性。"},
+          "杜邦分解与因果推断": {"max": 25, "reviewer_original": 13, "blind_score": 18, "delta": 5, "rationale": "Q6承认恒等式≠因果并识别替代解释；Q7承认无反事实并勾勒DID设计。+5分反映因果推断边界的清醒认知。"},
+          "研究方法自我认知": {"max": 15, "reviewer_original": 9, "blind_score": 13, "delta": 4, "rationale": "Q8主动纠正稳健性误解，选择对照组优先并给出修复排序。+4分反映方法论判断力和优先级排序能力。"}
+        },
+        "subtotal": 76
+      },
+      "reviewer_mean": 75.3
+    },
+    "tier_2_cross_cutting": {
+      "weight": 0.40,
+      "total_max": 40,
+      "dimensions": {
+        "跨评审逻辑一致性": {"max": 15, "blind_score": 11, "rationale": "数据坦诚度、因果推断强度、杜邦双层承认三处保持一致。主席Q4事后合理化和Q5乐观呈现倾向扣分。"},
+        "答辩中的学习与成长": {"max": 10, "blind_score": 8, "rationale": "从展示已知到承认硬伤到纠正自身的弧线清晰。起点偏高限制成长空间。"},
+        "局限认知的诚实度": {"max": 10, "blind_score": 7, "rationale": "大部分局限承认伴随改进路径，但主席Q5只认不改、文献综述零提及、总结陈述与Q6高度重复。"},
+        "口头表达与论证组织": {"max": 5, "blind_score": 4, "rationale": "先结论后依据模式一致，具体引用充分，被追问能收敛。部分回答篇幅偏长。"}
+      },
+      "subtotal": 30,
+      "normalized_to_100": 75.0
+    }
+  },
+
+  "stage_2_openbook_comparison": {
+    "protocol": "Stage 1分数锁定后才读入开卷成绩单，逐维度计算分差，未回改Stage 1分数",
+    "openbook_baseline": {
+      "final_score": 78,
+      "final_score_raw": 77.8,
+      "tier_1_mean": 76.3,
+      "tier_2_total": 32
+    },
+    "per_dimension_delta": [
+      {"dimension": "研究设计与案例选择", "reviewer": "主席", "max": 35, "openbook": 30, "blind": 29, "delta": -1, "bonus_source": "政策同质性的具体展开略弱"},
+      {"dimension": "学术贡献与文献对话", "reviewer": "主席", "max": 30, "openbook": 24, "blind": 24, "delta": 0, "bonus_source": "理论映射能力完整复现"},
+      {"dimension": "学术诚信与数据演进", "reviewer": "主席", "max": 25, "openbook": 23, "blind": 21, "delta": -2, "bonus_source": "开卷学生能说明CSV存储和字段映射，闭卷仅承认不足未提方案"},
+      {"dimension": "结构性自我认知", "reviewer": "主席", "max": 10, "openbook": 9, "blind": 9, "delta": 0, "bonus_source": "完整复现"},
+      {"dimension": "合并类型判定与会计方法", "reviewer": "会计", "max": 35, "openbook": 23, "blind": 23, "delta": 0, "bonus_source": "追溯重述和分步控制意识同样展示"},
+      {"dimension": "商誉确认与减值", "reviewer": "会计", "max": 30, "openbook": 20, "blind": 20, "delta": 0, "bonus_source": "差额分析和勾稽方案同样展示"},
+      {"dimension": "财务指标分析质量", "reviewer": "会计", "max": 20, "openbook": 13, "blind": 13, "delta": 0, "bonus_source": "口径识别和措辞降级同样展示"},
+      {"dimension": "准则知识准确性", "reviewer": "会计", "max": 15, "openbook": 11, "blind": 11, "delta": 0, "bonus_source": "CAS 33和资产组讨论同样展示"},
+      {"dimension": "CAR事件研究设计", "reviewer": "方法", "max": 35, "openbook": 26, "blind": 26, "delta": 0, "bonus_source": "公式推导和微观结构分析完整复现"},
+      {"dimension": "财务指标体系设计", "reviewer": "方法", "max": 25, "openbook": 19, "blind": 19, "delta": 0, "bonus_source": "现金流缺口诊断和跨行业方案完整复现"},
+      {"dimension": "杜邦分解与因果推断", "reviewer": "方法", "max": 25, "openbook": 18, "blind": 18, "delta": 0, "bonus_source": "恒等式≠因果和DID设计完整复现"},
+      {"dimension": "研究方法自我认知", "reviewer": "方法", "max": 15, "openbook": 13, "blind": 13, "delta": 0, "bonus_source": "稳健性纠正和优先级排序完整复现"},
+      {"dimension": "跨评审逻辑一致性", "reviewer": "跨维度", "max": 15, "openbook": 12, "blind": 11, "delta": -1, "bonus_source": "闭卷下事后合理化与论文实际呈现的差距更明显"},
+      {"dimension": "答辩中的学习与成长", "reviewer": "跨维度", "max": 10, "openbook": 8, "blind": 8, "delta": 0, "bonus_source": "成长弧线同样可观察"},
+      {"dimension": "局限认知的诚实度", "reviewer": "跨维度", "max": 10, "openbook": 8, "blind": 7, "delta": -1, "bonus_source": "闭卷下主席Q5只认不改和文献综述零提及更突出"},
+      {"dimension": "口头表达与论证组织", "reviewer": "跨维度", "max": 5, "openbook": 4, "blind": 4, "delta": 0, "bonus_source": "表达质量一致"}
+    ],
+    "summary": {
+      "tier_1_mean": {"openbook": 76.3, "blind": 75.3, "delta": -1.0},
+      "tier_2_total": {"openbook": 32, "blind": 30, "delta": -2},
+      "final_score_rounded": {"openbook": 78, "blind": 75, "delta": -3},
+      "final_score_exact": {"openbook": 77.8, "blind": 75.2, "delta": -2.6},
+      "openbook_bonus": "约2-3分（取决于四舍五入口径）"
+    },
+    "bonus_concentration_analysis": "开卷红利仅-2.6分（精确值），集中在主席维度学术诚信（-2）和跨维度一致性/诚实度（各-1），而非假设中方法论维度（+20上修来源）。方法论四个子维度在开卷与闭卷下得分完全一致（26/19/18/13=76），说明方法论+20上修来自学生真实理解力而非答案键残留。红利集中在数据管理的操作性细节（CSV存储和字段映射），答案键在此处提供了具体技术信息而非认知框架。这一结果部分推翻了开卷红利主要来自抄答案键的假设。"
+  },
+
+  "final_scorecard": {
+    "tier_1_scores": {
+      "chair": 83,
+      "accounting": 67,
+      "methodology": 76,
+      "mean": 75.3
+    },
+    "tier_1_weighted": {"value": 45.2, "max": 60, "formula": "75.3 × 0.60"},
+    "tier_2_raw": {"value": 30, "max": 40},
+    "tier_2_normalized": {"value": 75.0, "formula": "(30/40) × 100"},
+    "tier_2_weighted": {"value": 30.0, "max": 40, "formula": "75.0 × 0.40"},
+    "final_raw": {"value": 75.2, "formula": "45.2 + 30.0"},
+    "final_rounded": 75,
+    "grade": "中等",
+    "grade_range": "70-79",
+    "vs_openbook": {
+      "openbook_final": 78,
+      "blind_final": 75,
+      "delta_rounded": -3,
+      "delta_exact": -2.6,
+      "openbook_bonus": "约2-3分",
+      "interpretation": "闭卷分低于开卷3分（四舍五入后），开卷红利小且集中在数据管理操作层面。方法论维度零差异，说明+20上修来自真实理解力。"
+    }
+  },
+
+  "self_check": {
+    "systematic_deviation": "整体偏松+7~+20（会计/方法论），但评审原分评论文现状、我评答辩认知展示，评分对象不同。主席维度无原分可比。",
+    "max_single_deviation": "+20（方法论维度56→76），理由：方法论prompt明确设计为基线评论文现状+答辩可上修，学生Q1-Q8展示了公式推导、微观结构分析、DID设计和稳健性纠正等高阶认知。",
+    "independence_test": "若完全不看评审原分重评，分数不会显著变化。会计维度可能给70-72（无GLM严厉校准），其他维度变化不超过±2分。",
+    "two_stage_integrity": "Stage 1在未读开卷成绩单的情况下完成并锁定（主席83/会计67/方法76/跨维度30），Stage 2仅计算分差未回改Stage 1。"
+  },
+
+  "paper_vs_defense_calibration": {
+    "paper_score": 84,
+    "defense_score": 75,
+    "delta": -9,
+    "same_tier": "同处良好/中等相邻档",
+    "direction_explainable": true,
+    "anomaly_triggered": false,
+    "interpretation": "答辩分低于论文分——合理。论文84分含诚实标注加分，答辩暴露了会计精确度和数据底稿两个在口头回答中未能充分补偿的短板。方法论维度的认知优势不足以完全弥补。"
+  },
+
+  "paired_files": {
+    "openbook_report": "phase8e_defense_score_report.md",
+    "blind_report_md": "phase8e_defense_score_report_blind.md",
+    "blind_report_json": "phase8e_defense_score_report_blind.json"
+  }
+}

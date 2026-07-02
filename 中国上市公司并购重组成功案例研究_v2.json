@@ -1,0 +1,328 @@
+{
+  "document": "中国上市公司并购重组成功案例研究_v2.docx",
+  "paired_markdown_file": "中国上市公司并购重组成功案例研究_v2.md",
+  "title": "中国上市公司并购重组成功案例研究",
+  "subtitle": "——基于财务绩效与协同效应的分析",
+  "english_title": "A Study on Successful M&A and Restructuring Cases of Chinese Listed Companies: An Analysis Based on Financial Performance and Synergy Effects",
+  "version": "v2（Phase 6 修订版）",
+  "phase": 6,
+  "discipline": "会计学",
+  "academic_tier": "211院校会计学本科毕业论文",
+  "created": "2026-05-29",
+  "generator_script": "generate_docx_v2.py",
+  "based_on": "中国上市公司并购重组成功案例研究.docx（v1, Phase 4）",
+  "review_basis": [
+    "phase5a_gpt5.5_review",
+    "phase5b_glm5.1_review",
+    "phase6_integration_review"
+  ],
+  "final_verdict": "修改后通过",
+  "weighted_score": 84.0,
+  "char_count_approx": 23283,
+  "counts": {
+    "tables": 7,
+    "figures": 2,
+    "references": 16,
+    "chapters": 6
+  },
+  "keywords_cn": [
+    "并购重组",
+    "吸收合并",
+    "协同效应",
+    "财务绩效",
+    "商誉",
+    "累计超额收益率",
+    "会计准则"
+  ],
+  "keywords_en": [
+    "Mergers and Acquisitions",
+    "Absorption Merger",
+    "Synergy Effect",
+    "Financial Performance",
+    "Goodwill",
+    "Cumulative Abnormal Return",
+    "Accounting Standards"
+  ],
+  "structure": [
+    {
+      "level": 1,
+      "title": "摘  要"
+    },
+    {
+      "level": 1,
+      "title": "Abstract"
+    },
+    {
+      "level": 1,
+      "title": "一、引言"
+    },
+    {
+      "level": 2,
+      "title": "1.1 研究背景"
+    },
+    {
+      "level": 2,
+      "title": "1.2 研究意义"
+    },
+    {
+      "level": 2,
+      "title": "1.3 文献综述"
+    },
+    {
+      "level": 2,
+      "title": "1.4 研究方法与结构安排"
+    },
+    {
+      "level": 1,
+      "title": "二、企业重组的概念界定与理论基础"
+    },
+    {
+      "level": 2,
+      "title": "2.1 企业重组的狭义与广义概念"
+    },
+    {
+      "level": 2,
+      "title": "2.2 并购重组的相关理论"
+    },
+    {
+      "level": 2,
+      "title": "2.3 企业重组的主要方法分类"
+    },
+    {
+      "level": 1,
+      "title": "三、企业重组的制度法规环境"
+    },
+    {
+      "level": 2,
+      "title": "3.1 中国企业重组的法律框架"
+    },
+    {
+      "level": 3,
+      "title": "3.1.1 《公司法》关于合并与分立的规定"
+    },
+    {
+      "level": 3,
+      "title": "3.1.2 《证券法》关于上市公司收购的规则"
+    },
+    {
+      "level": 3,
+      "title": "3.1.3 《重大资产重组管理办法》"
+    },
+    {
+      "level": 3,
+      "title": "3.1.4 《企业破产法》与重整、和解程序"
+    },
+    {
+      "level": 2,
+      "title": "3.2 美国企业重组的法律框架"
+    },
+    {
+      "level": 2,
+      "title": "3.3 制度环境对并购重组的影响"
+    },
+    {
+      "level": 1,
+      "title": "四、中国上市公司并购重组成功案例研究"
+    },
+    {
+      "level": 2,
+      "title": "4.1 案例一：中国南车吸收合并中国北车"
+    },
+    {
+      "level": 3,
+      "title": "4.1.1 重组背景与动因"
+    },
+    {
+      "level": 3,
+      "title": "4.1.2 交易方案与会计处理"
+    },
+    {
+      "level": 3,
+      "title": "4.1.3 案例评价"
+    },
+    {
+      "level": 2,
+      "title": "4.2 案例二：美的集团收购德国库卡(KUKA)"
+    },
+    {
+      "level": 3,
+      "title": "4.2.1 重组背景与动因"
+    },
+    {
+      "level": 3,
+      "title": "4.2.2 交易方案与会计处理"
+    },
+    {
+      "level": 3,
+      "title": "4.2.3 案例评价"
+    },
+    {
+      "level": 2,
+      "title": "4.3 案例三：宝钢股份吸收合并武钢股份"
+    },
+    {
+      "level": 3,
+      "title": "4.3.1 重组背景与动因"
+    },
+    {
+      "level": 3,
+      "title": "4.3.2 交易方案与会计处理"
+    },
+    {
+      "level": 3,
+      "title": "4.3.3 案例评价"
+    },
+    {
+      "level": 2,
+      "title": "4.4 三案例比较"
+    },
+    {
+      "level": 1,
+      "title": "五、并购重组的财务影响与绩效分析"
+    },
+    {
+      "level": 2,
+      "title": "5.1 五维度财务分析指标体系"
+    },
+    {
+      "level": 2,
+      "title": "5.2 案例公司并购前后财务绩效对比"
+    },
+    {
+      "level": 2,
+      "title": "5.3 杜邦分析与协同效应识别"
+    },
+    {
+      "level": 2,
+      "title": "5.4 市场反应分析：累计超额收益率（CAR）事件研究"
+    },
+    {
+      "level": 2,
+      "title": "5.5 非财务影响分析"
+    },
+    {
+      "level": 1,
+      "title": "六、成功经验、启示与展望"
+    },
+    {
+      "level": 2,
+      "title": "6.1 研究结论与成功经验总结"
+    },
+    {
+      "level": 2,
+      "title": "6.2 对上市公司并购实践的启示"
+    },
+    {
+      "level": 2,
+      "title": "6.3 研究局限与未来研究方向"
+    },
+    {
+      "level": 1,
+      "title": "参考文献"
+    }
+  ],
+  "tables": [
+    {
+      "caption": "表1  企业重组主要方法分类及特征对比",
+      "rows": 8,
+      "cols": 5,
+      "provenance_tier": "P"
+    },
+    {
+      "caption": "表2  中美企业重整制度核心差异对比",
+      "rows": 9,
+      "cols": 4,
+      "provenance_tier": "P"
+    },
+    {
+      "caption": "表3  并购绩效评价指标体系总览（五维度）",
+      "rows": 14,
+      "cols": 5,
+      "provenance_tier": "N/A"
+    },
+    {
+      "caption": "表4  三案例公司并购前后关键财务指标对比（T-2 至 T+2）",
+      "rows": 9,
+      "cols": 7,
+      "provenance_tier": "S"
+    },
+    {
+      "caption": "表4  三案例公司并购前后关键财务指标对比（T-2 至 T+2）",
+      "rows": 10,
+      "cols": 7,
+      "provenance_tier": "S"
+    },
+    {
+      "caption": "表4  三案例公司并购前后关键财务指标对比（T-2 至 T+2）",
+      "rows": 9,
+      "cols": 7,
+      "provenance_tier": "S"
+    },
+    {
+      "caption": "表5  三案例累计超额收益率（CAR）事件窗口分析",
+      "rows": 4,
+      "cols": 9,
+      "provenance_tier": "S"
+    }
+  ],
+  "figures": [
+    {
+      "file": "figure1_roe_trend.png",
+      "caption": "图1  三案例公司并购前后ROE/ROA变化趋势",
+      "provenance_tier": "S"
+    },
+    {
+      "file": "figure2_car.png",
+      "caption": "图2  三案例并购公告事件窗口CAR对比",
+      "provenance_tier": "S"
+    }
+  ],
+  "references": [
+    "[1] 杜兴强, 周泽将. 上市公司吸收合并的股东财富效应研究[J]. 审计与经济研究, 2016, 31(3): 87-96.",
+    "[2] 葛家澍, 林志军. 现代西方会计理论[M]. 3版. 厦门: 厦门大学出版社, 2015.",
+    "[3] 李善民, 朱信. 上市公司并购重组：制度演进与绩效影响[J]. 会计研究, 2019(7): 32-39.",
+    "[4] 刘峰, 王兵. 商誉减值与并购绩效——基于中国A股上市公司的经验证据[J]. 会计研究, 2018(9): 28-35.",
+    "[5] 卢建勋, 姜付秀. 商誉的会计处理与经济后果——基于中国A股上市公司的实证研究[J]. 管理世界, 2020, 36(11): 156-173.",
+    "[6] 潘红波, 余明桂. 支持之手、掠夺之手与并购置换——基于中国上市公司的实证研究[J]. 经济研究, 2014, 49(2): 175-188.",
+    "[7] 潘红波. 企业并购的会计与经济后果研究[J]. 经济研究, 2021, 56(4): 132-149.",
+    "[8] 王跃堂, 孙铮, 陈世敏. 会计改革与会计信息质量——《企业会计准则》实施效果研究[J]. 会计研究, 2015(2): 9-17.",
+    "[9] 杨威, 宋敏, 冯科. 产业政策与并购重组：基于中国上市公司的研究[J]. 金融研究, 2020(8): 169-186.",
+    "[10] Andrade, G., Mitchell, M., & Stafford, E. (2001). New evidence and perspectives on mergers. Journal of Economic Perspectives, 15(2), 103–120. https://doi.org/10.1257/jep.15.2.103",
+    "[11] Betton, S., Eckbo, B. E., & Thorburn, K. S. (2014). Corporate takeovers. In B. E. Eckbo (Ed.), Handbook of Corporate Finance (Vol. 2, pp. 291–429). Elsevier.",
+    "[12] Brown, S. J., & Warner, J. B. (1985). Using daily stock returns: The case of event studies. Journal of Financial Economics, 14(1), 3–31. https://doi.org/10.1016/0304-405X(85)90042-3",
+    "[13] Harford, J. (2014). Corporate cash reserves and acquisitions: The impact of the financial crisis. Journal of Corporate Finance, 27, 234–247.",
+    "[14] Jensen, M. C., & Ruback, R. S. (1983). The market for corporate control: The scientific evidence. Journal of Financial Economics, 11(1–4), 5–50.",
+    "[15] MacKinlay, A. C. (1997). Event studies in economics and finance. Journal of Economic Literature, 35(1), 13–39.",
+    "[16] Yin, R. K. (2018). Case study research and applications: Design and methods (6th ed.). SAGE Publications."
+  ],
+  "data_provenance": {
+    "spec": "数据溯源方案模板.json",
+    "disclosure": "财务与市场数据为混合来源：部分指标基于akshare/东方财富年报真实公开数据（R类），部分为基于行业合理区间构造的估算值（S类），已于表4逐行标注数据标识[R]/[S]；摘要、英文摘要、6.3研究局限三处已更新披露；公开事实（P类，如商誉口径、换股比例、公告日）单列。数据升级日期：2026-05-30。",
+    "tiers_used": {
+      "R_真实": [
+        "表4a 中国中车营收/净利润(2015-2017,akshare)",
+        "表4b 美的集团营收/净利润/商誉/ROE(2015-2021,akshare)",
+        "表4c 宝钢股份营收/净利润(2014-2019,akshare)"
+      ],
+      "H_混合": [
+        "表4 财务指标对比（R类营收/净利+S类增长率/周转率等衍生指标）",
+        "图1 ROE/ROA趋势（基于混合数据）"
+      ],
+      "S_模拟": [
+        "表5 CAR事件研究",
+        "图2 CAR对比",
+        "表4中[S]标识的衍生指标与早期年份估算值"
+      ],
+      "P_公开事实": [
+        "表1 重组方法分类",
+        "表2 中美重整制度",
+        "美的商誉259/289.34亿",
+        "三案例换股比例与公告日"
+      ],
+      "definitional": [
+        "表3 指标体系（仅定义，无数据值）"
+      ]
+    },
+    "residual_must_fix": "正式投稿前须以真实 Wind/CSMAR/年报数据替换 S 类并保留底稿（残余必改 R1）。"
+  }
+}
