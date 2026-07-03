@@ -1,16 +1,15 @@
 ## 项目状态: 中国上市公司并购重组成功案例研究
 
-- 当前阶段: GitHub 页面全面优化完成
+- 当前阶段: GitHub 页面优化 + Codex 异后端独立审查闭合
 - 本轮完成:
-  - 添加 13 个 Topics 标签（multi-model / academic-pipeline 等）
-  - Description 改为中英双语
-  - 创建 CITATION.cff（GitHub 自动渲染引用按钮）
-  - 生成自定义 Social Preview 图片（1280×640，流水线可视化）
-  - 启用 Discussions + Squash merge
-  - Release v1.0 notes 升级为结构化双语内容
-  - 配置 GitHub MCP（token + 插件启用，下次会话可用）
-  - 三个关联项目 README 补回链（framework/IRT/PTM → ma-pipeline）
-- 发现的问题: DeepSeek 安全分类器间歇性故障（影响 git push/Python 脚本执行；Python subprocess 调用 gh CLI 可绕过）；Social Preview 图片上传无 API，需手动 Settings 操作
+  1. GitHub 页面 10 项优化（上次会话 — Topics 13/Description 双语/CITATION.cff/Social Preview/Discussions/Release notes/交叉引用/GitHub MCP）
+  2. Codex GPT-5.5 全量独立审查（API 核实+YAML schema 验证+README 互链清点）→4 项修复全部闭合
+  3. CITATION.cff: family-names→name + battle-tested→field-tested
+  4. Description: battle-tested→field-tested
+  5. Topics: +chinese（13→14，与生态其他三仓库一致）
+  6. Release asset: _v2.docx→ma-case-study-pipeline_v2.docx + notes 同步更新
+  7. CONTRIBUTING.md + methodology-question Issue Form
+- 发现的问题: GitHub Release asset 不支持中文文件名（平台限制，用 ASCII 描述性文件名绕过）
 
 ## Next Steps
 
