@@ -2,9 +2,9 @@ cff-version: 1.2.0
 message: "If you use this pipeline methodology in your academic work, please cite it as follows."
 title: "多模型学术生产流水线：中国上市公司并购重组成功案例研究"
 authors:
-  - family-names: "Acerolaorion"
+  - name: "Acerolaorion"
 type: software
-abstract: "A battle-tested, multi-model collaborative academic pipeline — 8-stage workflow from research design through blind peer review, defense simulation, and open/closed-book controlled experiment. The M&A case study paper serves as a test case; the pipeline methodology is the core deliverable."
+abstract: "A field-tested, multi-model collaborative academic pipeline — 8-stage workflow from research design through blind peer review, defense simulation, and open/closed-book controlled experiment. The M&A case study paper serves as a test case; the pipeline methodology is the core deliverable."
 keywords:
   - "multi-model academic pipeline"
   - "LLM collaboration"
