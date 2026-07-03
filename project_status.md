@@ -18,4 +18,4 @@
 
 ## 会话备注（2026-07-03，DeepSeek-V4-Pro via Claude Code CLI）
 
-翻译校对全流程：GPT-5.5(via Codex CLI)翻译 → Kimi-K2.7-Code(via Kimi Code CLI)校对 → DeepSeek-V4-Pro 修复。校对发现 4 HIGH/10 MED/~14 LOW 跨三项目，全部修复+验证通过。provenance 脚注从错误的 DeepSeek 修正为 GPT-5.5。Kimi Code CLI 非交互模式在结构化单文件审查任务上表现稳定（与早期记忆形成部分反例）。
+翻译校对全流程：GPT-5.5(via Codex CLI)翻译 → Kimi-K2.7-Code(via Kimi Code CLI)校对 → DeepSeek-V4-Pro 修复。校对发现 4 HIGH/10 MED/~14 LOW 跨三项目，全部修复+验证通过。provenance 脚注从错误的 DeepSeek 修正为 GPT-5.5。校对在 Kimi Code CLI 交互模式下完成，34 文件全量稳定执行（交互模式是 Kimi CLI 唯一稳定调用方式）。
