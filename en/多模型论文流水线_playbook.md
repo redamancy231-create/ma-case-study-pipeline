@@ -261,3 +261,5 @@ Key point: **Phase 0, 2, 5, 6, 7, and 9 are shared in full** — this is the har
 ---
 
 *Multi-Model Research & Development Pipeline Playbook v1.2 | Distilled from the 8-stage M&A case-study practice + open-book/blind-answer control; v1.1 cross-validated by the sister project "Pattern-Matching ETF Strategy" and added the Phase 0 "pre-commit veto seat" (§6.5); v1.2 generalized into "shared kernel + two execution profiles" and added the "quantitative strategy R&D profile" (§11, including the failure-mode checklist and A/B/C decision record) | Initial version 2026-05-31 / v1.1 2026-06-01 / v1.2 2026-06-01*
+
+*English translation: GPT-5.5 (via Codex CLI) · 2026-07-02*
