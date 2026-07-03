@@ -1,0 +1,10 @@
+name: Methodology Question
+description: 方法论相关问题或讨论
+labels: [question]
+body:
+  - type: textarea
+    attributes:
+      label: 问题
+  - type: textarea
+    attributes:
+      label: 上下文（你正在做什么、遇到了什么困惑）
