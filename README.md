@@ -147,6 +147,7 @@ python generate_docx_v2.py
 - [**ai-collaboration-framework**](https://github.com/redamancy231-create/ai-collaboration-framework) — AI 协作项目全生命周期框架，本项目的流水线方法论被提取转化为框架内容
 - [**independent-review-toolkit**](https://github.com/redamancy231-create/independent-review-toolkit) — 独立审查工具包，从框架 §9.2 提取的独立审查 SOP
 - [**prompt-tdd-methodology**](https://github.com/redamancy231-create/prompt-tdd-methodology) — Prompt-TDD 对照实验方法论案例手册
+- [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 加速度量策略核心（DTW 43x / pattern_match 58x）；同样强调跨后端验证和工程方法的可复现性
 
 ---
 
