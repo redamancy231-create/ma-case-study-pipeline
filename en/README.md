@@ -4,6 +4,10 @@
 [![Status: Methodology Demo](https://img.shields.io/badge/Status-Methodology%20Demo-blue.svg)](#⚠️-important-disclaimer)
 [![Phase: 8-stage pipeline](https://img.shields.io/badge/Pipeline-8%20stages%20%2B%20open%2Fblind%20experiment-green.svg)](#pipeline-overview)
 
+[![中文](https://img.shields.io/badge/lang-中文-red)](../README.md)
+[![English](https://img.shields.io/badge/lang-English-blue)]()
+[![正體中文](https://img.shields.io/badge/lang-正體中文-green)](../zh-Hant/README.md)
+
 > **A battle-tested, multi-model collaborative academic pipeline — from research design through blind peer review, defense simulation, and open/closed-book controlled experiment.**
 >
 > This is **not** a submission-ready paper. It is a **methodology demonstration** — a portable, reusable system for orchestrating multiple AI models in structured academic production.
@@ -53,8 +57,8 @@ graph LR
 ## Directory Structure
 
 ```
-├── README.md                          ← This file (zh-CN)
-├── en/README.md                       ← English translation
+├── README.md                          ← Chinese (zh-CN) original
+├── en/README.md                       ← English translation (this file)
 ├── zh-Hant/README.md                  ← Traditional Chinese translation
 ├── LICENSE                            ← CC BY 4.0
 ├── CLAUDE.md                          ← AI collaboration guide for this project
@@ -148,6 +152,7 @@ python generate_docx_v2.py
 - [**ai-collaboration-framework**](https://github.com/redamancy231-create/ai-collaboration-framework) — Full-lifecycle human-AI collaboration framework; this project's pipeline methodology was extracted into the framework
 - [**independent-review-toolkit**](https://github.com/redamancy231-create/independent-review-toolkit) — Battle-tested independent review SOP, extracted from the framework §9.2
 - [**prompt-tdd-methodology**](https://github.com/redamancy231-create/prompt-tdd-methodology) — Prompt-TDD controlled experiment methodology casebook
+- [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 acceleration refactor; same emphasis on cross-backend verification and engineering reproducibility
 
 ---
 
