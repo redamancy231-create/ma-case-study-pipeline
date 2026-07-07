@@ -1,0 +1,61 @@
+name: Translation Drift Check
+
+on:
+  push:
+    paths:
+      - 'README.md'
+  schedule:
+    - cron: '37 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  check-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check translation file freshness
+        run: |
+          echo "## Translation Drift Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          DRIFT_LIMIT_DAYS=14
+          SECONDS_PER_DAY=86400
+          DRIFT_DETECTED=false
+
+          ROOT_DATE=$(git log -1 --format=%ct -- README.md)
+          ROOT_DATE_HUMAN=$(git log -1 --format=%ci -- README.md)
+          echo "**Root README.md** last modified: $ROOT_DATE_HUMAN" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          for LANG in en zh-Hant; do
+            FILE="${LANG}/README.md"
+            if [ ! -f "$FILE" ]; then
+              echo "- ⚠️ **$FILE** not found — skipping" >> $GITHUB_STEP_SUMMARY
+              continue
+            fi
+
+            LANG_DATE=$(git log -1 --format=%ct -- "$FILE")
+            LANG_DATE_HUMAN=$(git log -1 --format=%ci -- "$FILE")
+            DRIFT=$(( ($ROOT_DATE - $LANG_DATE) / $SECONDS_PER_DAY ))
+
+            if [ $DRIFT -gt $DRIFT_LIMIT_DAYS ]; then
+              echo "- 🔴 **$FILE** is **$DRIFT days** behind root README.md (last modified: $LANG_DATE_HUMAN)" >> $GITHUB_STEP_SUMMARY
+              echo "::warning file=$FILE,title=Translation Drift::$FILE is $DRIFT days behind root README.md. Please update the translation."
+              DRIFT_DETECTED=true
+            elif [ $DRIFT -gt 0 ]; then
+              echo "- 🟢 **$FILE** is $DRIFT days behind root README.md — within $DRIFT_LIMIT_DAYS day limit" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- ✅ **$FILE** is up to date (last modified: $LANG_DATE_HUMAN)" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "$DRIFT_DETECTED" = true ]; then
+            echo "**⚠️ Action required:** one or more translation files exceed the $DRIFT_LIMIT_DAYS-day drift limit." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**✅ All translation files are within the $DRIFT_LIMIT_DAYS-day drift limit.**" >> $GITHUB_STEP_SUMMARY
+          fi
