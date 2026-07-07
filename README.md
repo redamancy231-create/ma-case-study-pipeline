@@ -4,6 +4,10 @@
 [![Status: Methodology Demo](https://img.shields.io/badge/Status-Methodology%20Demo-blue.svg)](#⚠️-重要免责声明)
 [![Phase: 8-stage pipeline](https://img.shields.io/badge/Pipeline-8%20stages%20%2B%20open%2Fblind%20experiment-green.svg)](#流水线总览)
 
+[![中文](https://img.shields.io/badge/lang-中文-red)]()
+[![English](https://img.shields.io/badge/lang-English-blue)](./en/README.md)
+[![正體中文](https://img.shields.io/badge/lang-正體中文-green)](./zh-Hant/README.md)
+
 > **A battle-tested, multi-model collaborative academic pipeline — from research design through blind peer review, defense simulation, and open/closed-book controlled experiment.**
 >
 > 一条经过实战验证的多模型协同学术生产流水线——从选题设计、交叉盲审、答辩模拟到开卷/盲答对照实验。**这不是一篇可送审的论文，而是一套可移植的方法演示。**
@@ -53,7 +57,9 @@ graph LR
 ## 目录结构
 
 ```
-├── README.md                          ← 本文件
+├── README.md                          ← 本文件（简体中文原文）
+├── en/README.md                       ← English translation
+├── zh-Hant/README.md                  ← 正體中文翻譯
 ├── LICENSE                            ← CC BY 4.0
 ├── CLAUDE.md                          ← 项目 AI 协作指南
 │
