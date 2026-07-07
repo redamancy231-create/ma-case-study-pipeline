@@ -4,6 +4,10 @@
 [![Status: Methodology Demo](https://img.shields.io/badge/Status-Methodology%20Demo-blue.svg)](#⚠️-重要免責聲明)
 [![Phase: 8-stage pipeline](https://img.shields.io/badge/Pipeline-8%20stages%20%2B%20open%2Fblind%20experiment-green.svg)](#流水線總覽)
 
+[![中文](https://img.shields.io/badge/lang-中文-red)](../README.md)
+[![English](https://img.shields.io/badge/lang-English-blue)](../en/README.md)
+[![正體中文](https://img.shields.io/badge/lang-正體中文-green)]()
+
 > **A battle-tested, multi-model collaborative academic pipeline — from research design through blind peer review, defense simulation, and open/closed-book controlled experiment.**
 >
 > 一條經過實戰驗證的多模型協同學術生產流水線——從選題設計、交叉盲審、答辯模擬到開卷/盲答對照實驗。**這不是一篇可送審的論文，而是一套可移植的方法演示。**
@@ -53,7 +57,9 @@ graph LR
 ## 目錄結構
 
 ```
-├── README.md                          ← 本文件
+├── README.md                          ← 簡體中文原文
+├── en/README.md                       ← English translation
+├── zh-Hant/README.md                  ← 正體中文翻譯（本文件）
 ├── LICENSE                            ← CC BY 4.0
 ├── CLAUDE.md                          ← 項目 AI 協作指南
 │
@@ -147,6 +153,7 @@ python generate_docx_v2.py
 - [**ai-collaboration-framework**](https://github.com/redamancy231-create/ai-collaboration-framework) — AI 協作項目全生命週期框架，本項目的流水線方法論被提取轉化爲框架內容
 - [**independent-review-toolkit**](https://github.com/redamancy231-create/independent-review-toolkit) — 獨立審查工具包，從框架 §9.2 提取的獨立審查 SOP
 - [**prompt-tdd-methodology**](https://github.com/redamancy231-create/prompt-tdd-methodology) — Prompt-TDD 對照實驗方法論案例手冊
+- [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 加速重構；同樣強調跨後端驗證和工程方法的可復現性
 
 ---
 
