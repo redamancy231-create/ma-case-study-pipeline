@@ -153,6 +153,8 @@ python generate_docx_v2.py
 - [**independent-review-toolkit**](https://github.com/redamancy231-create/independent-review-toolkit) — Battle-tested independent review SOP, extracted from the framework §9.2
 - [**prompt-tdd-methodology**](https://github.com/redamancy231-create/prompt-tdd-methodology) — Prompt-TDD controlled experiment methodology casebook
 - [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 acceleration refactor; same emphasis on cross-backend verification and engineering reproducibility
+- [**docx-pipeline**](https://github.com/redamancy231-create/docx-pipeline) — Markdown → Chinese DOCX pipeline; closed after 3 rounds of cross-backend review
+- [**claude-skills**](https://github.com/redamancy231-create/claude-skills) — 3 battle-tested Claude Code Skills
 
 ---
 

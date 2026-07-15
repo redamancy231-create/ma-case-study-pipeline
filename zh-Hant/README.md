@@ -154,6 +154,8 @@ python generate_docx_v2.py
 - [**independent-review-toolkit**](https://github.com/redamancy231-create/independent-review-toolkit) — 獨立審查工具包，從框架 §9.2 提取的獨立審查 SOP
 - [**prompt-tdd-methodology**](https://github.com/redamancy231-create/prompt-tdd-methodology) — Prompt-TDD 對照實驗方法論案例手冊
 - [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 加速重構；同樣強調跨後端驗證和工程方法的可復現性
+- [**docx-pipeline**](https://github.com/redamancy231-create/docx-pipeline) — Markdown → 中文 DOCX 泛化管道，經 3 輪異後端審查閉合
+- [**claude-skills**](https://github.com/redamancy231-create/claude-skills) — 3 個實戰驗證的 Claude Code Skill
 
 ---
 
