@@ -32,22 +32,22 @@
 
 ```mermaid
 graph LR
-    P0[Phase 0<br/>Topic + Kill-test] --> P1[Phase 1<br/>Design]
-    P1 --> P2[Phase 2<br/>Domain Expert Review]
-    P2 --> P3[Phase 3<br/>Drafting]
-    P3 --> P4[Phase 4<br/>Assembly + QA]
-    P4 --> P5A[Phase 5A<br/>Cross-Review: Compliance]
-    P4 --> P5B[Phase 5B<br/>Cross-Review: Academic Standards]
-    P5A --> P6[Phase 6<br/>Integration + Revision]
-    P5B --> P6
-    P6 --> P7[Phase 7<br/>Design Retrospective]
-    P7 --> P8[Phase 8<br/>Defense Simulation]
-    P8 --> P9[Phase 9<br/>Finalize + Close]
+ P0[Phase 0<br/>Topic + Kill-test] --> P1[Phase 1<br/>Design]
+ P1 --> P2[Phase 2<br/>Domain Expert Review]
+ P2 --> P3[Phase 3<br/>Drafting]
+ P3 --> P4[Phase 4<br/>Assembly + QA]
+ P4 --> P5A[Phase 5A<br/>Cross-Review: Compliance]
+ P4 --> P5B[Phase 5B<br/>Cross-Review: Academic Standards]
+ P5A --> P6[Phase 6<br/>Integration + Revision]
+ P5B --> P6
+ P6 --> P7[Phase 7<br/>Design Retrospective]
+ P7 --> P8[Phase 8<br/>Defense Simulation]
+ P8 --> P9[Phase 9<br/>Finalize + Close]
 
-    P8A[8A Chair Questions] --> P8D[8D Student Response]
-    P8B[8B Accounting Questions] --> P8D
-    P8C[8C Methodology Questions] --> P8D
-    P8D --> P8E[8E Zero-Involvement Scoring]
+ P8A[8A Chair Questions] --> P8D[8D Student Response]
+ P8B[8B Accounting Questions] --> P8D
+ P8C[8C Methodology Questions] --> P8D
+ P8D --> P8E[8E Zero-Involvement Scoring]
 ```
 
 **Core design principle**: No model ever reviews or scores its own work. Roles are slots; models are the people you assign to those slots — reassign for every new project.
@@ -57,41 +57,41 @@ graph LR
 ## Directory Structure
 
 ```
-├── README.md                          ← Chinese (zh-CN) original
-├── en/README.md                       ← English translation (this file)
-├── zh-Hant/README.md                  ← Traditional Chinese translation
-├── LICENSE                            ← CC BY 4.0
-├── CLAUDE.md                          ← AI collaboration guide for this project
+├── README.md ← Chinese (zh-CN) original
+├── en/README.md ← English translation (this file)
+├── zh-Hant/README.md ← Traditional Chinese translation
+├── LICENSE ← CC BY 4.0
+├── CLAUDE.md ← AI collaboration guide for this project
 │
-├── 流水线复用包/                       ← ★ Most valuable asset
-│   ├── 多模型论文流水线_playbook.md    │   Method playbook (5 iron rules + Phase 0-9)
-│   ├── 多模型论文流水线_playbook.json  │   Machine-readable version
-│   └── 阶段模板件.md                   │   Parameterized prompt+config templates
+├── 流水线复用包/ ← ★ Most valuable asset
+│ ├── 多模型论文流水线_playbook.md │ Method playbook (5 iron rules + Phase 0-9)
+│ ├── 多模型论文流水线_playbook.json │ Machine-readable version
+│ └── 阶段模板件.md │ Parameterized prompt+config templates
 │
-├── 数据溯源方案模板.md + .json         ← 4-tier data provenance specification
+├── 数据溯源方案模板.md + .json ← 4-tier data provenance specification
 │
-├── 项目复盘归档报告.md + .json         ← Full project retrospective (v3.0, CLOSED-FINAL)
-├── 起点评估分析.md + .json             ← Methodological reflection (4-model + red-team)
+├── 项目复盘归档报告.md + .json ← Full project retrospective (v3.0, CLOSED-FINAL)
+├── 起点评估分析.md + .json ← Methodological reflection (4-model + red-team)
 │
-├── 中国上市公司并购重组成功案例研究_v2.md + .json  ← Final paper (with defect annotations)
+├── 中国上市公司并购重组成功案例研究_v2.md + .json ← Final paper (with defect annotations)
 │
-├── phases/                            ← Complete pipeline snapshot (29 files)
-│   ├── phase1_kimi_k2.6/              │   Design blueprint
-│   ├── phase2_glm5.1/                 │   Domain expert review
-│   ├── phase3_gpt5.5/                 │   Drafting
-│   ├── phase4_claude_opus4.7/         │   Assembly + delivery
-│   ├── phase5a_gpt5.5/                │   Cross-review (compliance & facts)
-│   ├── phase5b_glm5.1/                │   Cross-review (academic standards)
-│   ├── phase6_claude_opus4.7/         │   Integration ruling + revision
-│   ├── phase7_kimi_k2.6/              │   Design retrospective
-│   └── phase8/                        │   Defense simulation (questions + answers + scoring + blind control)
+├── phases/ ← Complete pipeline snapshot (29 files)
+│ ├── phase1_kimi_k2.6/ │ Design blueprint
+│ ├── phase2_glm5.1/ │ Domain expert review
+│ ├── phase3_gpt5.5/ │ Drafting
+│ ├── phase4_claude_opus4.7/ │ Assembly + delivery
+│ ├── phase5a_gpt5.5/ │ Cross-review (compliance & facts)
+│ ├── phase5b_glm5.1/ │ Cross-review (academic standards)
+│ ├── phase6_claude_opus4.7/ │ Integration ruling + revision
+│ ├── phase7_kimi_k2.6/ │ Design retrospective
+│ └── phase8/ │ Defense simulation (questions + answers + scoring + blind control)
 │
-├── scripts/                           ← Paper generation scripts
-│   └── generate_docx_v2.py            │   v2 generation (Phase 6 revision; v1 script deprecated)
+├── scripts/ ← Paper generation scripts
+│ └── generate_docx_v2.py │ v2 generation (Phase 6 revision; v1 script deprecated)
 │
-└── figures/                           ← Paper figures
-    ├── figure1_roe_trend.png
-    └── figure2_car.png
+└── figures/ ← Paper figures
+ ├── figure1_roe_trend.png
+ └── figure2_car.png
 ```
 
 > **Note**: `.docx` binary files are excluded from Git. Download from [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases).
@@ -172,11 +172,11 @@ If you reference this project's methodology in academic work:
 
 ```bibtex
 @misc{acerolaorion2026mapipeline,
-  author = {Acerolaorion},
-  title = {Multi-Model Academic Production Pipeline: M\&A Case Study},
-  year = {2026},
-  howpublished = {GitHub repository},
-  url = {https://github.com/redamancy231-create/ma-case-study-pipeline}
+ author = {Acerolaorion},
+ title = {Multi-Model Academic Production Pipeline: M\&A Case Study},
+ year = {2026},
+ howpublished = {GitHub repository},
+ url = {https://github.com/redamancy231-create/ma-case-study-pipeline}
 }
 ```
 

@@ -1,74 +1,74 @@
 {
-  "phase": 7,
-  "model": "Kimi-k2.6",
-  "role": "方案执行度与设计意图达成度终评",
-  "task_id": "phase7_design_fidelity_review",
-  "paired_prompt_file": "phase7_kimi_k2.6_prompt.md",
-  "is_optional_addon": true,
-  "status_note": "可选的设计闭环附录；项目当前为 CLOSED，仅当本阶段实际执行时才转为‘含 Phase 7 附录’",
-  "role_rotation": {
-    "previous_role": "Phase 1 方案设计师（大纲+框架+案例候选+文献清单）",
-    "rotation_rationale": "让原始设计者回到终点做需求可追溯性(requirements traceability)闭环——‘设计者开局，也设计者收尾’。这是 5-A(合规事实)/5-B(学术规范)/6(整合裁决) 均未覆盖的唯一角度：v2 是否兑现 Phase 1 设计意图。",
-    "non_overlap_guarantee": "与 5-A/5-B/6 严格不重叠；不重做质量审查、不重打分、不推翻 84.0"
-  },
-  "scope": {
-    "included_dimensions": [
-      "方案执行度（Phase 1 设计项 → v2 实际产出 的逐条追溯）",
-      "设计意图达成度（v2 是否为 Phase 1 蓝图的忠实实现）",
-      "设计决策事后验证（哪些 Phase 1 判断被验证/证伪/本应不同）"
-    ],
-    "excluded_dimensions": [
-      "法律/会计/案例事实/数据合理性的对错（归 Phase 5-A）",
-      "写作规范/结构/论证/文献格式/术语图表（归 Phase 5-B）",
-      "整合裁决与加权评分（归 Phase 6，修改后通过 84.0）"
-    ]
-  },
-  "hard_constraints": [
-    "不重新打质量分、不推翻 Phase 6 终审 84.0",
-    "R1(真实数据替换)/R2(近5年文献) 为已知残余必改，不得当作新发现重提；只可评价‘设计阶段是否本应预防’",
-    "越界批评(法律/会计/写作/数据对错)按 Phase 6 同纪律降权",
-    "执行度结论须基于逐条追溯证据，不因项目已 CLOSED 而通胀给分",
-    "敢于认领 Phase 1 自身设计失误（如美的-小天鹅误判、数据真伪标注规则缺位），不为旧设计辩护",
-    "本阶段不重开项目、不改变 R1/R2 残余"
-  ],
-  "input": {
-    "primary_target": "中国上市公司并购重组成功案例研究_v2.docx",
-    "reference_files": [
-      "phase1_design.md",
-      "中国上市公司并购重组成功案例研究_v2.md",
-      "phase6_integration_review.md",
-      "项目复盘归档报告.md",
-      "phase2_expert_review.md",
-      "phase5b_glm5.1_review.md"
-    ]
-  },
-  "deliverables": {
-    "primary": [
-      {"file": "phase7_kimi_k2.6_review.md", "format": "markdown", "description": "设计执行度终评报告：概述+设计项追溯表+设计决策事后验证+设计者签字"},
-      {"file": "phase7_kimi_k2.6_review.json", "format": "json", "description": "上述内容结构化版（英文 snake_case 键 + 中文值，忠实映射 md）"}
-    ]
-  },
-  "workflow": {
-    "step1_design_traceability": "Phase 1 每个可核验设计项对照 v2 逐条判定 ✅达成/⚠合理偏离/❌未达成/➕合理新增，填统一表格",
-    "step2_decision_hindsight": "设计者自我复盘：被验证的设计 / 需认领的失误(如小天鹅误判) / 本应在设计阶段更稳健处(如文献近5年要求、数据真伪标注规则)",
-    "step3_designer_signoff": "给出方案执行度(百分比+定性，可校准5-B的约80%)、是否忠实实现、对归档建议(维持CLOSED/设计维度补做)、签字段；不重打质量分"
-  },
-  "output_relationship_to_phase6": "补充注脚，不竞争评分、不改变结论",
-  "discipline_rules": {
-    "narrow_role": "只评设计执行度，不做第三次泛质检",
-    "no_self_defense": "Phase 1 作者须认领自身设计失误",
-    "no_score_inflation": "基于证据评执行度，不通胀",
-    "loop_closure_only": "设计者收尾，与 Phase 1 开局首尾呼应，产出为独立设计闭环附录"
-  },
-  "metadata": {
-    "project": "中国上市公司并购重组成功案例研究",
-    "phase_name": "方案执行度与设计意图达成度终评",
-    "discipline": "会计学",
-    "review_target_file": "中国上市公司并购重组成功案例研究_v2.docx",
-    "created": "2026-05-29",
-    "depends_on_phase": [1, 4, "5-A", "5-B", 6],
-    "is_final_phase": true,
-    "does_not_change_verdict": true,
-    "project_status_if_not_executed": "CLOSED"
-  }
+ "phase": 7,
+ "model": "Kimi-k2.6",
+ "role": "方案执行度与设计意图达成度终评",
+ "task_id": "phase7_design_fidelity_review",
+ "paired_prompt_file": "phase7_kimi_k2.6_prompt.md",
+ "is_optional_addon": true,
+ "status_note": "可选的设计闭环附录；项目当前为 CLOSED，仅当本阶段实际执行时才转为‘含 Phase 7 附录’",
+ "role_rotation": {
+ "previous_role": "Phase 1 方案设计师（大纲+框架+案例候选+文献清单）",
+ "rotation_rationale": "让原始设计者回到终点做需求可追溯性(requirements traceability)闭环——‘设计者开局，也设计者收尾’。这是 5-A(合规事实)/5-B(学术规范)/6(整合裁决) 均未覆盖的唯一角度：v2 是否兑现 Phase 1 设计意图。",
+ "non_overlap_guarantee": "与 5-A/5-B/6 严格不重叠；不重做质量审查、不重打分、不推翻 84.0"
+ },
+ "scope": {
+ "included_dimensions": [
+ "方案执行度（Phase 1 设计项 → v2 实际产出 的逐条追溯）",
+ "设计意图达成度（v2 是否为 Phase 1 蓝图的忠实实现）",
+ "设计决策事后验证（哪些 Phase 1 判断被验证/证伪/本应不同）"
+ ],
+ "excluded_dimensions": [
+ "法律/会计/案例事实/数据合理性的对错（归 Phase 5-A）",
+ "写作规范/结构/论证/文献格式/术语图表（归 Phase 5-B）",
+ "整合裁决与加权评分（归 Phase 6，修改后通过 84.0）"
+ ]
+ },
+ "hard_constraints": [
+ "不重新打质量分、不推翻 Phase 6 终审 84.0",
+ "R1(真实数据替换)/R2(近5年文献) 为已知残余必改，不得当作新发现重提；只可评价‘设计阶段是否本应预防’",
+ "越界批评(法律/会计/写作/数据对错)按 Phase 6 同纪律降权",
+ "执行度结论须基于逐条追溯证据，不因项目已 CLOSED 而通胀给分",
+ "敢于认领 Phase 1 自身设计失误（如美的-小天鹅误判、数据真伪标注规则缺位），不为旧设计辩护",
+ "本阶段不重开项目、不改变 R1/R2 残余"
+ ],
+ "input": {
+ "primary_target": "中国上市公司并购重组成功案例研究_v2.docx",
+ "reference_files": [
+ "phase1_design.md",
+ "中国上市公司并购重组成功案例研究_v2.md",
+ "phase6_integration_review.md",
+ "项目复盘归档报告.md",
+ "phase2_expert_review.md",
+ "phase5b_glm5.1_review.md"
+ ]
+ },
+ "deliverables": {
+ "primary": [
+ {"file": "phase7_kimi_k2.6_review.md", "format": "markdown", "description": "设计执行度终评报告：概述+设计项追溯表+设计决策事后验证+设计者签字"},
+ {"file": "phase7_kimi_k2.6_review.json", "format": "json", "description": "上述内容结构化版（英文 snake_case 键 + 中文值，忠实映射 md）"}
+ ]
+ },
+ "workflow": {
+ "step1_design_traceability": "Phase 1 每个可核验设计项对照 v2 逐条判定 ✅达成/⚠合理偏离/❌未达成/➕合理新增，填统一表格",
+ "step2_decision_hindsight": "设计者自我复盘：被验证的设计 / 需认领的失误(如小天鹅误判) / 本应在设计阶段更稳健处(如文献近5年要求、数据真伪标注规则)",
+ "step3_designer_signoff": "给出方案执行度(百分比+定性，可校准5-B的约80%)、是否忠实实现、对归档建议(维持CLOSED/设计维度补做)、签字段；不重打质量分"
+ },
+ "output_relationship_to_phase6": "补充注脚，不竞争评分、不改变结论",
+ "discipline_rules": {
+ "narrow_role": "只评设计执行度，不做第三次泛质检",
+ "no_self_defense": "Phase 1 作者须认领自身设计失误",
+ "no_score_inflation": "基于证据评执行度，不通胀",
+ "loop_closure_only": "设计者收尾，与 Phase 1 开局首尾呼应，产出为独立设计闭环附录"
+ },
+ "metadata": {
+ "project": "中国上市公司并购重组成功案例研究",
+ "phase_name": "方案执行度与设计意图达成度终评",
+ "discipline": "会计学",
+ "review_target_file": "中国上市公司并购重组成功案例研究_v2.docx",
+ "created": "2026-05-29",
+ "depends_on_phase": [1, 4, "5-A", "5-B", 6],
+ "is_final_phase": true,
+ "does_not_change_verdict": true,
+ "project_status_if_not_executed": "CLOSED"
+ }
 }

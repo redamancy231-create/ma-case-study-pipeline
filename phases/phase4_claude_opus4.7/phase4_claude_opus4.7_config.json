@@ -1,158 +1,158 @@
 {
-  "phase": 4,
-  "model": "Claude-opus-4.7",
-  "role": "总装+审查+交付",
-  "task_id": "phase4_final_assembly",
-  "input": {
-    "source": "phase1_phase2_phase3",
-    "dependency_files": [
-      "phase1_design.md",
-      "phase2_expert_review.md",
-      "phase3_draft_report.md"
-    ],
-    "description": "接收前三阶段全部产出，进行内容审查、数据补全、图表制作、学术质量终审和docx排版输出",
-    "context_provided": [
-      "Phase 1: 报告大纲、分析框架、案例候选、论述逻辑链、文献候选清单",
-      "Phase 2: 法律条款核验结果、会计准则合规检查、财务指标体系、案例可行性评估、研究方法建议",
-      "Phase 3: 报告正文初稿（含数据/图表占位符、编者注）"
-    ]
-  },
-  "deliverables": {
-    "primary": {
-      "file": "中国上市公司并购重组成功案例研究.docx",
-      "format": "Microsoft Word (.docx)",
-      "description": "经完整审查、数据补全、图表制作、学术排版后的最终研究报告"
-    },
-    "supplementary": {
-      "file": "generate_docx.py",
-      "format": "Python script",
-      "description": "使用python-docx库自动生成最终docx文档的Python脚本，支持可重复执行和参数调整"
-    }
-  },
-  "workflow": {
-    "stage_a": {
-      "name": "内容审查与数据补全",
-      "tasks": [
-        "交叉验证法律条款/会计准则/案例事实/财务指标/文献著录的一致性",
-        "数据占位符替换为基于行业合理范围的模拟真实数据",
-        "制作至少6张图表（4张数据表+1张对比表+1张趋势图）",
-        "参考文献格式统一（GB/T 7714 + APA 7th）并补全至≥8篇"
-      ],
-      "validation_rules": {
-        "legal_reference_authority": "以Phase 2核验结果为准",
-        "accounting_standard_authority": "以Phase 2核验结果为准",
-        "data_coherence": "模拟数据内部勾稽关系合理（ROE与净利润同向、负债率与流动比率反比等）",
-        "case_fact_consistency": "同一案例的交易金额、时间线、主体名称全文一致"
-      }
-    },
-    "stage_b": {
-      "name": "学术质量终审",
-      "checks": [
-        "内容完整性：六章节+中英文摘要+关键词+参考文献≥8篇",
-        "逻辑严谨性：章节间过渡+概念-制度-案例-分析-结论的逻辑链",
-        "学术规范性：术语统一+引用格式统一+避免口语化+来源标注",
-        "字数要求：正文≥3000字（不含参考文献）"
-      ]
-    },
-    "stage_c": {
-      "name": "Word文档排版与输出",
-      "formatting_specs": {
-        "body_font": "宋体 12pt 1.5倍行距",
-        "heading1_font": "黑体 16pt 加粗",
-        "heading2_font": "黑体 14pt 加粗",
-        "heading3_font": "黑体 12pt 加粗",
-        "abstract_font": "楷体 12pt",
-        "table_font": "宋体 10.5pt 单倍行距",
-        "reference_font": "宋体 10.5pt 悬挂缩进2字符",
-        "margins": "上下2.54cm 左右3.17cm",
-        "page_number": "底部居中 正文首页起编",
-        "additional": "自动生成目录"
-      }
-    }
-  },
-  "figures_and_tables": {
-    "required_minimum": {
-      "data_tables": 4,
-      "comparison_tables": 1,
-      "charts": 1
-    },
-    "table_list": [
-      {
-        "id": "表1",
-        "title": "企业重组主要方法分类及特征对比",
-        "type": "对比分析表",
-        "columns": ["重组方法", "适用条件", "法律依据", "会计处理方法", "典型案例"]
-      },
-      {
-        "id": "表2",
-        "title": "中美企业重组法律制度核心差异对比",
-        "type": "国际比较表",
-        "columns": ["比较维度", "中国制度", "美国制度", "主要差异分析"]
-      },
-      {
-        "id": "表3",
-        "title": "案例公司并购前后关键财务指标对比",
-        "type": "数据对比表",
-        "columns": ["财务指标", "并购前1年", "并购当年", "并购后1年", "并购后2年", "变化趋势"]
-      },
-      {
-        "id": "图1",
-        "title": "案例公司并购前后ROE/ROA变化趋势",
-        "type": "柱状图/折线图",
-        "description": "横轴年份、纵轴百分比、多案例多指标对比"
-      },
-      {
-        "id": "表4",
-        "title": "并购绩效评价指标体系总览",
-        "type": "指标体系表",
-        "columns": ["维度", "指标名称", "计算公式", "分析意义", "数据来源"]
-      },
-      {
-        "id": "表5",
-        "title": "案例累计超额收益率(CAR)事件窗口分析",
-        "type": "事件分析表",
-        "columns": ["案例", "事件窗口", "CAR(%)", "统计显著性", "数据来源"]
-      }
-    ]
-  },
-  "case_study_requirements": {
-    "min_cases": 3,
-    "coverage": ["吸收合并", "资产注入/整体上市", "混改/战略重组"],
-    "data_window": "并购前后至少3年",
-    "recommended_cases": [
-      "中国南车吸收合并北车（中国中车）— 横向合并/央企整合",
-      "美的集团吸收合并小天鹅 — 纵向整合/集团整体上市",
-      "宝钢股份吸收合并武钢股份 — 横向合并/去产能",
-      "中国联通混合所有制改革 — 混改/战略投资者引入",
-      "万华化学吸收合并万华化工 — 整体上市/化工行业",
-      "顺丰控股借壳鼎泰新材 — 借壳上市/快递行业"
-    ]
-  },
-  "quality_assurance": {
-    "deliverable_checklist": [
-      "所有数据占位符已替换为合理模拟数据",
-      "数据内部逻辑一致（勾稽关系合理）",
-      "所有图表占位符已替换为实际图表",
-      "至少6张图表（含表和图）",
-      "参考文献≥8篇学术论文，格式符合规范",
-      "法律条款与会计准则引用与Phase 2一致",
-      "正文≥3000字（不含参考文献）",
-      "中英文摘要完整对应",
-      "关键词中英文各5-8个",
-      "六章节内容完整",
-      "三案例覆盖不同重组类型",
-      "五维度财务指标分析完整",
-      "中外法律制度比较完整",
-      "全文术语统一、风格一致",
-      "docx排版符合规格要求",
-      "generate_docx.py脚本可执行"
-    ]
-  },
-  "metadata": {
-    "project": "中国上市公司并购重组成功案例研究",
-    "report_type": "学术研究报告/案例分析",
-    "discipline": "会计学",
-    "final_format": "docx",
-    "created": "2026-05-28"
-  }
+ "phase": 4,
+ "model": "Claude-opus-4.7",
+ "role": "总装+审查+交付",
+ "task_id": "phase4_final_assembly",
+ "input": {
+ "source": "phase1_phase2_phase3",
+ "dependency_files": [
+ "phase1_design.md",
+ "phase2_expert_review.md",
+ "phase3_draft_report.md"
+ ],
+ "description": "接收前三阶段全部产出，进行内容审查、数据补全、图表制作、学术质量终审和docx排版输出",
+ "context_provided": [
+ "Phase 1: 报告大纲、分析框架、案例候选、论述逻辑链、文献候选清单",
+ "Phase 2: 法律条款核验结果、会计准则合规检查、财务指标体系、案例可行性评估、研究方法建议",
+ "Phase 3: 报告正文初稿（含数据/图表占位符、编者注）"
+ ]
+ },
+ "deliverables": {
+ "primary": {
+ "file": "中国上市公司并购重组成功案例研究.docx",
+ "format": "Microsoft Word (.docx)",
+ "description": "经完整审查、数据补全、图表制作、学术排版后的最终研究报告"
+ },
+ "supplementary": {
+ "file": "generate_docx.py",
+ "format": "Python script",
+ "description": "使用python-docx库自动生成最终docx文档的Python脚本，支持可重复执行和参数调整"
+ }
+ },
+ "workflow": {
+ "stage_a": {
+ "name": "内容审查与数据补全",
+ "tasks": [
+ "交叉验证法律条款/会计准则/案例事实/财务指标/文献著录的一致性",
+ "数据占位符替换为基于行业合理范围的模拟真实数据",
+ "制作至少6张图表（4张数据表+1张对比表+1张趋势图）",
+ "参考文献格式统一（GB/T 7714 + APA 7th）并补全至≥8篇"
+ ],
+ "validation_rules": {
+ "legal_reference_authority": "以Phase 2核验结果为准",
+ "accounting_standard_authority": "以Phase 2核验结果为准",
+ "data_coherence": "模拟数据内部勾稽关系合理（ROE与净利润同向、负债率与流动比率反比等）",
+ "case_fact_consistency": "同一案例的交易金额、时间线、主体名称全文一致"
+ }
+ },
+ "stage_b": {
+ "name": "学术质量终审",
+ "checks": [
+ "内容完整性：六章节+中英文摘要+关键词+参考文献≥8篇",
+ "逻辑严谨性：章节间过渡+概念-制度-案例-分析-结论的逻辑链",
+ "学术规范性：术语统一+引用格式统一+避免口语化+来源标注",
+ "字数要求：正文≥3000字（不含参考文献）"
+ ]
+ },
+ "stage_c": {
+ "name": "Word文档排版与输出",
+ "formatting_specs": {
+ "body_font": "宋体 12pt 1.5倍行距",
+ "heading1_font": "黑体 16pt 加粗",
+ "heading2_font": "黑体 14pt 加粗",
+ "heading3_font": "黑体 12pt 加粗",
+ "abstract_font": "楷体 12pt",
+ "table_font": "宋体 10.5pt 单倍行距",
+ "reference_font": "宋体 10.5pt 悬挂缩进2字符",
+ "margins": "上下2.54cm 左右3.17cm",
+ "page_number": "底部居中 正文首页起编",
+ "additional": "自动生成目录"
+ }
+ }
+ },
+ "figures_and_tables": {
+ "required_minimum": {
+ "data_tables": 4,
+ "comparison_tables": 1,
+ "charts": 1
+ },
+ "table_list": [
+ {
+ "id": "表1",
+ "title": "企业重组主要方法分类及特征对比",
+ "type": "对比分析表",
+ "columns": ["重组方法", "适用条件", "法律依据", "会计处理方法", "典型案例"]
+ },
+ {
+ "id": "表2",
+ "title": "中美企业重组法律制度核心差异对比",
+ "type": "国际比较表",
+ "columns": ["比较维度", "中国制度", "美国制度", "主要差异分析"]
+ },
+ {
+ "id": "表3",
+ "title": "案例公司并购前后关键财务指标对比",
+ "type": "数据对比表",
+ "columns": ["财务指标", "并购前1年", "并购当年", "并购后1年", "并购后2年", "变化趋势"]
+ },
+ {
+ "id": "图1",
+ "title": "案例公司并购前后ROE/ROA变化趋势",
+ "type": "柱状图/折线图",
+ "description": "横轴年份、纵轴百分比、多案例多指标对比"
+ },
+ {
+ "id": "表4",
+ "title": "并购绩效评价指标体系总览",
+ "type": "指标体系表",
+ "columns": ["维度", "指标名称", "计算公式", "分析意义", "数据来源"]
+ },
+ {
+ "id": "表5",
+ "title": "案例累计超额收益率(CAR)事件窗口分析",
+ "type": "事件分析表",
+ "columns": ["案例", "事件窗口", "CAR(%)", "统计显著性", "数据来源"]
+ }
+ ]
+ },
+ "case_study_requirements": {
+ "min_cases": 3,
+ "coverage": ["吸收合并", "资产注入/整体上市", "混改/战略重组"],
+ "data_window": "并购前后至少3年",
+ "recommended_cases": [
+ "中国南车吸收合并北车（中国中车）— 横向合并/央企整合",
+ "美的集团吸收合并小天鹅 — 纵向整合/集团整体上市",
+ "宝钢股份吸收合并武钢股份 — 横向合并/去产能",
+ "中国联通混合所有制改革 — 混改/战略投资者引入",
+ "万华化学吸收合并万华化工 — 整体上市/化工行业",
+ "顺丰控股借壳鼎泰新材 — 借壳上市/快递行业"
+ ]
+ },
+ "quality_assurance": {
+ "deliverable_checklist": [
+ "所有数据占位符已替换为合理模拟数据",
+ "数据内部逻辑一致（勾稽关系合理）",
+ "所有图表占位符已替换为实际图表",
+ "至少6张图表（含表和图）",
+ "参考文献≥8篇学术论文，格式符合规范",
+ "法律条款与会计准则引用与Phase 2一致",
+ "正文≥3000字（不含参考文献）",
+ "中英文摘要完整对应",
+ "关键词中英文各5-8个",
+ "六章节内容完整",
+ "三案例覆盖不同重组类型",
+ "五维度财务指标分析完整",
+ "中外法律制度比较完整",
+ "全文术语统一、风格一致",
+ "docx排版符合规格要求",
+ "generate_docx.py脚本可执行"
+ ]
+ },
+ "metadata": {
+ "project": "中国上市公司并购重组成功案例研究",
+ "report_type": "学术研究报告/案例分析",
+ "discipline": "会计学",
+ "final_format": "docx",
+ "created": "2026-05-28"
+ }
 }
