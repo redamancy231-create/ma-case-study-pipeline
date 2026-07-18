@@ -1,17 +1,16 @@
 ## 项目状态: 中国上市公司并购重组成功案例研究
 
-- 当前阶段: CLOSED-FINAL（211/985 标签清理闭合）
+- 当前阶段: CLOSED-FINAL（YAML 缩进修复闭合）
 - 本轮完成:
- 1. 全仓库删除 "211" 大学层级分类文本（120 处 / 50 文件），保留数值数据
- 2. 删除 "985" 大学层级分类（1 处）
- 3. 清理 "211院校" 删除后的 "院校" 前缀残留（65 处 / 38 文件）
- 4. GPT-5.6-Sol 异后端审查 → 发现 6 类格式空格残留 → 全部修复（93 处 / 43 文件）
-- 发现的问题: 删除文本标签会产生系统性格式残留（6 类单空格），自审盲区需异后端审查发现
+ 1. 修复 translation-drift.yml YAML 缩进塌缩（全局空格替换致 2→1 空格） → workflow_dispatch 验证通过
+ 2. 修复 methodology-question.yml 同因缩进塌缩
+ 3. 修复 CITATION.cff 同因缩进塌缩
+- 发现的问题: 全局空格替换会无差别塌缩 YAML 结构性缩进；.github/ 和 .cff 应列入替换前排除范围
 
 ## Next Steps
 
 - 无
 
-## 会话备注（2026-07-18，DeepSeek-V4-Pro via Claude Code CLI）
+## 会话备注（2026-07-19，DeepSeek-V4-Pro via Claude Code CLI）
 
-211/985 清理四轮：删除原因=不确定项目规范是否真的符合 211 标准+各校标准不一+可能构成虚假声称风险。GPT-5.6-Sol 审查发现前置空格/粗体空格/冒号空格/角色空格/括号空格/行首空格六类残留，自审均未察觉。Codex CLI 交互模式审查输出 1.7MB/18303 行，发现价值高但过程冗长。
+GitHub Actions run #29646629499 + #29646849281 均 0 jobs + failure，根因=commit a3087a2 全局空格替换误伤 workflow YAML 缩进。同 commit 的 43 个文件中 3 个 YAML 文件被破坏（2-space→1-space），JSON/MD/Python 不受影响。
