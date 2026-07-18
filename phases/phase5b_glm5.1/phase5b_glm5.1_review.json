@@ -1,802 +1,802 @@
 {
-  "phase": "5-B",
-  "model": "GLM-5.1",
-  "task_id": "phase5b_cross_review_academic_writing",
-  "output_file": "phase5b_glm5.1_review.json",
-  "paired_markdown_file": "phase5b_glm5.1_review.md",
-  "review_target": "中国上市公司并购重组成功案例研究.docx",
-  "created_date": "2026-05-29",
-  "review_scope": {
-    "scope_summary": "以终稿docx为对象，对照phase1_design.md方案，按211院校会计学本科毕业论文盲审标尺，对论文结构完整性、学术写作规范、论证逻辑严谨性、参考文献体系、术语统一与图表规范进行复审。",
-    "included_dimensions": [
-      "论文结构完整性与对方案执行度",
-      "学术写作规范（摘要、语言、引文、段落衔接）",
-      "论证逻辑严谨性（论证链、论据-论点匹配、局限性反思）",
-      "参考文献体系（数量、质量、格式、对应性）",
-      "术语统一与图表规范"
-    ],
-    "excluded_dimensions": [
-      "法律条款正确性",
-      "会计准则准确性",
-      "案例事实与时间线",
-      "数据合理性与勾稽关系"
-    ],
-    "authority_hierarchy": [
-      "211院校经管类毕业论文评审通用规范",
-      "GB/T 7714-2015、APA 7th引文标准",
-      "教育部《本科毕业论文（设计）抽检办法（试行）》",
-      "phase1_design.md（方案执行度对照）",
-      "中国上市公司并购重组成功案例研究.docx（审查对象本体）"
-    ],
-    "phase2_review_status": "仅用于追溯；不得用作本阶段判断依据，不得为自己旧结论辩护"
-  },
-  "overall_result": {
-    "score": 71,
-    "max_score": 100,
-    "conclusion": "修改后通过",
-    "reason": "独立文献综述章节缺失、参考文献不足15篇、近5年文献为零、3篇凑数文献+1处漏引、表编号顺序错误等系统性问题需修改后方可满足211本科毕业论文盲审要求；但语言规范性、论证链完整性和案例内容充实度表现良好。"
-  },
-  "scoring_table": [
-    {
-      "dimension": "论文结构完整性",
-      "weight": 0.15,
-      "max_score": 15,
-      "score": 9,
-      "deduction_reason": "独立文献综述章节缺失(-3)；参考文献12篇低于15篇底线(-2)；封面信息不完整(-1)"
-    },
-    {
-      "dimension": "学术写作规范",
-      "weight": 0.25,
-      "max_score": 25,
-      "score": 19,
-      "deduction_reason": "引文格式不统一(-2)；3篇凑数文献+1处漏引(-2)；3/5处章节过渡不足(-2)"
-    },
-    {
-      "dimension": "论证逻辑严谨性",
-      "weight": 0.25,
-      "max_score": 25,
-      "score": 20,
-      "deduction_reason": "案例选择标准未说明(-2)；美国制度背景陈列嫌疑(-1)；杜邦归因缺直接支撑+CAR因果跳跃(-1)；未在局限中提及模拟数据(-1)"
-    },
-    {
-      "dimension": "参考文献体系",
-      "weight": 0.20,
-      "max_score": 20,
-      "score": 12,
-      "deduction_reason": "总数12<15(-3)；近5年文献0篇(-2)；英文文献缺DOI(-1)；凑数文献+漏引(-2)"
-    },
-    {
-      "dimension": "术语与图表规范",
-      "weight": 0.15,
-      "max_score": 15,
-      "score": 11,
-      "deduction_reason": "表编号顺序错误(-2)；CAR标题首次出现未给中文全称(-1)；权益结合法术语表达不统一(-1)"
-    }
-  ],
-  "structure_completeness": {
-    "required_elements_check": [
-      {
-        "element": "封面",
-        "status": "部分具备",
-        "detail": "仅有题目、副标题、学科、报告类型、完成时间；缺失学院、专业、学号、姓名、指导教师"
-      },
-      {
-        "element": "中文摘要",
-        "status": "具备",
-        "detail": "约280字，含背景、方法、结论三要素；研究贡献要素偏弱"
-      },
-      {
-        "element": "中文关键词",
-        "status": "具备",
-        "detail": "7个，合规"
-      },
-      {
-        "element": "英文标题",
-        "status": "缺失",
-        "detail": "无独立英文标题页"
-      },
-      {
-        "element": "Abstract",
-        "status": "具备",
-        "detail": "与中文摘要基本对应，语法正确"
-      },
-      {
-        "element": "Keywords",
-        "status": "具备",
-        "detail": "7个，与中文一一对应"
-      },
-      {
-        "element": "目录",
-        "status": "具备",
-        "detail": "自动生成，含三级标题与页码"
-      },
-      {
-        "element": "文献综述",
-        "status": "缺失",
-        "detail": "无独立文献综述章节或小节，仅零散引用"
-      },
-      {
-        "element": "理论基础",
-        "status": "具备",
-        "detail": "第二章含概念界定与相关理论"
-      },
-      {
-        "element": "制度/政策环境",
-        "status": "具备",
-        "detail": "第三章完整覆盖"
-      },
-      {
-        "element": "案例/实证分析",
-        "status": "具备",
-        "detail": "第四、五章完整"
-      },
-      {
-        "element": "结论与建议",
-        "status": "具备",
-        "detail": "6.1结论、6.2启示、6.3局限与未来方向"
-      },
-      {
-        "element": "参考文献",
-        "status": "不足",
-        "detail": "12篇，低于211标准≥15篇"
-      },
-      {
-        "element": "致谢",
-        "status": "缺失",
-        "detail": "视院校要求，可接受"
-      },
-      {
-        "element": "附录",
-        "status": "缺失",
-        "detail": "视需要，可接受"
-      }
-    ],
-    "phase1_execution_check": {
-      "chapter_structure_match": "6章结构一致，但2-3章重新划分（合理调整）",
-      "case_match": "案例二由美的小天鹅替换为美的库卡（Phase 2修正，合理）",
-      "figure_table_count": "计划2张图，实际9张（7表+2图），超额完成",
-      "literature_match": "Phase 1推荐10篇，终稿12篇但有出入；葛家澍(2015)、陈信元(2017)未纳入；Yin(2018)引用但未入参考文献",
-      "transition_paragraphs": "Phase 1设计5处过渡句，仅2处基本落实",
-      "goodwill_section": "Phase 1设计5.3商誉与无形资产变化独立小节被弱化，商誉分析分散在4.2.2和4.2.3中",
-      "word_count": "预估8,100-8,500字，实际约16,000字，大幅超额",
-      "overall_execution_rate": "约80%"
-    }
-  },
-  "academic_writing_review": {
-    "abstract_quality": {
-      "cn_abstract_elements": {
-        "background": true,
-        "method": true,
-        "conclusion": true,
-        "contribution": false,
-        "note": "末句仅为一般性结论，未明确区分与既有研究的差异或本研究的独特贡献"
-      },
-      "cn_abstract_issues": [
-        "'本文'自指2次，在可接受范围内",
-        "无口语化表达",
-        "无过度宣称"
-      ],
-      "en_abstract_issues": [
-        "'those not under common control'可优化为'business combinations not under common control'",
-        "语法基本正确，无显著中式英语"
-      ],
-      "keyword_correspondence": "7对关键词一一对应，无宽泛词",
-      "keyword_count_cn": 7,
-      "keyword_count_en": 7
-    },
-    "language_norms": {
-      "sampled_paragraphs": 5,
-      "colloquial_expressions_found": 0,
-      "first_person_abuse_found": 0,
-      "rhetorical_excess_found": 0,
-      "overall_assessment": "全文语言风格统一、学术规范，为终稿亮点之一"
-    },
-    "citation_norms": {
-      "total_in_text_citations": 10,
-      "recommended_range": "15-30",
-      "citation_density_assessment": "偏低",
-      "format_inconsistencies": [
-        {
-          "location": "1.2节",
-          "issue": "英文文献引用使用中文分号'；'分隔",
-          "before": "（Andrade, Mitchell, & Stafford, 2001；Betton, Eckbo, & Thorburn, 2014）",
-          "after": "（Andrade, Mitchell, & Stafford, 2001; Betton, Eckbo, & Thorburn, 2014）"
-        },
-        {
-          "location": "5.4节",
-          "issue": "Brown & Warner(1985)左括号前缺空格",
-          "before": "Brown & Warner(1985)",
-          "after": "Brown & Warner (1985)"
-        }
-      ],
-      "orphan_references": [
-        {
-          "ref_id": "[6]",
-          "author": "潘红波",
-          "year": 2021,
-          "cited_in_text": false
-        },
-        {
-          "ref_id": "[7]",
-          "author": "王跃堂、孙铮、陈世敏",
-          "year": 2015,
-          "cited_in_text": false
-        },
-        {
-          "ref_id": "[12]",
-          "author": "Harford",
-          "year": 2014,
-          "cited_in_text": false
-        }
-      ],
-      "missing_references": [
-        {
-          "in_text_citation": "Yin（2018）",
-          "location": "1.3节",
-          "ref_list_entry": null
-        }
-      ]
-    },
-    "paragraph_norms": {
-      "transition_check": [
-        {
-          "position": "第1章→第2章",
-          "phase1_designed": true,
-          "actual": "仅1.3末尾结构导览，无向第二章过渡",
-          "assessment": "不足"
-        },
-        {
-          "position": "第2章→第3章",
-          "phase1_designed": true,
-          "actual": "2.3节以表格结束，直接跳到3.1",
-          "assessment": "不足"
-        },
-        {
-          "position": "第3章→第4章",
-          "phase1_designed": true,
-          "actual": "3.3节末有过渡性表述",
-          "assessment": "达标"
-        },
-        {
-          "position": "第4章→第5章",
-          "phase1_designed": true,
-          "actual": "4.4节末引导至表3-5及图1-2",
-          "assessment": "达标"
-        },
-        {
-          "position": "第5章→第6章",
-          "phase1_designed": true,
-          "actual": "5.5节末无过渡段",
-          "assessment": "不足"
-        }
-      ],
-      "transitions_pass_rate": "2/5 = 40%"
-    }
-  },
-  "argumentation_logic_review": {
-    "overall_chain_check": {
-      "required_chain": "概念界定→理论基础→制度环境→案例呈现→财务分析→经验启示",
-      "actual_chain": "概念界定(2.1)→理论基础(2.2)→方法分类(2.3)→制度环境(3.1-3.3)→案例呈现(4.1-4.4)→财务分析(5.1-5.5)→经验启示(6.1-6.3)",
-      "chain_complete": true
-    },
-    "chapter_checks": [
-      {
-        "chapter": "第二章（概念/理论）",
-        "issue": "市场势力理论和交易费用理论在后文案例分析中几乎未被调用，存在'列举但不再使用'的浪费",
-        "severity": "一般"
-      },
-      {
-        "chapter": "第三章（制度）",
-        "issue": "3.2节美国Chapter 11制度内容在后续案例中几乎未被引用，存在'背景陈列'嫌疑",
-        "severity": "重要"
-      },
-      {
-        "chapter": "第四章（案例）",
-        "issue": "案例选择标准未在正文中明确说明",
-        "severity": "重要"
-      },
-      {
-        "chapter": "第五章（财务分析）",
-        "issue": "商誉专题分析被弱化，Phase 1设计的独立小节缺失",
-        "severity": "重要"
-      },
-      {
-        "chapter": "第六章（结论）",
-        "issue": "美的案例T年销售净利率下降事实未在结论中提及，略有以偏概全之嫌",
-        "severity": "一般"
-      }
-    ],
-    "argument_match_checks": [
-      {
-        "location": "5.3节 中国中车杜邦分解",
-        "claim": "净利率提升约0.85个百分点（来自规模化采购与海外订单溢价）",
-        "verdict": "数据支撑净利率提升0.85个百分点，但括号内归因为推测性推断，缺乏直接数据支撑",
-        "severity": "一般",
-        "recommendation": "改为'可能归因于规模效应带来的采购成本优化及海外订单结构改善，但需更多细分数据验证'"
-      },
-      {
-        "location": "5.2节 美的资产负债率",
-        "claim": "美的因现金收购库卡使资产负债率从2016年的59.34%上升至2017年的66.81%",
-        "verdict": "数据与因果推理均合理",
-        "severity": "无问题"
-      },
-      {
-        "location": "5.4节 CAR结论",
-        "claim": "三案例事件窗口CAR均显著为正，表明资本市场总体认可重组价值",
-        "verdict": "CAR为正可有多重解释，直接等同于'认可重组价值'推理跳跃",
-        "severity": "一般",
-        "recommendation": "改为'表明资本市场在公告窗口对重组持正面预期，但CAR亦可能包含政策预期、信息传递等多重因素'"
-      }
-    ],
-    "limitation_reflection": {
-      "acknowledged_limitations": [
-        "样本数量有限",
-        "CAR未控制行业因素和Fama-French三因子",
-        "长期绩效分析窗口仅至T+2"
-      ],
-      "unacknowledged_limitations": [
-        {
-          "issue": "数据为模拟数据但未在研究局限中说明",
-          "severity": "重要",
-          "basis": "项目复盘归档报告明确记载'数据采用模拟而非真实抓取'，终稿仅标注'经作者整理计算'"
-        },
-        {
-          "issue": "仅选成功案例的幸存者偏差未讨论",
-          "severity": "一般",
-          "basis": "三个案例均为成功案例，未纳入失败或中止交易作为对照"
-        }
-      ],
-      "future_directions_provided": true,
-      "overclaim_check": "无过度宣称研究贡献"
-    }
-  },
-  "reference_review": {
-    "quantity_and_quality": {
-      "total_count": 12,
-      "standard_minimum": 15,
-      "cssci_ssci_ratio": "100%",
-      "cssci_ssci_standard": "≥50%",
-      "last_5_years_count": 0,
-      "last_5_years_ratio": "0%",
-      "last_5_years_standard": "≥30%",
-      "foreign_literature_count": 4,
-      "foreign_literature_standard": "≥3",
-      "academic_paper_ratio": "100%",
-      "academic_paper_standard": "≥80%",
-      "web_press_ratio": "0%",
-      "web_press_standard": "≤10%"
-    },
-    "gb_t_7714_format_check": [
-      {
-        "ref_id": "[1]",
-        "format": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
-        "compliant": true
-      },
-      {
-        "ref_id": "[2]",
-        "format": "作者. 题名[J]. 期刊名, 年(期): 起止页码.",
-        "compliant": true,
-        "note": "会计研究2019年无卷号可接受"
-      },
-      {
-        "ref_id": "[3]",
-        "format": "同[2]",
-        "compliant": true
-      },
-      {
-        "ref_id": "[4]",
-        "format": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
-        "compliant": true
-      },
-      {
-        "ref_id": "[5]",
-        "format": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
-        "compliant": true
-      }
-    ],
-    "apa_7th_format_check": [
-      {
-        "ref_id": "[9]",
-        "author_format": true,
-        "ampersand_usage": true,
-        "italics": "未验证（需检查docx格式）",
-        "doi_provided": false,
-        "case_rule": "句首大写，合规"
-      },
-      {
-        "ref_id": "[11]",
-        "author_format": true,
-        "ampersand_usage": true,
-        "italics": "未验证",
-        "doi_provided": false,
-        "case_rule": "句首大写，合规"
-      },
-      {
-        "ref_id": "[12]",
-        "author_format": true,
-        "ampersand_usage": true,
-        "italics": "未验证",
-        "doi_provided": false,
-        "case_rule": "句首大写，合规"
-      }
-    ],
-    "correspondence_check": {
-      "all_in_text_citations_in_ref_list": false,
-      "missing_from_ref_list": ["Yin (2018)"],
-      "all_ref_entries_cited_in_text": false,
-      "uncited_entries": ["[6]潘红波(2021)", "[7]王跃堂等(2015)", "[12]Harford(2014)"],
-      "cn_en_separated": true,
-      "cn_sorting": "按姓氏拼音排序",
-      "en_sorting": "按字母排序"
-    }
-  },
-  "terminology_and_figures_review": {
-    "terminology_consistency": [
-      {
-        "term_group": "并购重组/M&A/兼并收购",
-        "consistent": true,
-        "usage": "正文统一使用'并购重组'，英文Abstract使用'Mergers and Acquisitions'"
-      },
-      {
-        "term_group": "吸收合并/新设合并/控股合并",
-        "consistent": true,
-        "usage": "2.1节有清晰定义，案例中正确使用"
-      },
-      {
-        "term_group": "同一控制下企业合并/权益结合法",
-        "consistent": false,
-        "inconsistency": "4.1.2用'权益结合法（账面价值法）'，4.3.2用'权益结合法/账面价值法'斜杠并列",
-        "recommendation": "统一为'权益结合法（账面价值法）'括号注明格式"
-      },
-      {
-        "term_group": "商誉/Goodwill/合并价差",
-        "consistent": true,
-        "usage": "正文统一'商誉'，英文'Goodwill'"
-      },
-      {
-        "term_group": "累计超额收益率/CAR/累积异常收益",
-        "consistent": false,
-        "inconsistency": "5.4节标题'CAR事件研究'直接用英文缩写，首次出现未给中文全称",
-        "recommendation": "标题改为'累计超额收益率（CAR）事件研究'"
-      },
-      {
-        "term_group": "购买法/购买会计法/Purchase Method",
-        "consistent": true,
-        "usage": "正文统一使用'购买法'"
-      }
-    ],
-    "figure_table_norms": {
-      "table_numbering_sequential": false,
-      "numbering_error_detail": "5.1节表4（指标体系）出现在5.2节表3（财务指标对比）之前，违反按出现顺序编号规范",
-      "table_title_position": "表上方居中，合规",
-      "figure_title_position": "图下方居中，合规",
-      "data_source_annotation": "每个表/图下方均有'资料来源'或'数据来源'标注",
-      "notes_usage": "表5使用'注：'说明显著性水平",
-      "three_line_table": "未验证（需检查docx格式）",
-      "in_text_reference": "正文中均有'如表1所示''从表3和图1可观察到'等引导"
-    },
-    "numeric_symbol_norms": {
-      "currency_unit_consistent": "全文统一使用'亿元'",
-      "percentage_consistent": "全文统一使用'%'",
-      "arabic_chinese_number": "规范",
-      "punctuation_issue": "英文引用中使用中文分号'；'"
-    }
-  },
-  "major_issues": [
-    {
-      "priority": "重大",
-      "issue": "独立文献综述章节缺失",
-      "location": "全文",
-      "dimension": "论文结构完整性",
-      "required_action": "在1.2节后增设'1.3文献综述'小节，系统梳理国内外并购重组绩效研究、商誉会计研究、事件研究法应用三方面文献"
-    },
-    {
-      "priority": "重大",
-      "issue": "参考文献总数不足（12篇 < 15篇底线）",
-      "location": "参考文献",
-      "dimension": "参考文献体系",
-      "required_action": "补充至少3篇文献至≥15篇，建议方向：商誉减值近年研究、跨境并购绩效研究、并购重组注册制改革影响研究"
-    },
-    {
-      "priority": "重大",
-      "issue": "近5年文献为零（2022-2026年无任何文献）",
-      "location": "参考文献",
-      "dimension": "参考文献体系",
-      "required_action": "补充2-3篇2022-2026年发表的文献，满足≥30%比例"
-    },
-    {
-      "priority": "重大",
-      "issue": "3篇凑数文献+1处漏引",
-      "location": "正文+参考文献",
-      "dimension": "学术写作规范+参考文献体系",
-      "detail": "[6]潘红波(2021)、[7]王跃堂等(2015)、[12]Harford(2014)正文未引用；Yin(2018)正文引用但参考文献列表无此条目",
-      "required_action": "补充正文引用或替换凑数文献；在英文文献部分增加Yin(2018)"
-    },
-    {
-      "priority": "重大",
-      "issue": "表编号顺序错误（表4出现在表3之前）",
-      "location": "5.1-5.2节",
-      "dimension": "术语与图表规范",
-      "required_action": "将5.1节指标体系表编号改为表3，5.2节财务指标对比表编号改为表4，5.4节CAR分析表编号改为表5，正文引用相应调整"
-    }
-  ],
-  "important_issues": [
-    {
-      "priority": "重要",
-      "issue": "案例选择标准未在正文中明确说明",
-      "location": "第四章开头",
-      "dimension": "论证逻辑严谨性"
-    },
-    {
-      "priority": "重要",
-      "issue": "美国Chapter 11制度内容存在'背景陈列'嫌疑",
-      "location": "3.2节",
-      "dimension": "论证逻辑严谨性"
-    },
-    {
-      "priority": "重要",
-      "issue": "研究局限中未提及数据为模拟数据",
-      "location": "6.3节",
-      "dimension": "论证逻辑严谨性"
-    },
-    {
-      "priority": "重要",
-      "issue": "引文格式不统一",
-      "location": "1.2节、5.4节",
-      "dimension": "学术写作规范"
-    },
-    {
-      "priority": "重要",
-      "issue": "3/5处章节过渡不足",
-      "location": "第1→2、2→3、5→6章之间",
-      "dimension": "学术写作规范"
-    },
-    {
-      "priority": "重要",
-      "issue": "英文文献均未提供DOI",
-      "location": "参考文献[9]-[12]",
-      "dimension": "参考文献体系"
-    },
-    {
-      "priority": "重要",
-      "issue": "商誉专题分析被弱化（Phase 1设计的独立小节缺失）",
-      "location": "第五章",
-      "dimension": "论证逻辑严谨性"
-    }
-  ],
-  "minor_issues": [
-    {
-      "priority": "一般",
-      "issue": "英文标题缺失",
-      "location": "封面区域",
-      "dimension": "论文结构完整性"
-    },
-    {
-      "priority": "一般",
-      "issue": "封面信息不完整（缺学院、专业、学号、姓名、指导教师）",
-      "location": "封面",
-      "dimension": "论文结构完整性"
-    },
-    {
-      "priority": "一般",
-      "issue": "摘要'研究贡献'要素偏弱",
-      "location": "摘要",
-      "dimension": "学术写作规范"
-    },
-    {
-      "priority": "一般",
-      "issue": "杜邦分解中归因缺乏直接数据支撑",
-      "location": "5.3节",
-      "dimension": "论证逻辑严谨性"
-    },
-    {
-      "priority": "一般",
-      "issue": "CAR结论'市场认可重组价值'因果推断跳跃",
-      "location": "5.4节",
-      "dimension": "论证逻辑严谨性"
-    },
-    {
-      "priority": "一般",
-      "issue": "'权益结合法/账面价值法'斜杠并列术语不统一",
-      "location": "4.3.2节",
-      "dimension": "术语统一与图表规范"
-    },
-    {
-      "priority": "一般",
-      "issue": "5.4节标题CAR首次出现未给中文全称",
-      "location": "5.4标题",
-      "dimension": "术语统一与图表规范"
-    },
-    {
-      "priority": "一般",
-      "issue": "仅选成功案例的幸存者偏差未在局限性中讨论",
-      "location": "6.3节",
-      "dimension": "论证逻辑严谨性"
-    },
-    {
-      "priority": "一般",
-      "issue": "引用密度偏低（10次 < 15-30次建议范围）",
-      "location": "全文",
-      "dimension": "学术写作规范"
-    }
-  ],
-  "revision_suggestions": [
-    {
-      "id": 1,
-      "section": "第1章",
-      "before": "（无独立文献综述小节）",
-      "after": "在1.2节后增设'1.3文献综述'（原1.3顺延为1.4），系统梳理国内外并购重组绩效研究、商誉会计研究、事件研究法应用三方面文献，末尾附'研究述评'段",
-      "level": "重大"
-    },
-    {
-      "id": 2,
-      "section": "1.2节",
-      "before": "（Andrade, Mitchell, & Stafford, 2001；Betton, Eckbo, & Thorburn, 2014）",
-      "after": "（Andrade, Mitchell, & Stafford, 2001; Betton, Eckbo, & Thorburn, 2014）",
-      "level": "一般"
-    },
-    {
-      "id": 3,
-      "section": "第2章/6.1节",
-      "before": "2.2节列举'市场势力理论'和'交易费用理论'后无下文回扣",
-      "after": "在6.1节结论中补充回扣：'市场势力理论揭示了南车-北车合并后全球市场份额超50%的定价能力来源，交易费用理论则解释了宝钢-武钢合并将铁矿石采购内部化的动机'",
-      "level": "重要"
-    },
-    {
-      "id": 4,
-      "section": "第3章",
-      "before": "3.2节美国Chapter 11内容详细但后文几乎未引用",
-      "after": "将3.2节精简为比较表（已有表2）+一段小结；在6.2启示中增加'中美制度差异对重组路径选择的影响'回扣3.2节",
-      "level": "重要"
-    },
-    {
-      "id": 5,
-      "section": "第2→3章过渡",
-      "before": "2.3节以表格结束，直接跳到3.1",
-      "after": "在3.1节开头添加过渡段",
-      "level": "重要"
-    },
-    {
-      "id": 6,
-      "section": "第四章开头",
-      "before": "无案例选择标准说明",
-      "after": "在4.1节前增设案例选择标准段：代表性、会计典型性、政策标杆性三项标准",
-      "level": "重要"
-    },
-    {
-      "id": 7,
-      "section": "4.3.2节",
-      "before": "采用权益结合法/账面价值法",
-      "after": "采用权益结合法（账面价值法）",
-      "level": "一般"
-    },
-    {
-      "id": 8,
-      "section": "5.1-5.2节",
-      "before": "表4（指标体系）出现在表3（财务指标对比）之前",
-      "after": "将指标体系表编号改为表3，财务指标对比表编号改为表4，CAR分析表编号改为表5",
-      "level": "重大"
-    },
-    {
-      "id": 9,
-      "section": "5.3节",
-      "before": "净利率提升约0.85个百分点（来自规模化采购与海外订单溢价）",
-      "after": "净利率提升约0.85个百分点，可能归因于规模效应带来的采购成本优化及海外订单结构改善，但需更多细分数据验证",
-      "level": "一般"
-    },
-    {
-      "id": 10,
-      "section": "5.4节标题",
-      "before": "市场反应分析：CAR事件研究",
-      "after": "市场反应分析：累计超额收益率（CAR）事件研究",
-      "level": "一般"
-    },
-    {
-      "id": 11,
-      "section": "5.4节",
-      "before": "表明资本市场总体认可重组价值",
-      "after": "表明资本市场在公告窗口对重组持正面预期，但CAR亦可能包含政策预期、信息传递等多重因素",
-      "level": "一般"
-    },
-    {
-      "id": 12,
-      "section": "5.4节",
-      "before": "Brown & Warner(1985)",
-      "after": "Brown & Warner (1985)",
-      "level": "一般"
-    },
-    {
-      "id": 13,
-      "section": "6.3节",
-      "before": "未提及数据为模拟数据",
-      "after": "增加：'第四，本文财务数据基于公开信息合理模拟而非直接获取自Wind/CSMAR等数据库，模拟数据可能存在与真实数据的偏差'",
-      "level": "重要"
-    },
-    {
-      "id": 14,
-      "section": "6.3节",
-      "before": "未讨论幸存者偏差",
-      "after": "增加：'第五，本文仅选取成功案例，未纳入失败或中止的并购重组交易作为对照，可能存在幸存者偏差'",
-      "level": "一般"
-    },
-    {
-      "id": 15,
-      "section": "第5→6章过渡",
-      "before": "5.5节末无过渡段",
-      "after": "在6.1节开头添加过渡段",
-      "level": "重要"
-    },
-    {
-      "id": 16,
-      "section": "参考文献",
-      "before": "参考文献仅12篇",
-      "after": "补充至少3篇文献至≥15篇，含2-3篇2022-2026年文献",
-      "level": "重大"
-    },
-    {
-      "id": 17,
-      "section": "参考文献",
-      "before": "近5年文献为零",
-      "after": "补充2-3篇2022-2026年发表的文献，满足≥30%比例",
-      "level": "重大"
-    },
-    {
-      "id": 18,
-      "section": "参考文献",
-      "before": "[6][7][12]正文未引用",
-      "after": "在正文中补充引用或从参考文献列表中删除并补充其他已引用文献至≥15篇",
-      "level": "重大"
-    },
-    {
-      "id": 19,
-      "section": "参考文献",
-      "before": "Yin（2018）正文引用但参考文献列表无此条目",
-      "after": "增加：Yin, R. K. (2018). Case study research and applications: Design and methods (6th ed.). SAGE Publications.",
-      "level": "重大"
-    },
-    {
-      "id": 20,
-      "section": "参考文献",
-      "before": "英文文献[9]-[12]均未提供DOI",
-      "after": "补充DOI",
-      "level": "重要"
-    },
-    {
-      "id": 21,
-      "section": "封面",
-      "before": "仅有题目、副标题、学科、报告类型、完成时间",
-      "after": "补充学院、专业、学号、姓名、指导教师；增加英文标题页",
-      "level": "一般"
-    }
-  ],
-  "must_fix_items": [
-    "增设独立文献综述小节（1.3节或第二章独立一节）",
-    "参考文献补充至≥15篇",
-    "补充近5年文献至少3-4篇（满足≥30%比例）",
-    "处理3篇凑数文献（补充正文引用或替换为已引用文献）",
-    "补充Yin（2018）至参考文献列表",
-    "修正表编号顺序（表3/表4对调）",
-    "在6.3研究局限中明确说明数据为模拟数据"
-  ],
-  "recommended_fix_items": [
-    "添加案例选择标准说明段",
-    "精简3.2节美国制度内容，增加6.2节回扣",
-    "补充3处章节过渡段",
-    "统一引文格式（英文分号、空格）",
-    "补充英文文献DOI",
-    "在6.3节增加幸存者偏差讨论"
-  ],
-  "strengths": [
-    "全文语言风格统一、学术规范，无口语化、第一人称滥用或修辞过度问题",
-    "论证链完整，概念界定→理论基础→制度环境→案例呈现→财务分析→经验启示逻辑通顺",
-    "案例内容充实，三案例覆盖同一控制吸收合并×2和非同一控制跨境并购×1",
-    "关键词中英文7对一一对应，无宽泛词",
-    "图表数量超额完成（9张 vs 计划2张）",
-    "杜邦分解方法论严谨，区分了'真实经营改善'与'杠杆驱动幻觉'"
-  ],
-  "companion_review_note": "Phase 5-A（GPT-5.5）从法律合规+会计准则+案例事实+数据合理性维度独立复审，与本审查互不沟通。本审查发现的'研究局限未提及模拟数据'问题与5-A发现的'模拟数据以真实数据库来源呈现'问题指向同一根源，但评价角度不同：5-A视为学术不端嫌疑（事实层），5-B视为研究局限性缺失（写作规范层）。两份审查的交叉验证强化了该问题的严重性。",
-  "generated_files": [
-    "phase5b_glm5.1_review.md",
-    "phase5b_glm5.1_review.json"
-  ]
+ "phase": "5-B",
+ "model": "GLM-5.1",
+ "task_id": "phase5b_cross_review_academic_writing",
+ "output_file": "phase5b_glm5.1_review.json",
+ "paired_markdown_file": "phase5b_glm5.1_review.md",
+ "review_target": "中国上市公司并购重组成功案例研究.docx",
+ "created_date": "2026-05-29",
+ "review_scope": {
+ "scope_summary": "以终稿docx为对象，对照phase1_design.md方案，按院校会计学本科毕业论文盲审标尺，对论文结构完整性、学术写作规范、论证逻辑严谨性、参考文献体系、术语统一与图表规范进行复审。",
+ "included_dimensions": [
+ "论文结构完整性与对方案执行度",
+ "学术写作规范（摘要、语言、引文、段落衔接）",
+ "论证逻辑严谨性（论证链、论据-论点匹配、局限性反思）",
+ "参考文献体系（数量、质量、格式、对应性）",
+ "术语统一与图表规范"
+ ],
+ "excluded_dimensions": [
+ "法律条款正确性",
+ "会计准则准确性",
+ "案例事实与时间线",
+ "数据合理性与勾稽关系"
+ ],
+ "authority_hierarchy": [
+ "院校经管类毕业论文评审通用规范",
+ "GB/T 7714-2015、APA 7th引文标准",
+ "教育部《本科毕业论文（设计）抽检办法（试行）》",
+ "phase1_design.md（方案执行度对照）",
+ "中国上市公司并购重组成功案例研究.docx（审查对象本体）"
+ ],
+ "phase2_review_status": "仅用于追溯；不得用作本阶段判断依据，不得为自己旧结论辩护"
+ },
+ "overall_result": {
+ "score": 71,
+ "max_score": 100,
+ "conclusion": "修改后通过",
+ "reason": "独立文献综述章节缺失、参考文献不足15篇、近5年文献为零、3篇凑数文献+1处漏引、表编号顺序错误等系统性问题需修改后方可满足本科毕业论文盲审要求；但语言规范性、论证链完整性和案例内容充实度表现良好。"
+ },
+ "scoring_table": [
+ {
+ "dimension": "论文结构完整性",
+ "weight": 0.15,
+ "max_score": 15,
+ "score": 9,
+ "deduction_reason": "独立文献综述章节缺失(-3)；参考文献12篇低于15篇底线(-2)；封面信息不完整(-1)"
+ },
+ {
+ "dimension": "学术写作规范",
+ "weight": 0.25,
+ "max_score": 25,
+ "score": 19,
+ "deduction_reason": "引文格式不统一(-2)；3篇凑数文献+1处漏引(-2)；3/5处章节过渡不足(-2)"
+ },
+ {
+ "dimension": "论证逻辑严谨性",
+ "weight": 0.25,
+ "max_score": 25,
+ "score": 20,
+ "deduction_reason": "案例选择标准未说明(-2)；美国制度背景陈列嫌疑(-1)；杜邦归因缺直接支撑+CAR因果跳跃(-1)；未在局限中提及模拟数据(-1)"
+ },
+ {
+ "dimension": "参考文献体系",
+ "weight": 0.20,
+ "max_score": 20,
+ "score": 12,
+ "deduction_reason": "总数12<15(-3)；近5年文献0篇(-2)；英文文献缺DOI(-1)；凑数文献+漏引(-2)"
+ },
+ {
+ "dimension": "术语与图表规范",
+ "weight": 0.15,
+ "max_score": 15,
+ "score": 11,
+ "deduction_reason": "表编号顺序错误(-2)；CAR标题首次出现未给中文全称(-1)；权益结合法术语表达不统一(-1)"
+ }
+ ],
+ "structure_completeness": {
+ "required_elements_check": [
+ {
+ "element": "封面",
+ "status": "部分具备",
+ "detail": "仅有题目、副标题、学科、报告类型、完成时间；缺失学院、专业、学号、姓名、指导教师"
+ },
+ {
+ "element": "中文摘要",
+ "status": "具备",
+ "detail": "约280字，含背景、方法、结论三要素；研究贡献要素偏弱"
+ },
+ {
+ "element": "中文关键词",
+ "status": "具备",
+ "detail": "7个，合规"
+ },
+ {
+ "element": "英文标题",
+ "status": "缺失",
+ "detail": "无独立英文标题页"
+ },
+ {
+ "element": "Abstract",
+ "status": "具备",
+ "detail": "与中文摘要基本对应，语法正确"
+ },
+ {
+ "element": "Keywords",
+ "status": "具备",
+ "detail": "7个，与中文一一对应"
+ },
+ {
+ "element": "目录",
+ "status": "具备",
+ "detail": "自动生成，含三级标题与页码"
+ },
+ {
+ "element": "文献综述",
+ "status": "缺失",
+ "detail": "无独立文献综述章节或小节，仅零散引用"
+ },
+ {
+ "element": "理论基础",
+ "status": "具备",
+ "detail": "第二章含概念界定与相关理论"
+ },
+ {
+ "element": "制度/政策环境",
+ "status": "具备",
+ "detail": "第三章完整覆盖"
+ },
+ {
+ "element": "案例/实证分析",
+ "status": "具备",
+ "detail": "第四、五章完整"
+ },
+ {
+ "element": "结论与建议",
+ "status": "具备",
+ "detail": "6.1结论、6.2启示、6.3局限与未来方向"
+ },
+ {
+ "element": "参考文献",
+ "status": "不足",
+ "detail": "12篇，低于标准≥15篇"
+ },
+ {
+ "element": "致谢",
+ "status": "缺失",
+ "detail": "视院校要求，可接受"
+ },
+ {
+ "element": "附录",
+ "status": "缺失",
+ "detail": "视需要，可接受"
+ }
+ ],
+ "phase1_execution_check": {
+ "chapter_structure_match": "6章结构一致，但2-3章重新划分（合理调整）",
+ "case_match": "案例二由美的小天鹅替换为美的库卡（Phase 2修正，合理）",
+ "figure_table_count": "计划2张图，实际9张（7表+2图），超额完成",
+ "literature_match": "Phase 1推荐10篇，终稿12篇但有出入；葛家澍(2015)、陈信元(2017)未纳入；Yin(2018)引用但未入参考文献",
+ "transition_paragraphs": "Phase 1设计5处过渡句，仅2处基本落实",
+ "goodwill_section": "Phase 1设计5.3商誉与无形资产变化独立小节被弱化，商誉分析分散在4.2.2和4.2.3中",
+ "word_count": "预估8,100-8,500字，实际约16,000字，大幅超额",
+ "overall_execution_rate": "约80%"
+ }
+ },
+ "academic_writing_review": {
+ "abstract_quality": {
+ "cn_abstract_elements": {
+ "background": true,
+ "method": true,
+ "conclusion": true,
+ "contribution": false,
+ "note": "末句仅为一般性结论，未明确区分与既有研究的差异或本研究的独特贡献"
+ },
+ "cn_abstract_issues": [
+ "'本文'自指2次，在可接受范围内",
+ "无口语化表达",
+ "无过度宣称"
+ ],
+ "en_abstract_issues": [
+ "'those not under common control'可优化为'business combinations not under common control'",
+ "语法基本正确，无显著中式英语"
+ ],
+ "keyword_correspondence": "7对关键词一一对应，无宽泛词",
+ "keyword_count_cn": 7,
+ "keyword_count_en": 7
+ },
+ "language_norms": {
+ "sampled_paragraphs": 5,
+ "colloquial_expressions_found": 0,
+ "first_person_abuse_found": 0,
+ "rhetorical_excess_found": 0,
+ "overall_assessment": "全文语言风格统一、学术规范，为终稿亮点之一"
+ },
+ "citation_norms": {
+ "total_in_text_citations": 10,
+ "recommended_range": "15-30",
+ "citation_density_assessment": "偏低",
+ "format_inconsistencies": [
+ {
+ "location": "1.2节",
+ "issue": "英文文献引用使用中文分号'；'分隔",
+ "before": "（Andrade, Mitchell, & Stafford, 2001；Betton, Eckbo, & Thorburn, 2014）",
+ "after": "（Andrade, Mitchell, & Stafford, 2001; Betton, Eckbo, & Thorburn, 2014）"
+ },
+ {
+ "location": "5.4节",
+ "issue": "Brown & Warner(1985)左括号前缺空格",
+ "before": "Brown & Warner(1985)",
+ "after": "Brown & Warner (1985)"
+ }
+ ],
+ "orphan_references": [
+ {
+ "ref_id": "[6]",
+ "author": "潘红波",
+ "year": 2021,
+ "cited_in_text": false
+ },
+ {
+ "ref_id": "[7]",
+ "author": "王跃堂、孙铮、陈世敏",
+ "year": 2015,
+ "cited_in_text": false
+ },
+ {
+ "ref_id": "[12]",
+ "author": "Harford",
+ "year": 2014,
+ "cited_in_text": false
+ }
+ ],
+ "missing_references": [
+ {
+ "in_text_citation": "Yin（2018）",
+ "location": "1.3节",
+ "ref_list_entry": null
+ }
+ ]
+ },
+ "paragraph_norms": {
+ "transition_check": [
+ {
+ "position": "第1章→第2章",
+ "phase1_designed": true,
+ "actual": "仅1.3末尾结构导览，无向第二章过渡",
+ "assessment": "不足"
+ },
+ {
+ "position": "第2章→第3章",
+ "phase1_designed": true,
+ "actual": "2.3节以表格结束，直接跳到3.1",
+ "assessment": "不足"
+ },
+ {
+ "position": "第3章→第4章",
+ "phase1_designed": true,
+ "actual": "3.3节末有过渡性表述",
+ "assessment": "达标"
+ },
+ {
+ "position": "第4章→第5章",
+ "phase1_designed": true,
+ "actual": "4.4节末引导至表3-5及图1-2",
+ "assessment": "达标"
+ },
+ {
+ "position": "第5章→第6章",
+ "phase1_designed": true,
+ "actual": "5.5节末无过渡段",
+ "assessment": "不足"
+ }
+ ],
+ "transitions_pass_rate": "2/5 = 40%"
+ }
+ },
+ "argumentation_logic_review": {
+ "overall_chain_check": {
+ "required_chain": "概念界定→理论基础→制度环境→案例呈现→财务分析→经验启示",
+ "actual_chain": "概念界定(2.1)→理论基础(2.2)→方法分类(2.3)→制度环境(3.1-3.3)→案例呈现(4.1-4.4)→财务分析(5.1-5.5)→经验启示(6.1-6.3)",
+ "chain_complete": true
+ },
+ "chapter_checks": [
+ {
+ "chapter": "第二章（概念/理论）",
+ "issue": "市场势力理论和交易费用理论在后文案例分析中几乎未被调用，存在'列举但不再使用'的浪费",
+ "severity": "一般"
+ },
+ {
+ "chapter": "第三章（制度）",
+ "issue": "3.2节美国Chapter 11制度内容在后续案例中几乎未被引用，存在'背景陈列'嫌疑",
+ "severity": "重要"
+ },
+ {
+ "chapter": "第四章（案例）",
+ "issue": "案例选择标准未在正文中明确说明",
+ "severity": "重要"
+ },
+ {
+ "chapter": "第五章（财务分析）",
+ "issue": "商誉专题分析被弱化，Phase 1设计的独立小节缺失",
+ "severity": "重要"
+ },
+ {
+ "chapter": "第六章（结论）",
+ "issue": "美的案例T年销售净利率下降事实未在结论中提及，略有以偏概全之嫌",
+ "severity": "一般"
+ }
+ ],
+ "argument_match_checks": [
+ {
+ "location": "5.3节 中国中车杜邦分解",
+ "claim": "净利率提升约0.85个百分点（来自规模化采购与海外订单溢价）",
+ "verdict": "数据支撑净利率提升0.85个百分点，但括号内归因为推测性推断，缺乏直接数据支撑",
+ "severity": "一般",
+ "recommendation": "改为'可能归因于规模效应带来的采购成本优化及海外订单结构改善，但需更多细分数据验证'"
+ },
+ {
+ "location": "5.2节 美的资产负债率",
+ "claim": "美的因现金收购库卡使资产负债率从2016年的59.34%上升至2017年的66.81%",
+ "verdict": "数据与因果推理均合理",
+ "severity": "无问题"
+ },
+ {
+ "location": "5.4节 CAR结论",
+ "claim": "三案例事件窗口CAR均显著为正，表明资本市场总体认可重组价值",
+ "verdict": "CAR为正可有多重解释，直接等同于'认可重组价值'推理跳跃",
+ "severity": "一般",
+ "recommendation": "改为'表明资本市场在公告窗口对重组持正面预期，但CAR亦可能包含政策预期、信息传递等多重因素'"
+ }
+ ],
+ "limitation_reflection": {
+ "acknowledged_limitations": [
+ "样本数量有限",
+ "CAR未控制行业因素和Fama-French三因子",
+ "长期绩效分析窗口仅至T+2"
+ ],
+ "unacknowledged_limitations": [
+ {
+ "issue": "数据为模拟数据但未在研究局限中说明",
+ "severity": "重要",
+ "basis": "项目复盘归档报告明确记载'数据采用模拟而非真实抓取'，终稿仅标注'经作者整理计算'"
+ },
+ {
+ "issue": "仅选成功案例的幸存者偏差未讨论",
+ "severity": "一般",
+ "basis": "三个案例均为成功案例，未纳入失败或中止交易作为对照"
+ }
+ ],
+ "future_directions_provided": true,
+ "overclaim_check": "无过度宣称研究贡献"
+ }
+ },
+ "reference_review": {
+ "quantity_and_quality": {
+ "total_count": 12,
+ "standard_minimum": 15,
+ "cssci_ssci_ratio": "100%",
+ "cssci_ssci_standard": "≥50%",
+ "last_5_years_count": 0,
+ "last_5_years_ratio": "0%",
+ "last_5_years_standard": "≥30%",
+ "foreign_literature_count": 4,
+ "foreign_literature_standard": "≥3",
+ "academic_paper_ratio": "100%",
+ "academic_paper_standard": "≥80%",
+ "web_press_ratio": "0%",
+ "web_press_standard": "≤10%"
+ },
+ "gb_t_7714_format_check": [
+ {
+ "ref_id": "[1]",
+ "format": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
+ "compliant": true
+ },
+ {
+ "ref_id": "[2]",
+ "format": "作者. 题名[J]. 期刊名, 年(期): 起止页码.",
+ "compliant": true,
+ "note": "会计研究2019年无卷号可接受"
+ },
+ {
+ "ref_id": "[3]",
+ "format": "同[2]",
+ "compliant": true
+ },
+ {
+ "ref_id": "[4]",
+ "format": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
+ "compliant": true
+ },
+ {
+ "ref_id": "[5]",
+ "format": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
+ "compliant": true
+ }
+ ],
+ "apa_7th_format_check": [
+ {
+ "ref_id": "[9]",
+ "author_format": true,
+ "ampersand_usage": true,
+ "italics": "未验证（需检查docx格式）",
+ "doi_provided": false,
+ "case_rule": "句首大写，合规"
+ },
+ {
+ "ref_id": "[11]",
+ "author_format": true,
+ "ampersand_usage": true,
+ "italics": "未验证",
+ "doi_provided": false,
+ "case_rule": "句首大写，合规"
+ },
+ {
+ "ref_id": "[12]",
+ "author_format": true,
+ "ampersand_usage": true,
+ "italics": "未验证",
+ "doi_provided": false,
+ "case_rule": "句首大写，合规"
+ }
+ ],
+ "correspondence_check": {
+ "all_in_text_citations_in_ref_list": false,
+ "missing_from_ref_list": ["Yin (2018)"],
+ "all_ref_entries_cited_in_text": false,
+ "uncited_entries": ["[6]潘红波(2021)", "[7]王跃堂等(2015)", "[12]Harford(2014)"],
+ "cn_en_separated": true,
+ "cn_sorting": "按姓氏拼音排序",
+ "en_sorting": "按字母排序"
+ }
+ },
+ "terminology_and_figures_review": {
+ "terminology_consistency": [
+ {
+ "term_group": "并购重组/M&A/兼并收购",
+ "consistent": true,
+ "usage": "正文统一使用'并购重组'，英文Abstract使用'Mergers and Acquisitions'"
+ },
+ {
+ "term_group": "吸收合并/新设合并/控股合并",
+ "consistent": true,
+ "usage": "2.1节有清晰定义，案例中正确使用"
+ },
+ {
+ "term_group": "同一控制下企业合并/权益结合法",
+ "consistent": false,
+ "inconsistency": "4.1.2用'权益结合法（账面价值法）'，4.3.2用'权益结合法/账面价值法'斜杠并列",
+ "recommendation": "统一为'权益结合法（账面价值法）'括号注明格式"
+ },
+ {
+ "term_group": "商誉/Goodwill/合并价差",
+ "consistent": true,
+ "usage": "正文统一'商誉'，英文'Goodwill'"
+ },
+ {
+ "term_group": "累计超额收益率/CAR/累积异常收益",
+ "consistent": false,
+ "inconsistency": "5.4节标题'CAR事件研究'直接用英文缩写，首次出现未给中文全称",
+ "recommendation": "标题改为'累计超额收益率（CAR）事件研究'"
+ },
+ {
+ "term_group": "购买法/购买会计法/Purchase Method",
+ "consistent": true,
+ "usage": "正文统一使用'购买法'"
+ }
+ ],
+ "figure_table_norms": {
+ "table_numbering_sequential": false,
+ "numbering_error_detail": "5.1节表4（指标体系）出现在5.2节表3（财务指标对比）之前，违反按出现顺序编号规范",
+ "table_title_position": "表上方居中，合规",
+ "figure_title_position": "图下方居中，合规",
+ "data_source_annotation": "每个表/图下方均有'资料来源'或'数据来源'标注",
+ "notes_usage": "表5使用'注：'说明显著性水平",
+ "three_line_table": "未验证（需检查docx格式）",
+ "in_text_reference": "正文中均有'如表1所示''从表3和图1可观察到'等引导"
+ },
+ "numeric_symbol_norms": {
+ "currency_unit_consistent": "全文统一使用'亿元'",
+ "percentage_consistent": "全文统一使用'%'",
+ "arabic_chinese_number": "规范",
+ "punctuation_issue": "英文引用中使用中文分号'；'"
+ }
+ },
+ "major_issues": [
+ {
+ "priority": "重大",
+ "issue": "独立文献综述章节缺失",
+ "location": "全文",
+ "dimension": "论文结构完整性",
+ "required_action": "在1.2节后增设'1.3文献综述'小节，系统梳理国内外并购重组绩效研究、商誉会计研究、事件研究法应用三方面文献"
+ },
+ {
+ "priority": "重大",
+ "issue": "参考文献总数不足（12篇 < 15篇底线）",
+ "location": "参考文献",
+ "dimension": "参考文献体系",
+ "required_action": "补充至少3篇文献至≥15篇，建议方向：商誉减值近年研究、跨境并购绩效研究、并购重组注册制改革影响研究"
+ },
+ {
+ "priority": "重大",
+ "issue": "近5年文献为零（2022-2026年无任何文献）",
+ "location": "参考文献",
+ "dimension": "参考文献体系",
+ "required_action": "补充2-3篇2022-2026年发表的文献，满足≥30%比例"
+ },
+ {
+ "priority": "重大",
+ "issue": "3篇凑数文献+1处漏引",
+ "location": "正文+参考文献",
+ "dimension": "学术写作规范+参考文献体系",
+ "detail": "[6]潘红波(2021)、[7]王跃堂等(2015)、[12]Harford(2014)正文未引用；Yin(2018)正文引用但参考文献列表无此条目",
+ "required_action": "补充正文引用或替换凑数文献；在英文文献部分增加Yin(2018)"
+ },
+ {
+ "priority": "重大",
+ "issue": "表编号顺序错误（表4出现在表3之前）",
+ "location": "5.1-5.2节",
+ "dimension": "术语与图表规范",
+ "required_action": "将5.1节指标体系表编号改为表3，5.2节财务指标对比表编号改为表4，5.4节CAR分析表编号改为表5，正文引用相应调整"
+ }
+ ],
+ "important_issues": [
+ {
+ "priority": "重要",
+ "issue": "案例选择标准未在正文中明确说明",
+ "location": "第四章开头",
+ "dimension": "论证逻辑严谨性"
+ },
+ {
+ "priority": "重要",
+ "issue": "美国Chapter 11制度内容存在'背景陈列'嫌疑",
+ "location": "3.2节",
+ "dimension": "论证逻辑严谨性"
+ },
+ {
+ "priority": "重要",
+ "issue": "研究局限中未提及数据为模拟数据",
+ "location": "6.3节",
+ "dimension": "论证逻辑严谨性"
+ },
+ {
+ "priority": "重要",
+ "issue": "引文格式不统一",
+ "location": "1.2节、5.4节",
+ "dimension": "学术写作规范"
+ },
+ {
+ "priority": "重要",
+ "issue": "3/5处章节过渡不足",
+ "location": "第1→2、2→3、5→6章之间",
+ "dimension": "学术写作规范"
+ },
+ {
+ "priority": "重要",
+ "issue": "英文文献均未提供DOI",
+ "location": "参考文献[9]-[12]",
+ "dimension": "参考文献体系"
+ },
+ {
+ "priority": "重要",
+ "issue": "商誉专题分析被弱化（Phase 1设计的独立小节缺失）",
+ "location": "第五章",
+ "dimension": "论证逻辑严谨性"
+ }
+ ],
+ "minor_issues": [
+ {
+ "priority": "一般",
+ "issue": "英文标题缺失",
+ "location": "封面区域",
+ "dimension": "论文结构完整性"
+ },
+ {
+ "priority": "一般",
+ "issue": "封面信息不完整（缺学院、专业、学号、姓名、指导教师）",
+ "location": "封面",
+ "dimension": "论文结构完整性"
+ },
+ {
+ "priority": "一般",
+ "issue": "摘要'研究贡献'要素偏弱",
+ "location": "摘要",
+ "dimension": "学术写作规范"
+ },
+ {
+ "priority": "一般",
+ "issue": "杜邦分解中归因缺乏直接数据支撑",
+ "location": "5.3节",
+ "dimension": "论证逻辑严谨性"
+ },
+ {
+ "priority": "一般",
+ "issue": "CAR结论'市场认可重组价值'因果推断跳跃",
+ "location": "5.4节",
+ "dimension": "论证逻辑严谨性"
+ },
+ {
+ "priority": "一般",
+ "issue": "'权益结合法/账面价值法'斜杠并列术语不统一",
+ "location": "4.3.2节",
+ "dimension": "术语统一与图表规范"
+ },
+ {
+ "priority": "一般",
+ "issue": "5.4节标题CAR首次出现未给中文全称",
+ "location": "5.4标题",
+ "dimension": "术语统一与图表规范"
+ },
+ {
+ "priority": "一般",
+ "issue": "仅选成功案例的幸存者偏差未在局限性中讨论",
+ "location": "6.3节",
+ "dimension": "论证逻辑严谨性"
+ },
+ {
+ "priority": "一般",
+ "issue": "引用密度偏低（10次 < 15-30次建议范围）",
+ "location": "全文",
+ "dimension": "学术写作规范"
+ }
+ ],
+ "revision_suggestions": [
+ {
+ "id": 1,
+ "section": "第1章",
+ "before": "（无独立文献综述小节）",
+ "after": "在1.2节后增设'1.3文献综述'（原1.3顺延为1.4），系统梳理国内外并购重组绩效研究、商誉会计研究、事件研究法应用三方面文献，末尾附'研究述评'段",
+ "level": "重大"
+ },
+ {
+ "id": 2,
+ "section": "1.2节",
+ "before": "（Andrade, Mitchell, & Stafford, 2001；Betton, Eckbo, & Thorburn, 2014）",
+ "after": "（Andrade, Mitchell, & Stafford, 2001; Betton, Eckbo, & Thorburn, 2014）",
+ "level": "一般"
+ },
+ {
+ "id": 3,
+ "section": "第2章/6.1节",
+ "before": "2.2节列举'市场势力理论'和'交易费用理论'后无下文回扣",
+ "after": "在6.1节结论中补充回扣：'市场势力理论揭示了南车-北车合并后全球市场份额超50%的定价能力来源，交易费用理论则解释了宝钢-武钢合并将铁矿石采购内部化的动机'",
+ "level": "重要"
+ },
+ {
+ "id": 4,
+ "section": "第3章",
+ "before": "3.2节美国Chapter 11内容详细但后文几乎未引用",
+ "after": "将3.2节精简为比较表（已有表2）+一段小结；在6.2启示中增加'中美制度差异对重组路径选择的影响'回扣3.2节",
+ "level": "重要"
+ },
+ {
+ "id": 5,
+ "section": "第2→3章过渡",
+ "before": "2.3节以表格结束，直接跳到3.1",
+ "after": "在3.1节开头添加过渡段",
+ "level": "重要"
+ },
+ {
+ "id": 6,
+ "section": "第四章开头",
+ "before": "无案例选择标准说明",
+ "after": "在4.1节前增设案例选择标准段：代表性、会计典型性、政策标杆性三项标准",
+ "level": "重要"
+ },
+ {
+ "id": 7,
+ "section": "4.3.2节",
+ "before": "采用权益结合法/账面价值法",
+ "after": "采用权益结合法（账面价值法）",
+ "level": "一般"
+ },
+ {
+ "id": 8,
+ "section": "5.1-5.2节",
+ "before": "表4（指标体系）出现在表3（财务指标对比）之前",
+ "after": "将指标体系表编号改为表3，财务指标对比表编号改为表4，CAR分析表编号改为表5",
+ "level": "重大"
+ },
+ {
+ "id": 9,
+ "section": "5.3节",
+ "before": "净利率提升约0.85个百分点（来自规模化采购与海外订单溢价）",
+ "after": "净利率提升约0.85个百分点，可能归因于规模效应带来的采购成本优化及海外订单结构改善，但需更多细分数据验证",
+ "level": "一般"
+ },
+ {
+ "id": 10,
+ "section": "5.4节标题",
+ "before": "市场反应分析：CAR事件研究",
+ "after": "市场反应分析：累计超额收益率（CAR）事件研究",
+ "level": "一般"
+ },
+ {
+ "id": 11,
+ "section": "5.4节",
+ "before": "表明资本市场总体认可重组价值",
+ "after": "表明资本市场在公告窗口对重组持正面预期，但CAR亦可能包含政策预期、信息传递等多重因素",
+ "level": "一般"
+ },
+ {
+ "id": 12,
+ "section": "5.4节",
+ "before": "Brown & Warner(1985)",
+ "after": "Brown & Warner (1985)",
+ "level": "一般"
+ },
+ {
+ "id": 13,
+ "section": "6.3节",
+ "before": "未提及数据为模拟数据",
+ "after": "增加：'第四，本文财务数据基于公开信息合理模拟而非直接获取自Wind/CSMAR等数据库，模拟数据可能存在与真实数据的偏差'",
+ "level": "重要"
+ },
+ {
+ "id": 14,
+ "section": "6.3节",
+ "before": "未讨论幸存者偏差",
+ "after": "增加：'第五，本文仅选取成功案例，未纳入失败或中止的并购重组交易作为对照，可能存在幸存者偏差'",
+ "level": "一般"
+ },
+ {
+ "id": 15,
+ "section": "第5→6章过渡",
+ "before": "5.5节末无过渡段",
+ "after": "在6.1节开头添加过渡段",
+ "level": "重要"
+ },
+ {
+ "id": 16,
+ "section": "参考文献",
+ "before": "参考文献仅12篇",
+ "after": "补充至少3篇文献至≥15篇，含2-3篇2022-2026年文献",
+ "level": "重大"
+ },
+ {
+ "id": 17,
+ "section": "参考文献",
+ "before": "近5年文献为零",
+ "after": "补充2-3篇2022-2026年发表的文献，满足≥30%比例",
+ "level": "重大"
+ },
+ {
+ "id": 18,
+ "section": "参考文献",
+ "before": "[6][7][12]正文未引用",
+ "after": "在正文中补充引用或从参考文献列表中删除并补充其他已引用文献至≥15篇",
+ "level": "重大"
+ },
+ {
+ "id": 19,
+ "section": "参考文献",
+ "before": "Yin（2018）正文引用但参考文献列表无此条目",
+ "after": "增加：Yin, R. K. (2018). Case study research and applications: Design and methods (6th ed.). SAGE Publications.",
+ "level": "重大"
+ },
+ {
+ "id": 20,
+ "section": "参考文献",
+ "before": "英文文献[9]-[12]均未提供DOI",
+ "after": "补充DOI",
+ "level": "重要"
+ },
+ {
+ "id": 21,
+ "section": "封面",
+ "before": "仅有题目、副标题、学科、报告类型、完成时间",
+ "after": "补充学院、专业、学号、姓名、指导教师；增加英文标题页",
+ "level": "一般"
+ }
+ ],
+ "must_fix_items": [
+ "增设独立文献综述小节（1.3节或第二章独立一节）",
+ "参考文献补充至≥15篇",
+ "补充近5年文献至少3-4篇（满足≥30%比例）",
+ "处理3篇凑数文献（补充正文引用或替换为已引用文献）",
+ "补充Yin（2018）至参考文献列表",
+ "修正表编号顺序（表3/表4对调）",
+ "在6.3研究局限中明确说明数据为模拟数据"
+ ],
+ "recommended_fix_items": [
+ "添加案例选择标准说明段",
+ "精简3.2节美国制度内容，增加6.2节回扣",
+ "补充3处章节过渡段",
+ "统一引文格式（英文分号、空格）",
+ "补充英文文献DOI",
+ "在6.3节增加幸存者偏差讨论"
+ ],
+ "strengths": [
+ "全文语言风格统一、学术规范，无口语化、第一人称滥用或修辞过度问题",
+ "论证链完整，概念界定→理论基础→制度环境→案例呈现→财务分析→经验启示逻辑通顺",
+ "案例内容充实，三案例覆盖同一控制吸收合并×2和非同一控制跨境并购×1",
+ "关键词中英文7对一一对应，无宽泛词",
+ "图表数量超额完成（9张 vs 计划2张）",
+ "杜邦分解方法论严谨，区分了'真实经营改善'与'杠杆驱动幻觉'"
+ ],
+ "companion_review_note": "Phase 5-A（GPT-5.5）从法律合规+会计准则+案例事实+数据合理性维度独立复审，与本审查互不沟通。本审查发现的'研究局限未提及模拟数据'问题与5-A发现的'模拟数据以真实数据库来源呈现'问题指向同一根源，但评价角度不同：5-A视为学术不端嫌疑（事实层），5-B视为研究局限性缺失（写作规范层）。两份审查的交叉验证强化了该问题的严重性。",
+ "generated_files": [
+ "phase5b_glm5.1_review.md",
+ "phase5b_glm5.1_review.json"
+ ]
 }

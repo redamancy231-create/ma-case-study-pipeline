@@ -1,116 +1,116 @@
 {
-  "phase": "8-A",
-  "model": "Kimi-k2.6",
-  "role": "模拟答辩评审 — 答辩委员会主席",
-  "task_id": "phase8_defense_chair",
-  "model_revision": "2026-05-31 由 Claude-opus-4.7 切换为 Kimi-k2.6。原 Claude 版文件已替换。",
-  "role_rotation": {
-    "previous_roles_in_pipeline": [
-      {
-        "phase": 1,
-        "role": "方案设计师",
-        "description": "设计了论文的大纲框架、六步分析逻辑（概念→制度→方法→案例→财务→结论）、推荐 4 个候选案例（含美的-小天鹅后被 Phase 2 纠正）、初始文献清单 10 篇、章节结构与字数预估。"
-      },
-      {
-        "phase": 7,
-        "role": "方案执行度与设计意图达成度终评",
-        "description": "以设计者身份回溯终稿 vs 原始蓝图的匹配度，判执行度 82%，认领 Phase 1 自身设计失误（美的-小天鹅误判、数据标注规则缺位、文献时效约束缺位），把 R1/R2 的病根上移至设计阶段。"
-      }
-    ],
-    "rotation_rationale": "答辩主席最核心的能力不是问最难的细节问题，而是问'只有设计者才会想到'的问题。Kimi 在 Phase 1 画了蓝图，在 Phase 7 检视了成品——它比任何其他模型都更清楚这篇论文的设计意图与执行现实之间的 gap。这正是真实答辩中主席的优势：他不是第一次读这篇论文的陌生人，他是看着这篇论文从无到有的见证者。利用这个视角——而非依赖通用评审经验——来设计最锋利的质询。",
-    "companion_reviewers": [
-      {
-        "phase": "8-B",
-        "model": "GLM-5.1",
-        "role": "会计学领域专家评审",
-        "scope": "会计准则适用、合并类型判定、商誉确认与减值、财务数据勾稽与解读"
-      },
-      {
-        "phase": "8-C",
-        "model": "Claude-opus-4.7",
-        "role": "实证方法论评审",
-        "scope": "CAR 事件研究设计、财务指标体系、杜邦分解因果推断、统计检验前提"
-      }
-    ],
-    "multi_model_design_rationale": "四模型各一个角色——Kimi（设计者视角的主席）+ GLM（会计专家）+ Claude（方法论专家）+ GPT（学生）。相比于原方案 Claude 同时承担主席和方法论专家两个角色，四模型方案消除了同一模型在宏观质问和微观方法追问之间无法制造真正认知张力的隐忧。四个不同的训练数据、推理偏好和盲点 = 更接近真实答辩的评审多样性。"
-  },
-  "input": {
-    "primary_target": "中国上市公司并购重组成功案例研究_v2.md",
-    "design_intent_files": [
-      "phase1_design.md",
-      "phase7_kimi_k2.6_review.md"
-    ],
-    "supplementary_files": [
-      "phase6_integration_review.md",
-      "项目复盘归档报告.md"
-    ],
-    "reference_only": [
-      "中国上市公司并购重组成功案例研究_v2.json"
-    ]
-  },
-  "deliverables": {
-    "primary": [
-      {
-        "file": "phase8_defense_chair_questions.md",
-        "format": "markdown",
-        "description": "答辩主席质询问题清单：5-6 个问题覆盖四个维度，至少 2 题直接引用 Phase 1 设计意图或 Phase 7 回溯知识，含'与论文设计的关系'字段说明问题来源"
-      },
-      {
-        "file": "phase8_defense_chair_questions.json",
-        "format": "json",
-        "description": "质询问题清单结构化版，便于 Phase 8-D 学生角色解析和逐题作答"
-      }
-    ]
-  },
-  "downstream": {
-    "consumers": [
-      {
-        "phase": "8-D",
-        "model": "GPT-5.5",
-        "role": "答辩学生",
-        "usage": "答辩主席的问题将与其他两位评审的问题合并，统一提交给学生作答。主席问题中'设计意图 vs 执行现实'的追问角度是其他评审不具备的，学生需要对论文的结构性特征有超出文本的反思。"
-      }
-    ]
-  },
-  "academic_tier": "211院校会计学本科毕业论文答辩",
-  "scoring_rubric": {
-    "研究设计的完整性与案例选择逻辑": {
-      "max": 35,
-      "key_questions": [
-        "2+1案例结构vs原始4案例设计的取舍逻辑",
-        "'成功'的操作化定义——设计阶段未定义的缺口如何填补",
-        "政策同源但财务结果相反的双案例——制度因素vs行业周期的因果权重",
-        "类型缺失（境内非同一控制/借壳上市）是取舍还是盲区"
-      ]
-    },
-    "学术贡献、理论框架与文献对话": {
-      "max": 30,
-      "key_questions": [
-        "文献引用是对话还是装饰——具体挑战/修正了哪个已有结论",
-        "三个理论（交易费用/代理/市场势力）与三个案例的对应关系",
-        "82%执行度中未实现的18%——合理取舍vs遗憾放弃",
-        "监管启示是确认常识还是真正从案例中发现的洞察"
-      ]
-    },
-    "学术诚信、数据演进与透明性": {
-      "max": 25,
-      "key_questions": [
-        "数据溯源链条的可复现性——从akshare到表4单元格能否现场核验",
-        "2013-2014数据标[S]是因为不可得还是没去找——数据可得性vs研究投入的边界",
-        "全模拟→如实标模拟→混合[R]/[S]的演进——在增强还是削弱信任",
-        "Phase 1若定义了溯源规则，论文会更好还是更受限"
-      ]
-    },
-    "结构性自我认知": {
-      "max": 10,
-      "key_questions": [
-        "只能改一个设计决策——选什么且为什么这个",
-        "删掉中美制度对比换更深的跨案例分析——在完成任务还是在做研究"
-      ]
-    }
-  },
-  "design_note": "这是整个 Phase 8 最关键的 prompt。不同于书面审稿——答辩主席不是去找'需要修改的地方'，而是用对论文结构最深的理解去测试学生对自己作品的理解。Kimi 的特殊优势不在于它比 Claude '更聪明'，而在于它为这篇论文做的两项前置工作（Phase 1 设计 + Phase 7 回溯）恰好是真实答辩主席最宝贵的资产：知道作品的骨架和伤疤。设计者当评委不是利益冲突——是深度。前提是设计者愿意承认自己的失误，而 Kimi 在 Phase 7 已经做到了。",
-  "created_date": "2026-05-31",
-  "supersedes": "phase8_defense_chair_claude_prompt.md + phase8_defense_chair_claude_config.json（2026-05-30 版，Claude-opus-4.7 担任主席，已于 2026-05-31 作废）",
-  "paired_files": ["phase8_defense_chair_kimi_prompt.md", "phase8_defense_chair_kimi_config.json"]
+ "phase": "8-A",
+ "model": "Kimi-k2.6",
+ "role": "模拟答辩评审 — 答辩委员会主席",
+ "task_id": "phase8_defense_chair",
+ "model_revision": "2026-05-31 由 Claude-opus-4.7 切换为 Kimi-k2.6。原 Claude 版文件已替换。",
+ "role_rotation": {
+ "previous_roles_in_pipeline": [
+ {
+ "phase": 1,
+ "role": "方案设计师",
+ "description": "设计了论文的大纲框架、六步分析逻辑（概念→制度→方法→案例→财务→结论）、推荐 4 个候选案例（含美的-小天鹅后被 Phase 2 纠正）、初始文献清单 10 篇、章节结构与字数预估。"
+ },
+ {
+ "phase": 7,
+ "role": "方案执行度与设计意图达成度终评",
+ "description": "以设计者身份回溯终稿 vs 原始蓝图的匹配度，判执行度 82%，认领 Phase 1 自身设计失误（美的-小天鹅误判、数据标注规则缺位、文献时效约束缺位），把 R1/R2 的病根上移至设计阶段。"
+ }
+ ],
+ "rotation_rationale": "答辩主席最核心的能力不是问最难的细节问题，而是问'只有设计者才会想到'的问题。Kimi 在 Phase 1 画了蓝图，在 Phase 7 检视了成品——它比任何其他模型都更清楚这篇论文的设计意图与执行现实之间的 gap。这正是真实答辩中主席的优势：他不是第一次读这篇论文的陌生人，他是看着这篇论文从无到有的见证者。利用这个视角——而非依赖通用评审经验——来设计最锋利的质询。",
+ "companion_reviewers": [
+ {
+ "phase": "8-B",
+ "model": "GLM-5.1",
+ "role": "会计学领域专家评审",
+ "scope": "会计准则适用、合并类型判定、商誉确认与减值、财务数据勾稽与解读"
+ },
+ {
+ "phase": "8-C",
+ "model": "Claude-opus-4.7",
+ "role": "实证方法论评审",
+ "scope": "CAR 事件研究设计、财务指标体系、杜邦分解因果推断、统计检验前提"
+ }
+ ],
+ "multi_model_design_rationale": "四模型各一个角色——Kimi（设计者视角的主席）+ GLM（会计专家）+ Claude（方法论专家）+ GPT（学生）。相比于原方案 Claude 同时承担主席和方法论专家两个角色，四模型方案消除了同一模型在宏观质问和微观方法追问之间无法制造真正认知张力的隐忧。四个不同的训练数据、推理偏好和盲点 = 更接近真实答辩的评审多样性。"
+ },
+ "input": {
+ "primary_target": "中国上市公司并购重组成功案例研究_v2.md",
+ "design_intent_files": [
+ "phase1_design.md",
+ "phase7_kimi_k2.6_review.md"
+ ],
+ "supplementary_files": [
+ "phase6_integration_review.md",
+ "项目复盘归档报告.md"
+ ],
+ "reference_only": [
+ "中国上市公司并购重组成功案例研究_v2.json"
+ ]
+ },
+ "deliverables": {
+ "primary": [
+ {
+ "file": "phase8_defense_chair_questions.md",
+ "format": "markdown",
+ "description": "答辩主席质询问题清单：5-6 个问题覆盖四个维度，至少 2 题直接引用 Phase 1 设计意图或 Phase 7 回溯知识，含'与论文设计的关系'字段说明问题来源"
+ },
+ {
+ "file": "phase8_defense_chair_questions.json",
+ "format": "json",
+ "description": "质询问题清单结构化版，便于 Phase 8-D 学生角色解析和逐题作答"
+ }
+ ]
+ },
+ "downstream": {
+ "consumers": [
+ {
+ "phase": "8-D",
+ "model": "GPT-5.5",
+ "role": "答辩学生",
+ "usage": "答辩主席的问题将与其他两位评审的问题合并，统一提交给学生作答。主席问题中'设计意图 vs 执行现实'的追问角度是其他评审不具备的，学生需要对论文的结构性特征有超出文本的反思。"
+ }
+ ]
+ },
+ "academic_tier": "院校会计学本科毕业论文答辩",
+ "scoring_rubric": {
+ "研究设计的完整性与案例选择逻辑": {
+ "max": 35,
+ "key_questions": [
+ "2+1案例结构vs原始4案例设计的取舍逻辑",
+ "'成功'的操作化定义——设计阶段未定义的缺口如何填补",
+ "政策同源但财务结果相反的双案例——制度因素vs行业周期的因果权重",
+ "类型缺失（境内非同一控制/借壳上市）是取舍还是盲区"
+ ]
+ },
+ "学术贡献、理论框架与文献对话": {
+ "max": 30,
+ "key_questions": [
+ "文献引用是对话还是装饰——具体挑战/修正了哪个已有结论",
+ "三个理论（交易费用/代理/市场势力）与三个案例的对应关系",
+ "82%执行度中未实现的18%——合理取舍vs遗憾放弃",
+ "监管启示是确认常识还是真正从案例中发现的洞察"
+ ]
+ },
+ "学术诚信、数据演进与透明性": {
+ "max": 25,
+ "key_questions": [
+ "数据溯源链条的可复现性——从akshare到表4单元格能否现场核验",
+ "2013-2014数据标[S]是因为不可得还是没去找——数据可得性vs研究投入的边界",
+ "全模拟→如实标模拟→混合[R]/[S]的演进——在增强还是削弱信任",
+ "Phase 1若定义了溯源规则，论文会更好还是更受限"
+ ]
+ },
+ "结构性自我认知": {
+ "max": 10,
+ "key_questions": [
+ "只能改一个设计决策——选什么且为什么这个",
+ "删掉中美制度对比换更深的跨案例分析——在完成任务还是在做研究"
+ ]
+ }
+ },
+ "design_note": "这是整个 Phase 8 最关键的 prompt。不同于书面审稿——答辩主席不是去找'需要修改的地方'，而是用对论文结构最深的理解去测试学生对自己作品的理解。Kimi 的特殊优势不在于它比 Claude '更聪明'，而在于它为这篇论文做的两项前置工作（Phase 1 设计 + Phase 7 回溯）恰好是真实答辩主席最宝贵的资产：知道作品的骨架和伤疤。设计者当评委不是利益冲突——是深度。前提是设计者愿意承认自己的失误，而 Kimi 在 Phase 7 已经做到了。",
+ "created_date": "2026-05-31",
+ "supersedes": "phase8_defense_chair_claude_prompt.md + phase8_defense_chair_claude_config.json（2026-05-30 版，Claude-opus-4.7 担任主席，已于 2026-05-31 作废）",
+ "paired_files": ["phase8_defense_chair_kimi_prompt.md", "phase8_defense_chair_kimi_config.json"]
 }

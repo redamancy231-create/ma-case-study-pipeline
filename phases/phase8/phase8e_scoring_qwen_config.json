@@ -1,121 +1,121 @@
 {
-  "phase": "8-E",
-  "model": "Qwen3.7-Max",
-  "role": "模拟答辩 — 评分整合官（校外答辩评分专家）",
-  "task_id": "phase8e_defense_scoring",
-  "pipeline_involvement": {
-    "previous_roles": "无。Qwen3.7-Max 是五个模型中唯一零流水线卷入的——未参与本论文的写作（Phase 3）、审稿（Phase 2/5-A/5-B）、修订（Phase 6）、设计（Phase 1/7）、或答辩出题（Phase 8-A/8-B/8-C）。",
-    "structural_advantage": "零卷入 = 零出题人偏见。面对 15-21 道题的学生答案，Qwen 没有出过其中任何一道——评分时不存在'这个答案不符合我出题时的预期'的潜意识偏差。这是最接近真实答辩中校外盲审专家介入成绩评定的位置。",
-    "structural_risk": "未在本流水线中验证过评分校准能力。Claude（Phase 6）、GLM（Phase 2/5-B）、Kimi（Phase 1/7）、GPT（Phase 3）都在这条流水线中有 track record——Qwen 没有。通过 prompt 内嵌的'评分自检锚定'机制（第四部分）来缓解这一不确定性。"
-  },
-  "input": {
-    "primary_target": "phase8_student_defense_record.md",
-    "reviewer_question_files": [
-      {
-        "file": "phase8_defense_chair_questions.md",
-        "reviewer": "Kimi-k2.6",
-        "role": "答辩委员会主席",
-        "question_count_expected": "5-6",
-        "scoring_dimensions": ["研究设计与案例选择(35)", "学术贡献与文献对话(30)", "学术诚信与数据演进(25)", "结构性自我认知(10)"]
-      },
-      {
-        "file": "phase8_accounting_expert_questions.md",
-        "reviewer": "GLM-5.1",
-        "role": "会计学领域专家",
-        "question_count_expected": "5-7",
-        "scoring_dimensions": ["合并类型判定与会计方法(35)", "商誉确认与减值(30)", "财务指标分析质量(20)", "准则知识准确性(15)"]
-      },
-      {
-        "file": "phase8_methodology_expert_questions.md",
-        "reviewer": "Claude-opus-4.7",
-        "role": "实证方法论专家",
-        "question_count_expected": "6-8",
-        "scoring_dimensions": ["CAR事件研究设计(35)", "财务指标体系设计(25)", "杜邦分解与因果推断(25)", "研究方法自我认知(15)"]
-      }
-    ],
-    "paper_reference": "中国上市公司并购重组成功案例研究_v2.md",
-    "calibration_baseline": "浏览 v2 论文形成独立质量印象，作为校验三位评审评分合理性的锚"
-  },
-  "deliverables": {
-    "primary": [
-      {
-        "file": "phase8e_defense_score_report.md",
-        "format": "markdown",
-        "description": "模拟答辩成绩单：含论文独立印象 + 逐评审维度评分（含与评审原分的偏离分析）+ 跨维度综合评分（逻辑一致性/学习成长/局限诚实/论证组织）+ 定性评语（200-300字总体评价 + 关键发现 + 真实答辩预测）+ 评分自检锚定 + 最终成绩单"
-      },
-      {
-        "file": "phase8e_defense_score_report.json",
-        "format": "json",
-        "description": "成绩单结构化版：便于积分统计、跨阶段对比、以及后续可选的人工复核"
-      }
-    ]
-  },
-  "scoring_architecture": {
-    "tier_1_per_reviewer_dimensions": {
-      "weight": 0.60,
-      "description": "沿袭三位评审各自的评分框架，对学生的回答逐维度评分。每位评审的维度权重不一致——主席的 4 维共 100 分、会计专家的 4 维共 100 分、方法论专家的 4 维共 100 分——但三位评审的满分均为 100。取三者均值后乘以 0.60。",
-      "scoring_rule": "对每个维度，先记录评审原分，再给出你的独立评分。任何维度偏离评审原分超过 5 分须强制写理由。"
-    },
-    "tier_2_cross_cutting_dimensions": {
-      "weight": 0.40,
-      "description": "Qwen 独有的评判维度——测试的不是'某道题答得怎样'而是'整场答辩作为一个整体表现出了什么模式'。",
-      "dimensions": [
-        {
-          "name": "跨评审逻辑一致性",
-          "max": 15,
-          "description": "学生在三个风格、关注点、追问角度完全不同的评审面前，是否保持了逻辑一致性？有没有为迎合不同评审而调整说法的模式？"
-        },
-        {
-          "name": "答辩中的学习与成长",
-          "max": 10,
-          "description": "回答质量在答辩过程中是否有可观察的提升？从主席提问时可能比较被动 → 到会计专家追问时开始主动展开 → 到方法论专家追问时已经能预判问题的方向？"
-        },
-        {
-          "name": "局限认知的诚实度",
-          "max": 10,
-          "description": "承认局限的方式是模板化的'后续会完善'还是真正展示了系统性改进思路？所有涉及数据/方法/文献短板的问题是否用了同一个回避模板？"
-        },
-        {
-          "name": "口头表达与论证组织",
-          "max": 5,
-          "description": "论证结构——先结论后依据、具体引用（表号/章节/数据点）vs 泛泛而谈、被追问时能否收敛而非发散。"
-        }
-      ]
-    },
-    "final_score_formula": "逐评审维度加权得分均值 × 0.60 + 跨维度综合得分 × 0.40"
-  },
-  "scoring_constraints": {
-    "independent_baseline": "在阅读评审原分之前，先根据论文质量和学生回答形成独立判断——再与评审原分对照。如果发现系统性偏离（与三位评审均分差超过 10 分），在自检锚定部分给出合理解释。",
-    "forced_rationale_threshold": 5,
-    "forced_rationale_rule": "任何维度你的评分与评审原分偏离超过 5 分时，必须在'理由'栏给出具体说明——不是'我认为评审偏严'而是'学生在 Q3 的回答中准确指出了 CAS 33 第 48-50 条对分步实现控制的处理，评审未充分认可这一点'。",
-    "score_vs_paper_calibration": "答辩得分与论文得分（84.0）的偏离不应超过 ±15 分。如果超过：要么论文质量被高估/低估了，要么答辩表现远超/远低于论文水平——需要在定性评语中解释。",
-    "no_generic_comments": "禁止使用'总体令人满意''展现了较好的专业素养''思路清晰'等可套用于任何答辩的评语。每条评语必须引用具体的回答内容——问题编号、论点/论据、或行为模式。"
-  },
-  "self_check_anchoring": {
-    "description": "Qwen 是五个模型中唯一未在本流水线中验证过的。此机制要求在成绩单第四部分完成评分自检。",
-    "required_checks": [
-      "系统性偏离检测：你的评分是否比评审原分整体偏严/偏松？数值说明。",
-      "最大单维偏离：单个维度偏离最大的那个维度是哪一个？偏离多少分？为什么？",
-      "独立性测试：如果你在完全不知道评审原分的情况下重评——你的分数会变吗？哪些维度的判断最依赖评审原分作为参照？",
-      "如果你和评审组的结论差距很大——要么你错了、要么评审错了、要么你们用了不同标准。是哪一种？"
-    ]
-  },
-  "five_model_architecture": {
-    "models_used_in_phase8": [
-      {"model": "Kimi-k2.6", "phase": "8-A", "role": "答辩主席", "note": "Phase 1 设计者 + Phase 7 回溯者——利用'设计意图 vs 执行现实'的张力设计质询"},
-      {"model": "GLM-5.1", "phase": "8-B", "role": "会计学专家", "note": "Phase 2 证明的中国会计/法律领域最强——追问合并类型判定和商誉减值逻辑"},
-      {"model": "Claude-opus-4.7", "phase": "8-C", "role": "实证方法论专家", "note": "Phase 4 亲手算过 CAR 和财务指标——追问方法细节最深"},
-      {"model": "GPT-5.5", "phase": "8-D", "role": "答辩学生", "note": "Phase 3 撰稿人——有作者级别的熟悉度但不参与审稿/修订"},
-      {"model": "Qwen3.7-Max", "phase": "8-E", "role": "评分整合官", "note": "唯一零卷入——结构性独立的校外评分视角"}
-    ],
-    "design_philosophy": "五个模型、五个角色、零重叠。每条流水线中的模型都放在其已被验证最擅长的环节（Kimi=设计/GLM=会计/GPT=写作/Claude=整合），Qwen 的唯一性是结构性独立而非领域专长——这恰好是评分官最需要的东西。"
-  },
-  "downstream": {
-    "consumers": [],
-    "terminal": true,
-    "note": "Phase 8-E 是整个 Phase 8 模拟答辩的终点。产出成绩单后，Phase 8 闭环；可选后续：人工复核成绩单、将答辩记录作为写作方法论的一部分归档。"
-  },
-  "academic_tier": "211院校会计学本科毕业论文答辩",
-  "created_date": "2026-05-31",
-  "paired_files": ["phase8e_scoring_qwen_prompt.md", "phase8e_scoring_qwen_config.json"]
+ "phase": "8-E",
+ "model": "Qwen3.7-Max",
+ "role": "模拟答辩 — 评分整合官（校外答辩评分专家）",
+ "task_id": "phase8e_defense_scoring",
+ "pipeline_involvement": {
+ "previous_roles": "无。Qwen3.7-Max 是五个模型中唯一零流水线卷入的——未参与本论文的写作（Phase 3）、审稿（Phase 2/5-A/5-B）、修订（Phase 6）、设计（Phase 1/7）、或答辩出题（Phase 8-A/8-B/8-C）。",
+ "structural_advantage": "零卷入 = 零出题人偏见。面对 15-21 道题的学生答案，Qwen 没有出过其中任何一道——评分时不存在'这个答案不符合我出题时的预期'的潜意识偏差。这是最接近真实答辩中校外盲审专家介入成绩评定的位置。",
+ "structural_risk": "未在本流水线中验证过评分校准能力。Claude（Phase 6）、GLM（Phase 2/5-B）、Kimi（Phase 1/7）、GPT（Phase 3）都在这条流水线中有 track record——Qwen 没有。通过 prompt 内嵌的'评分自检锚定'机制（第四部分）来缓解这一不确定性。"
+ },
+ "input": {
+ "primary_target": "phase8_student_defense_record.md",
+ "reviewer_question_files": [
+ {
+ "file": "phase8_defense_chair_questions.md",
+ "reviewer": "Kimi-k2.6",
+ "role": "答辩委员会主席",
+ "question_count_expected": "5-6",
+ "scoring_dimensions": ["研究设计与案例选择(35)", "学术贡献与文献对话(30)", "学术诚信与数据演进(25)", "结构性自我认知(10)"]
+ },
+ {
+ "file": "phase8_accounting_expert_questions.md",
+ "reviewer": "GLM-5.1",
+ "role": "会计学领域专家",
+ "question_count_expected": "5-7",
+ "scoring_dimensions": ["合并类型判定与会计方法(35)", "商誉确认与减值(30)", "财务指标分析质量(20)", "准则知识准确性(15)"]
+ },
+ {
+ "file": "phase8_methodology_expert_questions.md",
+ "reviewer": "Claude-opus-4.7",
+ "role": "实证方法论专家",
+ "question_count_expected": "6-8",
+ "scoring_dimensions": ["CAR事件研究设计(35)", "财务指标体系设计(25)", "杜邦分解与因果推断(25)", "研究方法自我认知(15)"]
+ }
+ ],
+ "paper_reference": "中国上市公司并购重组成功案例研究_v2.md",
+ "calibration_baseline": "浏览 v2 论文形成独立质量印象，作为校验三位评审评分合理性的锚"
+ },
+ "deliverables": {
+ "primary": [
+ {
+ "file": "phase8e_defense_score_report.md",
+ "format": "markdown",
+ "description": "模拟答辩成绩单：含论文独立印象 + 逐评审维度评分（含与评审原分的偏离分析）+ 跨维度综合评分（逻辑一致性/学习成长/局限诚实/论证组织）+ 定性评语（200-300字总体评价 + 关键发现 + 真实答辩预测）+ 评分自检锚定 + 最终成绩单"
+ },
+ {
+ "file": "phase8e_defense_score_report.json",
+ "format": "json",
+ "description": "成绩单结构化版：便于积分统计、跨阶段对比、以及后续可选的人工复核"
+ }
+ ]
+ },
+ "scoring_architecture": {
+ "tier_1_per_reviewer_dimensions": {
+ "weight": 0.60,
+ "description": "沿袭三位评审各自的评分框架，对学生的回答逐维度评分。每位评审的维度权重不一致——主席的 4 维共 100 分、会计专家的 4 维共 100 分、方法论专家的 4 维共 100 分——但三位评审的满分均为 100。取三者均值后乘以 0.60。",
+ "scoring_rule": "对每个维度，先记录评审原分，再给出你的独立评分。任何维度偏离评审原分超过 5 分须强制写理由。"
+ },
+ "tier_2_cross_cutting_dimensions": {
+ "weight": 0.40,
+ "description": "Qwen 独有的评判维度——测试的不是'某道题答得怎样'而是'整场答辩作为一个整体表现出了什么模式'。",
+ "dimensions": [
+ {
+ "name": "跨评审逻辑一致性",
+ "max": 15,
+ "description": "学生在三个风格、关注点、追问角度完全不同的评审面前，是否保持了逻辑一致性？有没有为迎合不同评审而调整说法的模式？"
+ },
+ {
+ "name": "答辩中的学习与成长",
+ "max": 10,
+ "description": "回答质量在答辩过程中是否有可观察的提升？从主席提问时可能比较被动 → 到会计专家追问时开始主动展开 → 到方法论专家追问时已经能预判问题的方向？"
+ },
+ {
+ "name": "局限认知的诚实度",
+ "max": 10,
+ "description": "承认局限的方式是模板化的'后续会完善'还是真正展示了系统性改进思路？所有涉及数据/方法/文献短板的问题是否用了同一个回避模板？"
+ },
+ {
+ "name": "口头表达与论证组织",
+ "max": 5,
+ "description": "论证结构——先结论后依据、具体引用（表号/章节/数据点）vs 泛泛而谈、被追问时能否收敛而非发散。"
+ }
+ ]
+ },
+ "final_score_formula": "逐评审维度加权得分均值 × 0.60 + 跨维度综合得分 × 0.40"
+ },
+ "scoring_constraints": {
+ "independent_baseline": "在阅读评审原分之前，先根据论文质量和学生回答形成独立判断——再与评审原分对照。如果发现系统性偏离（与三位评审均分差超过 10 分），在自检锚定部分给出合理解释。",
+ "forced_rationale_threshold": 5,
+ "forced_rationale_rule": "任何维度你的评分与评审原分偏离超过 5 分时，必须在'理由'栏给出具体说明——不是'我认为评审偏严'而是'学生在 Q3 的回答中准确指出了 CAS 33 第 48-50 条对分步实现控制的处理，评审未充分认可这一点'。",
+ "score_vs_paper_calibration": "答辩得分与论文得分（84.0）的偏离不应超过 ±15 分。如果超过：要么论文质量被高估/低估了，要么答辩表现远超/远低于论文水平——需要在定性评语中解释。",
+ "no_generic_comments": "禁止使用'总体令人满意''展现了较好的专业素养''思路清晰'等可套用于任何答辩的评语。每条评语必须引用具体的回答内容——问题编号、论点/论据、或行为模式。"
+ },
+ "self_check_anchoring": {
+ "description": "Qwen 是五个模型中唯一未在本流水线中验证过的。此机制要求在成绩单第四部分完成评分自检。",
+ "required_checks": [
+ "系统性偏离检测：你的评分是否比评审原分整体偏严/偏松？数值说明。",
+ "最大单维偏离：单个维度偏离最大的那个维度是哪一个？偏离多少分？为什么？",
+ "独立性测试：如果你在完全不知道评审原分的情况下重评——你的分数会变吗？哪些维度的判断最依赖评审原分作为参照？",
+ "如果你和评审组的结论差距很大——要么你错了、要么评审错了、要么你们用了不同标准。是哪一种？"
+ ]
+ },
+ "five_model_architecture": {
+ "models_used_in_phase8": [
+ {"model": "Kimi-k2.6", "phase": "8-A", "role": "答辩主席", "note": "Phase 1 设计者 + Phase 7 回溯者——利用'设计意图 vs 执行现实'的张力设计质询"},
+ {"model": "GLM-5.1", "phase": "8-B", "role": "会计学专家", "note": "Phase 2 证明的中国会计/法律领域最强——追问合并类型判定和商誉减值逻辑"},
+ {"model": "Claude-opus-4.7", "phase": "8-C", "role": "实证方法论专家", "note": "Phase 4 亲手算过 CAR 和财务指标——追问方法细节最深"},
+ {"model": "GPT-5.5", "phase": "8-D", "role": "答辩学生", "note": "Phase 3 撰稿人——有作者级别的熟悉度但不参与审稿/修订"},
+ {"model": "Qwen3.7-Max", "phase": "8-E", "role": "评分整合官", "note": "唯一零卷入——结构性独立的校外评分视角"}
+ ],
+ "design_philosophy": "五个模型、五个角色、零重叠。每条流水线中的模型都放在其已被验证最擅长的环节（Kimi=设计/GLM=会计/GPT=写作/Claude=整合），Qwen 的唯一性是结构性独立而非领域专长——这恰好是评分官最需要的东西。"
+ },
+ "downstream": {
+ "consumers": [],
+ "terminal": true,
+ "note": "Phase 8-E 是整个 Phase 8 模拟答辩的终点。产出成绩单后，Phase 8 闭环；可选后续：人工复核成绩单、将答辩记录作为写作方法论的一部分归档。"
+ },
+ "academic_tier": "院校会计学本科毕业论文答辩",
+ "created_date": "2026-05-31",
+ "paired_files": ["phase8e_scoring_qwen_prompt.md", "phase8e_scoring_qwen_config.json"]
 }

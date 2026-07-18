@@ -1,115 +1,115 @@
 {
-  "phase": "8-D-blind",
-  "model": "GPT-5.5",
-  "role": "模拟答辩 — 答辩学生 — 闭卷重跑版",
-  "task_id": "phase8_student_defense_blind",
-  "variant": "blind",
-  "variant_purpose": "闭卷重跑 8-D：学生只见纯题干、不见答案键，产出可信的真实答辩表现，供 8-E 盲评对照开卷 78 分、量化开卷红利。",
-  "single_variable_isolation": {
-    "principle": "本版相对开卷版 phase8_student_gpt5.5_prompt/config 只改一个变量——学生是否拿到含「考察意图/预期回答方向」的答案键。角色、已知局限清单、准备知识、关键数据表、行为指南、学术标尺全部保持不变，确保'闭卷 vs 开卷'分差干净归因于答案键的有无。",
-    "do_not_signal_experiment": "不在学生 prompt 里告诉它'这是测开卷红利的实验'——以免学生因被测而改变发挥（额外用力或紧张）。实验框架只存在于 8-E 评分件与各 config，学生自然作答即可。"
-  },
-  "role_rotation": {
-    "previous_roles_in_pipeline": ["Phase 3 内容撰稿人（正文初稿）"],
-    "rotation_rationale": "GPT-5.5 是本论文初稿撰写人——对论文内容有作者级熟悉度，但不参与审稿/修订，面对批评无防御心理。这正是答辩'学生'的理想状态。",
-    "why_not_claude": "Claude 在 Phase 4/6 设计了数据策略并执行整合裁决，扮学生会为自己做过的决策辩护；GPT-5.5 无此包袱，能诚实说'这是条件所限'。",
-    "upstream_dependency": "需 phase8d_blind_question_sheet.md（已由三份问题单剥答案键生成）就绪后执行。"
-  },
-  "input": {
-    "primary_target": "phase8d_blind_question_sheet.md（21 题纯题干，主席6+会计7+方法论8，无考察意图/预期回答方向）",
-    "paper_reference_files": [
-      "中国上市公司并购重组成功案例研究_v2.md",
-      "phase3_draft_report.md",
-      "phase6_integration_review.md"
-    ],
-    "reference_only": [
-      "中国上市公司并购重组成功案例研究_v2.json",
-      "generate_docx_v2.py"
-    ],
-    "FORBIDDEN_INPUTS": {
-      "files": [
-        "phase8_defense_chair_questions.md",
-        "phase8_accounting_expert_questions.md",
-        "phase8_methodology_expert_questions.md"
-      ],
-      "reason": "这三份原始问题单含「考察意图」与「预期回答方向」即标准答案；学生读到即破坏闭卷性，使本次重跑失去意义。学生输入严禁包含这三份（及其 .json）。"
-    }
-  },
-  "deliverables": {
-    "primary": [
-      {
-        "file": "phase8_student_defense_record_blind.md",
-        "format": "markdown",
-        "description": "闭卷模拟答辩学生答辩记录：开场陈述 + 逐题回答 + 总结陈述。勿覆盖开卷版 phase8_student_defense_record.md。"
-      },
-      {
-        "file": "phase8_student_defense_record_blind.json",
-        "format": "json",
-        "description": "闭卷答辩记录结构化版，含每题回答摘要、自信度自评、引用的论文章节/表格编号"
-      }
-    ]
-  },
-  "downstream": {
-    "consumers": [
-      {
-        "phase": "8-E-blind",
-        "role": "闭卷答辩评分",
-        "description": "由 Qwen3.7-Max（盲答版评分件 phase8e_scoring_qwen_blind_prompt/config）对闭卷答辩记录评分，并对照开卷 78 分计算开卷红利。"
-      }
-    ]
-  },
-  "academic_tier": "211院校会计学本科毕业论文答辩",
-  "defense_behavior_rules": {
-    "dos": [
-      "回答前先重述/确认问题，展示倾听与理解",
-      "先给结论再给依据，结构化表达",
-      "主动承认局限并附改进方向",
-      "分不清时诚实说'这是我下一步要研究的'",
-      "引用论文中的具体表号、章节、数据点"
-    ],
-    "donts": [
-      "不要背诵摘要或论文原文——用自己的话重组",
-      "不要过度辩护——有些批评是对的，直接承认",
-      "不要把责任推给导师或外部因素",
-      "不要在同一个问题上反复绕圈子",
-      "不要虚构'其实我做了但我没写'的内容",
-      "不要去读三份原始问题单的答案键（见 FORBIDDEN_INPUTS）"
-    ]
-  },
-  "answer_quality_benchmark": {
-    "优秀回答的特征": [
-      "展示超越论文本身的思考——引用论文未涵盖的文献或方法",
-      "对局限有系统性的改进方案——不是'以后会修'而是'具体怎么做'",
-      "能在不同问题之间建立联系",
-      "用具体数字和案例细节支撑论据，而非泛泛而谈"
-    ],
-    "可接受回答的特征": [
-      "事实准确——数字、日期、准则条文不搞错",
-      "逻辑清晰——结论→依据→局限，三段式",
-      "边界诚实——知道的和不知道的分开说",
-      "被追问时不慌乱"
-    ],
-    "不合格回答的特征": [
-      "答非所问",
-      "编造论文中不存在的内容",
-      "对学术诚信问题闪烁其词",
-      "前后矛盾——同一个问题在不同评审面前回答不一样"
-    ]
-  },
-  "mock_defense_metadata": {
-    "total_reviewers": 3,
-    "total_questions": "21（主席 6 + 会计专家 7 + 方法论专家 8）",
-    "total_answer_wordcount_expected": "约 6000-10000 字（含开场和总结陈述）",
-    "blind_vs_openbook_note": "与开卷版唯一区别是学生不见答案键。预期闭卷表现 ≤ 开卷（开卷版回答几乎逐条命中预期方向，存在答案键红利）；缺口尤其可能集中在方法论维度（开卷版该维度 +20 上修）。",
-    "simulation_realism_note": "本模拟局限：评审问题预制（非动态追问）、学生可查阅论文（非即时回忆）、无时间压力与临场紧张。这些 prompt 无法模拟，但闭卷已比开卷更接近真实答辩。"
-  },
-  "design_note": "GPT-5.5 扮学生 + 闭卷题单 = 最接近真实本科答辩的配置：作者级熟悉度 + 无答案键 + 无审稿/修订防御心理。",
-  "created_date": "2026-05-31",
-  "paired_files": ["phase8d_student_gpt5.5_blind_prompt.md", "phase8d_student_gpt5.5_blind_config.json"],
-  "related_files": {
-    "openbook_prompt": "phase8_student_gpt5.5_prompt.md",
-    "openbook_config": "phase8_student_gpt5.5_config.json",
-    "openbook_record": "phase8_student_defense_record.md",
-    "blind_question_sheet": "phase8d_blind_question_sheet.md"
-  }
+ "phase": "8-D-blind",
+ "model": "GPT-5.5",
+ "role": "模拟答辩 — 答辩学生 — 闭卷重跑版",
+ "task_id": "phase8_student_defense_blind",
+ "variant": "blind",
+ "variant_purpose": "闭卷重跑 8-D：学生只见纯题干、不见答案键，产出可信的真实答辩表现，供 8-E 盲评对照开卷 78 分、量化开卷红利。",
+ "single_variable_isolation": {
+ "principle": "本版相对开卷版 phase8_student_gpt5.5_prompt/config 只改一个变量——学生是否拿到含「考察意图/预期回答方向」的答案键。角色、已知局限清单、准备知识、关键数据表、行为指南、学术标尺全部保持不变，确保'闭卷 vs 开卷'分差干净归因于答案键的有无。",
+ "do_not_signal_experiment": "不在学生 prompt 里告诉它'这是测开卷红利的实验'——以免学生因被测而改变发挥（额外用力或紧张）。实验框架只存在于 8-E 评分件与各 config，学生自然作答即可。"
+ },
+ "role_rotation": {
+ "previous_roles_in_pipeline": ["Phase 3 内容撰稿人（正文初稿）"],
+ "rotation_rationale": "GPT-5.5 是本论文初稿撰写人——对论文内容有作者级熟悉度，但不参与审稿/修订，面对批评无防御心理。这正是答辩'学生'的理想状态。",
+ "why_not_claude": "Claude 在 Phase 4/6 设计了数据策略并执行整合裁决，扮学生会为自己做过的决策辩护；GPT-5.5 无此包袱，能诚实说'这是条件所限'。",
+ "upstream_dependency": "需 phase8d_blind_question_sheet.md（已由三份问题单剥答案键生成）就绪后执行。"
+ },
+ "input": {
+ "primary_target": "phase8d_blind_question_sheet.md（21 题纯题干，主席6+会计7+方法论8，无考察意图/预期回答方向）",
+ "paper_reference_files": [
+ "中国上市公司并购重组成功案例研究_v2.md",
+ "phase3_draft_report.md",
+ "phase6_integration_review.md"
+ ],
+ "reference_only": [
+ "中国上市公司并购重组成功案例研究_v2.json",
+ "generate_docx_v2.py"
+ ],
+ "FORBIDDEN_INPUTS": {
+ "files": [
+ "phase8_defense_chair_questions.md",
+ "phase8_accounting_expert_questions.md",
+ "phase8_methodology_expert_questions.md"
+ ],
+ "reason": "这三份原始问题单含「考察意图」与「预期回答方向」即标准答案；学生读到即破坏闭卷性，使本次重跑失去意义。学生输入严禁包含这三份（及其 .json）。"
+ }
+ },
+ "deliverables": {
+ "primary": [
+ {
+ "file": "phase8_student_defense_record_blind.md",
+ "format": "markdown",
+ "description": "闭卷模拟答辩学生答辩记录：开场陈述 + 逐题回答 + 总结陈述。勿覆盖开卷版 phase8_student_defense_record.md。"
+ },
+ {
+ "file": "phase8_student_defense_record_blind.json",
+ "format": "json",
+ "description": "闭卷答辩记录结构化版，含每题回答摘要、自信度自评、引用的论文章节/表格编号"
+ }
+ ]
+ },
+ "downstream": {
+ "consumers": [
+ {
+ "phase": "8-E-blind",
+ "role": "闭卷答辩评分",
+ "description": "由 Qwen3.7-Max（盲答版评分件 phase8e_scoring_qwen_blind_prompt/config）对闭卷答辩记录评分，并对照开卷 78 分计算开卷红利。"
+ }
+ ]
+ },
+ "academic_tier": "院校会计学本科毕业论文答辩",
+ "defense_behavior_rules": {
+ "dos": [
+ "回答前先重述/确认问题，展示倾听与理解",
+ "先给结论再给依据，结构化表达",
+ "主动承认局限并附改进方向",
+ "分不清时诚实说'这是我下一步要研究的'",
+ "引用论文中的具体表号、章节、数据点"
+ ],
+ "donts": [
+ "不要背诵摘要或论文原文——用自己的话重组",
+ "不要过度辩护——有些批评是对的，直接承认",
+ "不要把责任推给导师或外部因素",
+ "不要在同一个问题上反复绕圈子",
+ "不要虚构'其实我做了但我没写'的内容",
+ "不要去读三份原始问题单的答案键（见 FORBIDDEN_INPUTS）"
+ ]
+ },
+ "answer_quality_benchmark": {
+ "优秀回答的特征": [
+ "展示超越论文本身的思考——引用论文未涵盖的文献或方法",
+ "对局限有系统性的改进方案——不是'以后会修'而是'具体怎么做'",
+ "能在不同问题之间建立联系",
+ "用具体数字和案例细节支撑论据，而非泛泛而谈"
+ ],
+ "可接受回答的特征": [
+ "事实准确——数字、日期、准则条文不搞错",
+ "逻辑清晰——结论→依据→局限，三段式",
+ "边界诚实——知道的和不知道的分开说",
+ "被追问时不慌乱"
+ ],
+ "不合格回答的特征": [
+ "答非所问",
+ "编造论文中不存在的内容",
+ "对学术诚信问题闪烁其词",
+ "前后矛盾——同一个问题在不同评审面前回答不一样"
+ ]
+ },
+ "mock_defense_metadata": {
+ "total_reviewers": 3,
+ "total_questions": "21（主席 6 + 会计专家 7 + 方法论专家 8）",
+ "total_answer_wordcount_expected": "约 6000-10000 字（含开场和总结陈述）",
+ "blind_vs_openbook_note": "与开卷版唯一区别是学生不见答案键。预期闭卷表现 ≤ 开卷（开卷版回答几乎逐条命中预期方向，存在答案键红利）；缺口尤其可能集中在方法论维度（开卷版该维度 +20 上修）。",
+ "simulation_realism_note": "本模拟局限：评审问题预制（非动态追问）、学生可查阅论文（非即时回忆）、无时间压力与临场紧张。这些 prompt 无法模拟，但闭卷已比开卷更接近真实答辩。"
+ },
+ "design_note": "GPT-5.5 扮学生 + 闭卷题单 = 最接近真实本科答辩的配置：作者级熟悉度 + 无答案键 + 无审稿/修订防御心理。",
+ "created_date": "2026-05-31",
+ "paired_files": ["phase8d_student_gpt5.5_blind_prompt.md", "phase8d_student_gpt5.5_blind_config.json"],
+ "related_files": {
+ "openbook_prompt": "phase8_student_gpt5.5_prompt.md",
+ "openbook_config": "phase8_student_gpt5.5_config.json",
+ "openbook_record": "phase8_student_defense_record.md",
+ "blind_question_sheet": "phase8d_blind_question_sheet.md"
+ }
 }

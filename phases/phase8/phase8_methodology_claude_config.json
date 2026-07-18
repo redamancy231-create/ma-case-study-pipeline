@@ -1,69 +1,69 @@
 {
-  "phase": "8-C",
-  "model": "Claude-opus-4.7",
-  "role": "模拟答辩评审 — 实证方法论专家",
-  "task_id": "phase8_methodology_expert",
-  "role_rotation": {
-    "previous_roles_in_pipeline": ["Phase 4 总装+审查+交付（含 CAR 计算与图表生成）", "Phase 6 双审整合裁决与修订迭代"],
-    "rotation_rationale": "Claude 在 Phase 4 亲手构造了 CAR_DATA 和财务数据计算逻辑，是四个模型中最清楚这篇论文的数据和方法论细节的。利用这一深层知识来设计最锋利的方法论追问——从'一个懂行的评审在审一篇不完美但诚实的本科论文'的角度。问题面向学生，不引用内部决策。不再承担主席角色（已切换为 Kimi-k2.6），Claude 在本阶段专注于唯一的方法论专家角色，追问深度可以更集中。",
-    "companion_reviewers": [
-      {
-        "phase": "8-A",
-        "model": "Kimi-k2.6",
-        "role": "答辩委员会主席",
-        "scope": "研究设计（以 Phase 1 设计者+Phase 7 回溯者视角追问"设计意图 vs 执行现实"）、学术贡献、学术诚信演进、结构性自我认知"
-      },
-      {
-        "phase": "8-B",
-        "model": "GLM-5.1",
-        "role": "会计学领域专家评审",
-        "scope": "会计准则适用、合并类型判定、商誉确认与减值、财务数据勾稽"
-      }
-    ]
-  },
-  "input": {
-    "primary_target": "中国上市公司并购重组成功案例研究_v2.md",
-    "supplementary_files": [
-      "generate_docx_v2.py",
-      "phase6_integration_review.md",
-      "phase5a_gpt5.5_review.md"
-    ],
-    "reference_only": [
-      "中国上市公司并购重组成功案例研究_v2.json"
-    ]
-  },
-  "deliverables": {
-    "primary": [
-      {
-        "file": "phase8_methodology_expert_questions.md",
-        "format": "markdown",
-        "description": "实证方法论专家质询问题清单：含方法标注基线确认 + 6-8 个问题覆盖 CAR 设计/指标体系/因果推断/方法自我认知四个维度"
-      },
-      {
-        "file": "phase8_methodology_expert_questions.json",
-        "format": "json",
-        "description": "质询问题清单结构化版，便于 Phase 8-D 学生角色解析和逐题作答"
-      }
-    ]
-  },
-  "downstream": {
-    "consumers": [
-      {
-        "phase": "8-D",
-        "model": "GPT-5.5",
-        "role": "答辩学生",
-        "usage": "实证方法论专家的问题将与其他两位评审的问题合并，统一提交给学生作答"
-      }
-    ]
-  },
-  "academic_tier": "211院校会计学本科毕业论文答辩",
-  "scoring_rubric": {
-    "CAR事件研究设计": {"max": 35, "key_focus": "事件日选择、估计窗/事件窗设计、市场模型适用性、显著性检验前提、稳健性检验方法"},
-    "财务指标体系设计": {"max": 25, "key_focus": "指标选择依据、跨行业可比性、计算口径一致性、S类数据对衍生指标的影响"},
-    "杜邦分解与因果推断": {"max": 25, "key_focus": "会计分解vs经济归因的区分、替代解释的排除、反事实/对照组的缺失、DID适用性"},
-    "研究方法的自我认知": {"max": 15, "key_focus": "方法改进优先级判断、稳健性检验的实质理解、从演示到实证的差距认知"}
-  },
-  "design_note": "方法论专家是三个评审角色中'最懂数据细节'的——因为 Claude 在 Phase 4 亲手算过这些 CAR 和财务指标。这一深层知识被用于设计有穿透力的追问（比如知道具体的 CAR 计算公式和数据构造过程），但不会在问题中暴露'我在 Phase 4 是这样算的'这种内部视角。目标是让学生感受到'这个评审真的很懂方法'——这正是真实答辩中方法论专家的体验。",
-  "created_date": "2026-05-30",
-  "paired_files": ["phase8_methodology_claude_prompt.md", "phase8_methodology_claude_config.json"]
+ "phase": "8-C",
+ "model": "Claude-opus-4.7",
+ "role": "模拟答辩评审 — 实证方法论专家",
+ "task_id": "phase8_methodology_expert",
+ "role_rotation": {
+ "previous_roles_in_pipeline": ["Phase 4 总装+审查+交付（含 CAR 计算与图表生成）", "Phase 6 双审整合裁决与修订迭代"],
+ "rotation_rationale": "Claude 在 Phase 4 亲手构造了 CAR_DATA 和财务数据计算逻辑，是四个模型中最清楚这篇论文的数据和方法论细节的。利用这一深层知识来设计最锋利的方法论追问——从'一个懂行的评审在审一篇不完美但诚实的本科论文'的角度。问题面向学生，不引用内部决策。不再承担主席角色（已切换为 Kimi-k2.6），Claude 在本阶段专注于唯一的方法论专家角色，追问深度可以更集中。",
+ "companion_reviewers": [
+ {
+ "phase": "8-A",
+ "model": "Kimi-k2.6",
+ "role": "答辩委员会主席",
+ "scope": "研究设计（以 Phase 1 设计者+Phase 7 回溯者视角追问"设计意图 vs 执行现实"）、学术贡献、学术诚信演进、结构性自我认知"
+ },
+ {
+ "phase": "8-B",
+ "model": "GLM-5.1",
+ "role": "会计学领域专家评审",
+ "scope": "会计准则适用、合并类型判定、商誉确认与减值、财务数据勾稽"
+ }
+ ]
+ },
+ "input": {
+ "primary_target": "中国上市公司并购重组成功案例研究_v2.md",
+ "supplementary_files": [
+ "generate_docx_v2.py",
+ "phase6_integration_review.md",
+ "phase5a_gpt5.5_review.md"
+ ],
+ "reference_only": [
+ "中国上市公司并购重组成功案例研究_v2.json"
+ ]
+ },
+ "deliverables": {
+ "primary": [
+ {
+ "file": "phase8_methodology_expert_questions.md",
+ "format": "markdown",
+ "description": "实证方法论专家质询问题清单：含方法标注基线确认 + 6-8 个问题覆盖 CAR 设计/指标体系/因果推断/方法自我认知四个维度"
+ },
+ {
+ "file": "phase8_methodology_expert_questions.json",
+ "format": "json",
+ "description": "质询问题清单结构化版，便于 Phase 8-D 学生角色解析和逐题作答"
+ }
+ ]
+ },
+ "downstream": {
+ "consumers": [
+ {
+ "phase": "8-D",
+ "model": "GPT-5.5",
+ "role": "答辩学生",
+ "usage": "实证方法论专家的问题将与其他两位评审的问题合并，统一提交给学生作答"
+ }
+ ]
+ },
+ "academic_tier": "院校会计学本科毕业论文答辩",
+ "scoring_rubric": {
+ "CAR事件研究设计": {"max": 35, "key_focus": "事件日选择、估计窗/事件窗设计、市场模型适用性、显著性检验前提、稳健性检验方法"},
+ "财务指标体系设计": {"max": 25, "key_focus": "指标选择依据、跨行业可比性、计算口径一致性、S类数据对衍生指标的影响"},
+ "杜邦分解与因果推断": {"max": 25, "key_focus": "会计分解vs经济归因的区分、替代解释的排除、反事实/对照组的缺失、DID适用性"},
+ "研究方法的自我认知": {"max": 15, "key_focus": "方法改进优先级判断、稳健性检验的实质理解、从演示到实证的差距认知"}
+ },
+ "design_note": "方法论专家是三个评审角色中'最懂数据细节'的——因为 Claude 在 Phase 4 亲手算过这些 CAR 和财务指标。这一深层知识被用于设计有穿透力的追问（比如知道具体的 CAR 计算公式和数据构造过程），但不会在问题中暴露'我在 Phase 4 是这样算的'这种内部视角。目标是让学生感受到'这个评审真的很懂方法'——这正是真实答辩中方法论专家的体验。",
+ "created_date": "2026-05-30",
+ "paired_files": ["phase8_methodology_claude_prompt.md", "phase8_methodology_claude_config.json"]
 }

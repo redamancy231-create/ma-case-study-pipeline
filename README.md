@@ -32,22 +32,22 @@
 
 ```mermaid
 graph LR
-    P0[Phase 0<br/>选题+否决位] --> P1[Phase 1<br/>方案设计]
-    P1 --> P2[Phase 2<br/>领域专家审核]
-    P2 --> P3[Phase 3<br/>内容撰稿]
-    P3 --> P4[Phase 4<br/>总装+质保]
-    P4 --> P5A[Phase 5A<br/>交叉复审·合规]
-    P4 --> P5B[Phase 5B<br/>交叉复审·规范]
-    P5A --> P6[Phase 6<br/>整合裁决+修订]
-    P5B --> P6
-    P6 --> P7[Phase 7<br/>设计回溯]
-    P7 --> P8[Phase 8<br/>答辩模拟]
-    P8 --> P9[Phase 9<br/>定稿闭环]
+ P0[Phase 0<br/>选题+否决位] --> P1[Phase 1<br/>方案设计]
+ P1 --> P2[Phase 2<br/>领域专家审核]
+ P2 --> P3[Phase 3<br/>内容撰稿]
+ P3 --> P4[Phase 4<br/>总装+质保]
+ P4 --> P5A[Phase 5A<br/>交叉复审·合规]
+ P4 --> P5B[Phase 5B<br/>交叉复审·规范]
+ P5A --> P6[Phase 6<br/>整合裁决+修订]
+ P5B --> P6
+ P6 --> P7[Phase 7<br/>设计回溯]
+ P7 --> P8[Phase 8<br/>答辩模拟]
+ P8 --> P9[Phase 9<br/>定稿闭环]
 
-    P8A[8A 主席出题] --> P8D[8D 学生作答]
-    P8B[8B 会计出题] --> P8D
-    P8C[8C 方法论出题] --> P8D
-    P8D --> P8E[8E 零卷入评分]
+ P8A[8A 主席出题] --> P8D[8D 学生作答]
+ P8B[8B 会计出题] --> P8D
+ P8C[8C 方法论出题] --> P8D
+ P8D --> P8E[8E 零卷入评分]
 ```
 
 **核心设计原则**：没有任何模型审查/评分自己做过的环节。角色是槽位，模型是填进槽位的人——每个新项目重新分配。
@@ -57,41 +57,41 @@ graph LR
 ## 目录结构
 
 ```
-├── README.md                          ← 本文件（简体中文原文）
-├── en/README.md                       ← English translation
-├── zh-Hant/README.md                  ← 正體中文翻譯
-├── LICENSE                            ← CC BY 4.0
-├── CLAUDE.md                          ← 项目 AI 协作指南
+├── README.md ← 本文件（简体中文原文）
+├── en/README.md ← English translation
+├── zh-Hant/README.md ← 正體中文翻譯
+├── LICENSE ← CC BY 4.0
+├── CLAUDE.md ← 项目 AI 协作指南
 │
-├── 流水线复用包/                       ← ★ 最有价值的资产
-│   ├── 多模型论文流水线_playbook.md    │   方法手册（五条铁律+Phase 0-9+量化剖面）
-│   ├── 多模型论文流水线_playbook.json  │   机读版
-│   └── 阶段模板件.md                   │   prompt+config 参数化骨架
+├── 流水线复用包/ ← ★ 最有价值的资产
+│ ├── 多模型论文流水线_playbook.md │ 方法手册（五条铁律+Phase 0-9+量化剖面）
+│ ├── 多模型论文流水线_playbook.json │ 机读版
+│ └── 阶段模板件.md │ prompt+config 参数化骨架
 │
-├── 数据溯源方案模板.md + .json         ← 四级分类规范 [R][E][S][P]
+├── 数据溯源方案模板.md + .json ← 四级分类规范 [R][E][S][P]
 │
-├── 项目复盘归档报告.md + .json         ← 完整项目复盘（v3.0, CLOSED-FINAL）
-├── 起点评估分析.md + .json             ← 方法论反思（四模型+红队+镜像参照）
+├── 项目复盘归档报告.md + .json ← 完整项目复盘（v3.0, CLOSED-FINAL）
+├── 起点评估分析.md + .json ← 方法论反思（四模型+红队+镜像参照）
 │
-├── 中国上市公司并购重组成功案例研究_v2.md + .json  ← 论文终稿（带缺陷标注）
+├── 中国上市公司并购重组成功案例研究_v2.md + .json ← 论文终稿（带缺陷标注）
 │
-├── phases/                            ← 完整流水线快照（29 文件）
-│   ├── phase1_kimi_k2.6/              │   方案设计
-│   ├── phase2_glm5.1/                 │   领域专家审核
-│   ├── phase3_gpt5.5/                 │   内容撰稿
-│   ├── phase4_claude_opus4.7/         │   总装交付
-│   ├── phase5a_gpt5.5/                │   交叉复审（合规事实层）
-│   ├── phase5b_glm5.1/                │   交叉复审（学术规范层）
-│   ├── phase6_claude_opus4.7/         │   整合裁决+修订
-│   ├── phase7_kimi_k2.6/              │   设计回溯
-│   └── phase8/                        │   答辩模拟（出题+作答+评分+盲答对照）
+├── phases/ ← 完整流水线快照（29 文件）
+│ ├── phase1_kimi_k2.6/ │ 方案设计
+│ ├── phase2_glm5.1/ │ 领域专家审核
+│ ├── phase3_gpt5.5/ │ 内容撰稿
+│ ├── phase4_claude_opus4.7/ │ 总装交付
+│ ├── phase5a_gpt5.5/ │ 交叉复审（合规事实层）
+│ ├── phase5b_glm5.1/ │ 交叉复审（学术规范层）
+│ ├── phase6_claude_opus4.7/ │ 整合裁决+修订
+│ ├── phase7_kimi_k2.6/ │ 设计回溯
+│ └── phase8/ │ 答辩模拟（出题+作答+评分+盲答对照）
 │
-├── scripts/                           ← 论文生成脚本
-│   └── generate_docx_v2.py            │   v2 生成（Phase 6 修订版；v1 脚本已废弃）
+├── scripts/ ← 论文生成脚本
+│ └── generate_docx_v2.py │ v2 生成（Phase 6 修订版；v1 脚本已废弃）
 │
-└── figures/                           ← 论文图表
-    ├── figure1_roe_trend.png
-    └── figure2_car.png
+└── figures/ ← 论文图表
+ ├── figure1_roe_trend.png
+ └── figure2_car.png
 ```
 
 > **注**：`.docx` 二进制文件不包含在 Git 仓库中，可通过 [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases) 下载。
@@ -133,7 +133,7 @@ python generate_docx_v2.py
 | 使用模型 | 5 个独立模型 | Kimi/GLM/GPT/Claude/Qwen，零角色重叠 |
 | 交叉双盲审 | 68（退回重写）→ 84（修改后通过） | Phase 5A/5B 独立盲审 |
 | 答辩得分 | 开卷 78 / 盲答 75 | 开卷红利仅 -2.6，方法论维度零衰减 |
-| 论文体量 | ~22.5K 汉字 / 16 篇文献 / 7 表 2 图 | 211 本科毕业论文标准 |
+| 论文体量 | ~22.5K 汉字 / 16 篇文献 / 7 表 2 图 | 本科毕业论文标准 |
 | 已知缺陷 | 3 处未修复 | 商誉/杜邦/CAR；已标注，决定不修 |
 
 ---
@@ -173,11 +173,11 @@ python generate_docx_v2.py
 
 ```bibtex
 @misc{acerolaorion2026mapipeline,
-  author = {Acerolaorion},
-  title = {Multi-Model Academic Production Pipeline: M\&A Case Study},
-  year = {2026},
-  howpublished = {GitHub repository},
-  url = {https://github.com/redamancy231-create/ma-case-study-pipeline}
+ author = {Acerolaorion},
+ title = {Multi-Model Academic Production Pipeline: M\&A Case Study},
+ year = {2026},
+ howpublished = {GitHub repository},
+ url = {https://github.com/redamancy231-create/ma-case-study-pipeline}
 }
 ```
 

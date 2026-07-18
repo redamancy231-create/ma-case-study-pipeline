@@ -1,686 +1,686 @@
 {
-  "phase": 6,
-  "model": "Claude-opus-4.7",
-  "role": "双审整合裁决与修订迭代（主编辑兼答辩委员会秘书 / 整合裁决官）",
-  "task_id": "phase6_integration_and_revision",
-  "output_file": "phase6_integration_review.json",
-  "paired_markdown_file": "phase6_integration_review.md",
-  "review_target": "中国上市公司并购重组成功案例研究.docx",
-  "created_date": "2026-05-29",
-  "academic_tier": "211院校会计学本科毕业论文答辩前评议",
-  "integration_basis": [
-    {
-      "phase": "5-A",
-      "model": "GPT-5.5",
-      "scope": "法律合规+会计准则+案例事实+数据合理性",
-      "weight": 0.6
-    },
-    {
-      "phase": "5-B",
-      "model": "GLM-5.1",
-      "scope": "学术写作规范+论文结构+论证逻辑+文献规范+术语图表",
-      "weight": 0.4
-    }
-  ],
-  "integration_overview": "以陌生整合官身份将 5-A（合规事实层,0.60）与 5-B（学术规范层,0.40）两份独立盲审归一化为统一修改清单,裁决遵循领域内单方默认采纳、同向必改、互补合并、跨界降权、越界否决五原则。经核查二者无实质反向冲突、无越界批评;唯一交叉点‘模拟数据’由两层互补印证(5-A 判学术不端嫌疑、5-B 判局限缺失),合并为最高优先级必改。全部修订在 generate_docx_v2.py 落地并重生成 v2.docx,未手工编辑 docx。2026-05-30 数据溯源升级:通过 akshare/东方财富替换核心财务指标为真实公开数据[R],论文数据状态由'全模拟(S类)'升级为'混合数据[R]/[S]',表4已逐行标注。",
-  "mapping_summary": {
-    "mapping_entries_total": 36,
-    "by_disposition": {
-      "必改": 9,
-      "建议改": 17,
-      "观察": 9,
-      "无需改": 1
-    },
-    "by_execution": {
-      "已执行": 30,
-      "部分执行": 4,
-      "未执行": 1,
-      "无需改": 1
-    },
-    "reconciliation_note": "配套 .md 第3部分‘动作清单’按 33 项口径列示(必改9/建议改16/观察8),将 M35(建议改,已执行)、M36(观察,未执行)、M34(无需改) 在 A1/changelog 单独处置;本 JSON 采用 36 项全口径,故‘建议改/观察’计数较 .md 各多 1。"
-  },
-  "arbitration_records": {
-    "opposing_conflicts": {
-      "count": 0,
-      "finding": "无同点反向冲突。两审严格限定于各自专长(5-A 排除写作/文献/结构/术语;5-B 排除法律/会计/案例事实/数据合理性),不存在方向相反判断,未启用反向裁决优先级链。"
-    },
-    "out_of_bounds_rejections": {
-      "count": 0,
-      "finding": "无越界否决项。5-B 在 6.3 提‘数据为模拟’时已在 companion_review_note 中将‘是否学术不端’让渡给 5-A,仅从写作局限立论,属互补而非跨界;5-A 对 CAR 显著性的意见在数据/统计域内,未侵入写作。"
-    },
-    "complementary_merges": [
-      {
-        "item": "M01 模拟数据",
-        "view_5a": "事实层:宣称真实来源构成学术不端嫌疑",
-        "view_5b": "写作层:研究局限未披露数据性质",
-        "ruling": "按更尖锐一方(5-A)执行:全文改标模拟+撤回实证显著性+6.3披露;两审交叉印证强化严重性"
-      },
-      {
-        "item": "M27/M28 CAR因果",
-        "view_5a": "数据真实前不应下显著结论",
-        "view_5b": "CAR=认可重组价值因果跳跃",
-        "ruling": "合并:CAR 改演示性、多因素表述,删除作为实证发现的显著性断言"
-      }
-    ],
-    "numbering_divergence_note": "表编号:5-A 以 表3-表7 顺序称引(将子表计为独立表),5-B 规范化为 表3(指标体系)/表4(财务对比,含a/b/c)/表5(CAR)。非反向,5-A 仅按出现顺序计数;依‘图表规范=5-B 域内’采纳 5-B 方案并全文回扫。"
-  },
-  "change_items": [
-    {
-      "id": "M01",
-      "location": "全文来源标注/摘要/5.4/6.3",
-      "type": "数据真实性/学术诚信",
-      "relation": "互补",
-      "tier": "必改",
-      "source": "双方",
-      "ruling": "全文改标模拟数据;撤回实证显著性;6.3披露",
-      "status": "已执行",
-      "script_loc": "DATA注释+build_abstract+build_chapter_5+build_chapter_6"
-    },
-    {
-      "id": "M02",
-      "location": "3.1.2、表1 R04",
-      "type": "法律条款引用",
-      "relation": "单方",
-      "tier": "必改",
-      "source": "5-A",
-      "ruling": "第62/65/71条分述;6个月价格归《收购管理办法》",
-      "status": "已执行",
-      "script_loc": "build_chapter_3+build_chapter_2"
-    },
-    {
-      "id": "M03",
-      "location": "摘要、4.2.2",
-      "type": "商誉金额口径",
-      "relation": "单方",
-      "tier": "必改",
-      "source": "5-A",
-      "ruling": "区分购买日新增259亿/期末余额289.34亿",
-      "status": "已执行",
-      "script_loc": "build_abstract+build_chapter_4"
-    },
-    {
-      "id": "M04",
-      "location": "3.1.3",
-      "type": "法规阈值",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "第12条三项门槛分述",
-      "status": "已执行",
-      "script_loc": "build_chapter_3"
-    },
-    {
-      "id": "M05",
-      "location": "3.1.1",
-      "type": "法规条文范围",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "2023公司法改第152-153条",
-      "status": "已执行",
-      "script_loc": "build_chapter_3"
-    },
-    {
-      "id": "M06",
-      "location": "4.3.2、表4(c)",
-      "type": "财务窗口口径",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "明确 T=公告年(2016)",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M07",
-      "location": "4.1.2/4.2.2/4.3.2",
-      "type": "事实精度",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "补2015-06-08/2016-05-18/2016-09-22等具体日",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M08",
-      "location": "表3 指标体系",
-      "type": "指标定义",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "EPS改归母口径",
-      "status": "已执行",
-      "script_loc": "build_chapter_5"
-    },
-    {
-      "id": "M09",
-      "location": "4.2.3",
-      "type": "会计准则补全",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "增商誉后续计量(不摊销/年测/不转回)",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M10",
-      "location": "4.2.2",
-      "type": "准则分工",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "增CAS20/CAS33分工",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M11",
-      "location": "4.2.2",
-      "type": "事实补充",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-A",
-      "ruling": "补汇率折算口径",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M12",
-      "location": "第1章(新增)",
-      "type": "结构完整性",
-      "relation": "单方",
-      "tier": "必改",
-      "source": "5-B",
-      "ruling": "新增1.3文献综述,原1.3→1.4",
-      "status": "已执行",
-      "script_loc": "build_chapter_1"
-    },
-    {
-      "id": "M13",
-      "location": "参考文献",
-      "type": "文献数量",
-      "relation": "单方",
-      "tier": "必改",
-      "source": "5-B",
-      "ruling": "补至16篇",
-      "status": "已执行",
-      "script_loc": "build_references"
-    },
-    {
-      "id": "M14",
-      "location": "参考文献",
-      "type": "文献时效",
-      "relation": "单方",
-      "tier": "必改",
-      "source": "5-B",
-      "ruling": "结构补足≥15;近5年文献交还作者(拒绝伪造)",
-      "status": "部分执行",
-      "script_loc": "build_references"
-    },
-    {
-      "id": "M15",
-      "location": "正文+参考文献",
-      "type": "引用对应性",
-      "relation": "单方",
-      "tier": "必改",
-      "source": "5-B",
-      "ruling": "3篇凑数文献于综述真实引用;补Yin(2018)",
-      "status": "已执行",
-      "script_loc": "build_chapter_1+build_references"
-    },
-    {
-      "id": "M16",
-      "location": "5.1-5.2",
-      "type": "图表编号",
-      "relation": "单方(5-B域)",
-      "tier": "必改",
-      "source": "5-B",
-      "ruling": "指标体系=表3/财务对比=表4/CAR=表5,全文回扫",
-      "status": "已执行",
-      "script_loc": "build_chapter_5"
-    },
-    {
-      "id": "M17",
-      "location": "4.1开头",
-      "type": "论证完整性",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "增案例选择三标准段",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M18",
-      "location": "3.2/6.2",
-      "type": "论证-背景陈列",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "保留3.2内容,6.2增中美制度回扣",
-      "status": "部分执行",
-      "script_loc": "build_chapter_6"
-    },
-    {
-      "id": "M19",
-      "location": "1.2、5.4",
-      "type": "引文格式",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "英文分号;Brown&Warner空格",
-      "status": "已执行",
-      "script_loc": "build_chapter_1+build_chapter_5"
-    },
-    {
-      "id": "M20",
-      "location": "2→3、5→6",
-      "type": "段落衔接",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "补章节过渡段(1→2由新增1.3承接)",
-      "status": "已执行",
-      "script_loc": "build_chapter_3+build_chapter_6"
-    },
-    {
-      "id": "M21",
-      "location": "参考文献[英]",
-      "type": "著录格式DOI",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "Andrade、Brown&Warner补DOI;余者交还核验",
-      "status": "部分执行",
-      "script_loc": "build_references"
-    },
-    {
-      "id": "M22",
-      "location": "第五章",
-      "type": "论证-专题弱化",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "4.2.2/4.2.3强化口径,未设独立小节(避免重排引入新偏差)",
-      "status": "部分执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M23",
-      "location": "第2章/6.1",
-      "type": "论证-理论悬置",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "6.1增市场势力/交易费用/代理理论回扣",
-      "status": "已执行",
-      "script_loc": "build_chapter_6"
-    },
-    {
-      "id": "M24",
-      "location": "封面",
-      "type": "结构完整性",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "增英文标题页",
-      "status": "已执行",
-      "script_loc": "build_cover"
-    },
-    {
-      "id": "M25",
-      "location": "封面",
-      "type": "结构完整性",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "增学院/专业/学号/姓名/指导教师字段,值交还作者",
-      "status": "已执行",
-      "script_loc": "build_cover"
-    },
-    {
-      "id": "M26",
-      "location": "摘要",
-      "type": "写作-贡献",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "摘要增边际贡献句",
-      "status": "已执行",
-      "script_loc": "build_abstract"
-    },
-    {
-      "id": "M27",
-      "location": "5.3",
-      "type": "论证-因果",
-      "relation": "互补",
-      "tier": "建议改",
-      "source": "双方",
-      "ruling": "杜邦归因软化为‘可能归因…需验证’",
-      "status": "已执行",
-      "script_loc": "build_chapter_5"
-    },
-    {
-      "id": "M28",
-      "location": "5.4",
-      "type": "论证-因果跳跃",
-      "relation": "互补",
-      "tier": "必改",
-      "source": "双方",
-      "ruling": "CAR改多因素、演示性表述,删实证显著性断言",
-      "status": "已执行",
-      "script_loc": "build_chapter_5"
-    },
-    {
-      "id": "M29",
-      "location": "4.3.2",
-      "type": "术语统一",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "统一‘权益结合法(账面价值法)’",
-      "status": "已执行",
-      "script_loc": "build_chapter_4"
-    },
-    {
-      "id": "M30",
-      "location": "5.4标题",
-      "type": "术语规范",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "标题补CAR中文全称",
-      "status": "已执行",
-      "script_loc": "build_chapter_5"
-    },
-    {
-      "id": "M31",
-      "location": "6.3",
-      "type": "论证-局限",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "6.3增幸存者偏差",
-      "status": "已执行",
-      "script_loc": "build_chapter_6"
-    },
-    {
-      "id": "M32",
-      "location": "6.1",
-      "type": "论证-以偏概全",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-B",
-      "ruling": "6.1补美的T年净利率下降事实",
-      "status": "已执行",
-      "script_loc": "build_chapter_6"
-    },
-    {
-      "id": "M33",
-      "location": "英文Abstract",
-      "type": "写作-表达",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-B",
-      "ruling": "改business combinations not under common control",
-      "status": "已执行",
-      "script_loc": "build_abstract_en"
-    },
-    {
-      "id": "M34",
-      "location": "3.1.1",
-      "type": "法规-澄清",
-      "relation": "单方",
-      "tier": "无需改",
-      "source": "5-A",
-      "ruling": "终稿原文已标‘公司分立’,5-A关切已满足",
-      "status": "无需改",
-      "script_loc": null
-    },
-    {
-      "id": "M35",
-      "location": "3.1.1",
-      "type": "法规-补充",
-      "relation": "单方",
-      "tier": "建议改",
-      "source": "5-A",
-      "ruling": "增第142条现金选择权注",
-      "status": "已执行",
-      "script_loc": "build_chapter_3"
-    },
-    {
-      "id": "M36",
-      "location": "表2/3.2",
-      "type": "可核验性",
-      "relation": "单方",
-      "tier": "观察",
-      "source": "5-A",
-      "ruling": "表2已含§条号;全面补注U.S. Code列为可选,未执行",
-      "status": "未执行",
-      "script_loc": null
-    }
-  ],
-  "partial_execution_reasons": {
-    "M14": "为守与M01同源的诚信原则,拒绝伪造2022-2026精确引文;已增Yin(2018)/MacKinlay(1997)/葛家澍林志军(2015)/Jensen&Ruback(1983)至16篇并消除凑数/漏引,近5年占比仍为0,交还作者凭CNKI补2-3篇。",
-    "M18": "选择仅做6.2回扣、保留3.2内容,因3.2中美对比是Phase 2明确要求的核心维度,删减违背上游契约并可能触发新的覆盖不足问题。",
-    "M21": "仅对确有把握的Andrade、Brown&Warner补DOI;其余为书籍/手册章节/JEL综述或DOI不确定者,不臆造,交还作者核验。",
-    "M22": "未新设独立小节,避免在未被批评章节大幅重排而引入新勾稽偏差(遵守不擅自扩张规则)。"
-  },
-  "self_check": {
-    "review_5a_dimensions": {
-      "法律": "已修正《证券法》/《重组办法》/《公司法》;第175条已满足、第142条已补注",
-      "会计": "合并类型判定保留;商誉双口径、后续计量、CAS20/33、EPS归母已落实",
-      "案例": "关键日期到日、宝钢T年口径已澄清",
-      "数据": "已如实改标模拟、撤回实证显著性;数值未改,内部勾稽维持自洽"
-    },
-    "review_5b_dimensions": {
-      "结构": "新增1.3文献综述;封面字段+英文标题(具体值交还作者)",
-      "写作": "引文格式、凑数/漏引、摘要贡献已落实",
-      "论证": "案例标准、过渡、理论回扣、模拟数据披露、幸存者偏差、杜邦/CAR软化已落实;3.2以回扣替代精简",
-      "文献": "16篇/Yin已补/DOI部分;近5年待补",
-      "术语图表": "表编号、CAR中文全称、权益结合法统一全部已改"
-    },
-    "unfulfilled_items_disclosed": [
-      "M14近5年文献",
-      "M21部分DOI",
-      "M18不删3.2",
-      "M22无独立小节",
-      "M25封面具体值",
-      "M36 U.S.Code补注"
-    ]
-  },
-  "scoring_table": {
-    "weights": {
-      "5-A": 0.6,
-      "5-B": 0.4
-    },
-    "dimensions": [
-      {
-        "dimension": "法律法规引用准确性",
-        "owner": "5-A",
-        "max": 25,
-        "before": 17,
-        "after": 22
-      },
-      {
-        "dimension": "会计准则适用与处理",
-        "owner": "5-A",
-        "max": 25,
-        "before": 21,
-        "after": 23
-      },
-      {
-        "dimension": "案例事实与时间线",
-        "owner": "5-A",
-        "max": 25,
-        "before": 20,
-        "after": 22
-      },
-      {
-        "dimension": "数据合理性与勾稽",
-        "owner": "5-A",
-        "max": 15,
-        "before": 5,
-        "after": 8
-      },
-      {
-        "dimension": "整体严谨性",
-        "owner": "5-A",
-        "max": 10,
-        "before": 5,
-        "after": 7
-      },
-      {
-        "dimension": "论文结构完整性",
-        "owner": "5-B",
-        "max": 15,
-        "before": 9,
-        "after": 13
-      },
-      {
-        "dimension": "学术写作规范",
-        "owner": "5-B",
-        "max": 25,
-        "before": 19,
-        "after": 22
-      },
-      {
-        "dimension": "论证逻辑严谨性",
-        "owner": "5-B",
-        "max": 25,
-        "before": 20,
-        "after": 23
-      },
-      {
-        "dimension": "参考文献体系",
-        "owner": "5-B",
-        "max": 20,
-        "before": 12,
-        "after": 15
-      },
-      {
-        "dimension": "术语与图表规范",
-        "owner": "5-B",
-        "max": 15,
-        "before": 11,
-        "after": 14
-      }
-    ],
-    "subtotals": {
-      "5-A": {
-        "before": 68,
-        "after": 82,
-        "max": 100
-      },
-      "5-B": {
-        "before": 71,
-        "after": 87,
-        "max": 100
-      }
-    },
-    "weighted_total": {
-      "before": 69.2,
-      "after": 84.0,
-      "max": 100
-    }
-  },
-  "final_signature": {
-    "project": "中国上市公司并购重组成功案例研究",
-    "version": "v2（Phase 6 修订版）",
-    "basis": "Phase 5-A(GPT-5.5,0.60)+Phase 5-B(GLM-5.1,0.40)双盲审+本阶段整合裁决",
-    "academic_tier": "211院校会计学本科毕业论文答辩前评议",
-    "verdict": "修改后通过",
-    "weighted_score": 84.0,
-    "score_before": 69.2,
-    "arbitrator": "Claude-opus-4.7（Phase 6 整合裁决角色）",
-    "date": "2026-05-29",
-    "verdict_rationale": "写作与合规缺陷已系统修复;2026-05-30已通过akshare完成核心财务指标真实化(表4营收/净利润/商誉/ROE→[R]),但CAR及衍生指标仍为[S];近5年文献仍为零,故维持修改后通过而非直接通过。"
-  },
-  "residual_items": [
-    {
-      "id": "R1",
-      "item": "以真实Wind/CSMAR/年报及交易数据替换表3-表5、图1-图2全部模拟数据并保留底稿,据此重算CAR与显著性",
-      "level": "必改",
-      "status": "部分完成(2026-05-30)",
-      "progress": "已通过akshare/东方财富替换表4营收/净利润/商誉/ROE为真实公开数据[R];CAR及[S]标识衍生指标仍待作者以Wind/CSMAR完成",
-      "note": "表4已逐行标注[R]/[S]数据标识;本环境无Wind/CSMAR数据库访问权限"
-    },
-    {
-      "id": "R2",
-      "item": "补2-3篇2022-2026年CSSCI/SSCI文献使近5年占比≥30%",
-      "level": "必改",
-      "note": "为守诚信红线未伪造近年引文;总数已达16篇"
-    },
-    {
-      "id": "R3",
-      "item": "为Betton(2014)、Harford(2014)、MacKinlay(1997)、Yin(2018)核验补全DOI/出版信息",
-      "level": "建议",
-      "note": "不臆造DOI"
-    },
-    {
-      "id": "R4",
-      "item": "填写封面学院、专业、学号、姓名、指导教师具体信息",
-      "level": "建议",
-      "note": "作者个人信息,模板字段已就位"
-    },
-    {
-      "id": "R5",
-      "item": "可将商誉分析提炼为5.x独立小节并酌情精简3.2美国制度纯陈述段",
-      "level": "观察",
-      "note": "当前以口径强化+6.2回扣替代"
-    }
-  ],
-  "academic_integrity_handling": {
-    "issue": "5-A 指出宣称 Wind/CSMAR/年报来源但实为模拟,构成学术不端嫌疑",
-    "disposition": "必改",
-    "actions": [
-      "全文数据来源已升级为混合数据[R]/[S]:真实公开数据(akshare/年报)标[R],估算值标[S],表4已逐行标注数据标识",
-      "撤回'均在5%水平显著''认可重组价值'等作为实证发现的断言,改为演示性、多因素表述",
-      "摘要、英文摘要、6.3研究局限三处已更新为混合数据披露"
-    ],
-    "result": "诚信红线已解除;2026-05-30核心财务指标已真实化(akshare),剩余CAR及衍生指标[S]为质量提升项(R1),不再属诚信问题。"
-  },
-  "deliverables": [
-    {
-      "file": "phase6_integration_review.md",
-      "status": "已产出",
-      "desc": "7部分整合审查报告"
-    },
-    {
-      "file": "phase6_integration_review.json",
-      "status": "本文件",
-      "desc": "整合审查报告结构化版"
-    },
-    {
-      "file": "中国上市公司并购重组成功案例研究_v2.docx",
-      "status": "已生成",
-      "desc": "修订后终稿(约22,558字符),经脚本重生成未手工编辑"
-    },
-    {
-      "file": "generate_docx_v2.py",
-      "status": "已生成",
-      "desc": "与v2.docx一一对应,可重复执行"
-    },
-    {
-      "file": "中国上市公司并购重组成功案例研究.docx (v1)",
-      "status": "保留",
-      "desc": "历史版本未覆盖"
-    },
-    {
-      "file": "generate_docx.py (v1)",
-      "status": "保留",
-      "desc": "历史版本未覆盖"
-    },
-    {
-      "file": "phase6_diff_v1_to_v2.md",
-      "status": "已产出",
-      "desc": "章节级diff摘要"
-    }
-  ],
-  "generated_files": [
-    "phase6_integration_review.md",
-    "phase6_integration_review.json"
-  ]
+ "phase": 6,
+ "model": "Claude-opus-4.7",
+ "role": "双审整合裁决与修订迭代（主编辑兼答辩委员会秘书 / 整合裁决官）",
+ "task_id": "phase6_integration_and_revision",
+ "output_file": "phase6_integration_review.json",
+ "paired_markdown_file": "phase6_integration_review.md",
+ "review_target": "中国上市公司并购重组成功案例研究.docx",
+ "created_date": "2026-05-29",
+ "academic_tier": "院校会计学本科毕业论文答辩前评议",
+ "integration_basis": [
+ {
+ "phase": "5-A",
+ "model": "GPT-5.5",
+ "scope": "法律合规+会计准则+案例事实+数据合理性",
+ "weight": 0.6
+ },
+ {
+ "phase": "5-B",
+ "model": "GLM-5.1",
+ "scope": "学术写作规范+论文结构+论证逻辑+文献规范+术语图表",
+ "weight": 0.4
+ }
+ ],
+ "integration_overview": "以陌生整合官身份将 5-A（合规事实层,0.60）与 5-B（学术规范层,0.40）两份独立盲审归一化为统一修改清单,裁决遵循领域内单方默认采纳、同向必改、互补合并、跨界降权、越界否决五原则。经核查二者无实质反向冲突、无越界批评;唯一交叉点‘模拟数据’由两层互补印证(5-A 判学术不端嫌疑、5-B 判局限缺失),合并为最高优先级必改。全部修订在 generate_docx_v2.py 落地并重生成 v2.docx,未手工编辑 docx。2026-05-30 数据溯源升级:通过 akshare/东方财富替换核心财务指标为真实公开数据[R],论文数据状态由'全模拟(S类)'升级为'混合数据[R]/[S]',表4已逐行标注。",
+ "mapping_summary": {
+ "mapping_entries_total": 36,
+ "by_disposition": {
+ "必改": 9,
+ "建议改": 17,
+ "观察": 9,
+ "无需改": 1
+ },
+ "by_execution": {
+ "已执行": 30,
+ "部分执行": 4,
+ "未执行": 1,
+ "无需改": 1
+ },
+ "reconciliation_note": "配套 .md 第3部分‘动作清单’按 33 项口径列示(必改9/建议改16/观察8),将 M35(建议改,已执行)、M36(观察,未执行)、M34(无需改) 在 A1/changelog 单独处置;本 JSON 采用 36 项全口径,故‘建议改/观察’计数较 .md 各多 1。"
+ },
+ "arbitration_records": {
+ "opposing_conflicts": {
+ "count": 0,
+ "finding": "无同点反向冲突。两审严格限定于各自专长(5-A 排除写作/文献/结构/术语;5-B 排除法律/会计/案例事实/数据合理性),不存在方向相反判断,未启用反向裁决优先级链。"
+ },
+ "out_of_bounds_rejections": {
+ "count": 0,
+ "finding": "无越界否决项。5-B 在 6.3 提‘数据为模拟’时已在 companion_review_note 中将‘是否学术不端’让渡给 5-A,仅从写作局限立论,属互补而非跨界;5-A 对 CAR 显著性的意见在数据/统计域内,未侵入写作。"
+ },
+ "complementary_merges": [
+ {
+ "item": "M01 模拟数据",
+ "view_5a": "事实层:宣称真实来源构成学术不端嫌疑",
+ "view_5b": "写作层:研究局限未披露数据性质",
+ "ruling": "按更尖锐一方(5-A)执行:全文改标模拟+撤回实证显著性+6.3披露;两审交叉印证强化严重性"
+ },
+ {
+ "item": "M27/M28 CAR因果",
+ "view_5a": "数据真实前不应下显著结论",
+ "view_5b": "CAR=认可重组价值因果跳跃",
+ "ruling": "合并:CAR 改演示性、多因素表述,删除作为实证发现的显著性断言"
+ }
+ ],
+ "numbering_divergence_note": "表编号:5-A 以 表3-表7 顺序称引(将子表计为独立表),5-B 规范化为 表3(指标体系)/表4(财务对比,含a/b/c)/表5(CAR)。非反向,5-A 仅按出现顺序计数;依‘图表规范=5-B 域内’采纳 5-B 方案并全文回扫。"
+ },
+ "change_items": [
+ {
+ "id": "M01",
+ "location": "全文来源标注/摘要/5.4/6.3",
+ "type": "数据真实性/学术诚信",
+ "relation": "互补",
+ "tier": "必改",
+ "source": "双方",
+ "ruling": "全文改标模拟数据;撤回实证显著性;6.3披露",
+ "status": "已执行",
+ "script_loc": "DATA注释+build_abstract+build_chapter_5+build_chapter_6"
+ },
+ {
+ "id": "M02",
+ "location": "3.1.2、表1 R04",
+ "type": "法律条款引用",
+ "relation": "单方",
+ "tier": "必改",
+ "source": "5-A",
+ "ruling": "第62/65/71条分述;6个月价格归《收购管理办法》",
+ "status": "已执行",
+ "script_loc": "build_chapter_3+build_chapter_2"
+ },
+ {
+ "id": "M03",
+ "location": "摘要、4.2.2",
+ "type": "商誉金额口径",
+ "relation": "单方",
+ "tier": "必改",
+ "source": "5-A",
+ "ruling": "区分购买日新增259亿/期末余额289.34亿",
+ "status": "已执行",
+ "script_loc": "build_abstract+build_chapter_4"
+ },
+ {
+ "id": "M04",
+ "location": "3.1.3",
+ "type": "法规阈值",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "第12条三项门槛分述",
+ "status": "已执行",
+ "script_loc": "build_chapter_3"
+ },
+ {
+ "id": "M05",
+ "location": "3.1.1",
+ "type": "法规条文范围",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "2023公司法改第152-153条",
+ "status": "已执行",
+ "script_loc": "build_chapter_3"
+ },
+ {
+ "id": "M06",
+ "location": "4.3.2、表4(c)",
+ "type": "财务窗口口径",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "明确 T=公告年(2016)",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M07",
+ "location": "4.1.2/4.2.2/4.3.2",
+ "type": "事实精度",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "补2015-06-08/2016-05-18/2016-09-22等具体日",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M08",
+ "location": "表3 指标体系",
+ "type": "指标定义",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "EPS改归母口径",
+ "status": "已执行",
+ "script_loc": "build_chapter_5"
+ },
+ {
+ "id": "M09",
+ "location": "4.2.3",
+ "type": "会计准则补全",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "增商誉后续计量(不摊销/年测/不转回)",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M10",
+ "location": "4.2.2",
+ "type": "准则分工",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "增CAS20/CAS33分工",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M11",
+ "location": "4.2.2",
+ "type": "事实补充",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-A",
+ "ruling": "补汇率折算口径",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M12",
+ "location": "第1章(新增)",
+ "type": "结构完整性",
+ "relation": "单方",
+ "tier": "必改",
+ "source": "5-B",
+ "ruling": "新增1.3文献综述,原1.3→1.4",
+ "status": "已执行",
+ "script_loc": "build_chapter_1"
+ },
+ {
+ "id": "M13",
+ "location": "参考文献",
+ "type": "文献数量",
+ "relation": "单方",
+ "tier": "必改",
+ "source": "5-B",
+ "ruling": "补至16篇",
+ "status": "已执行",
+ "script_loc": "build_references"
+ },
+ {
+ "id": "M14",
+ "location": "参考文献",
+ "type": "文献时效",
+ "relation": "单方",
+ "tier": "必改",
+ "source": "5-B",
+ "ruling": "结构补足≥15;近5年文献交还作者(拒绝伪造)",
+ "status": "部分执行",
+ "script_loc": "build_references"
+ },
+ {
+ "id": "M15",
+ "location": "正文+参考文献",
+ "type": "引用对应性",
+ "relation": "单方",
+ "tier": "必改",
+ "source": "5-B",
+ "ruling": "3篇凑数文献于综述真实引用;补Yin(2018)",
+ "status": "已执行",
+ "script_loc": "build_chapter_1+build_references"
+ },
+ {
+ "id": "M16",
+ "location": "5.1-5.2",
+ "type": "图表编号",
+ "relation": "单方(5-B域)",
+ "tier": "必改",
+ "source": "5-B",
+ "ruling": "指标体系=表3/财务对比=表4/CAR=表5,全文回扫",
+ "status": "已执行",
+ "script_loc": "build_chapter_5"
+ },
+ {
+ "id": "M17",
+ "location": "4.1开头",
+ "type": "论证完整性",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "增案例选择三标准段",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M18",
+ "location": "3.2/6.2",
+ "type": "论证-背景陈列",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "保留3.2内容,6.2增中美制度回扣",
+ "status": "部分执行",
+ "script_loc": "build_chapter_6"
+ },
+ {
+ "id": "M19",
+ "location": "1.2、5.4",
+ "type": "引文格式",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "英文分号;Brown&Warner空格",
+ "status": "已执行",
+ "script_loc": "build_chapter_1+build_chapter_5"
+ },
+ {
+ "id": "M20",
+ "location": "2→3、5→6",
+ "type": "段落衔接",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "补章节过渡段(1→2由新增1.3承接)",
+ "status": "已执行",
+ "script_loc": "build_chapter_3+build_chapter_6"
+ },
+ {
+ "id": "M21",
+ "location": "参考文献[英]",
+ "type": "著录格式DOI",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "Andrade、Brown&Warner补DOI;余者交还核验",
+ "status": "部分执行",
+ "script_loc": "build_references"
+ },
+ {
+ "id": "M22",
+ "location": "第五章",
+ "type": "论证-专题弱化",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "4.2.2/4.2.3强化口径,未设独立小节(避免重排引入新偏差)",
+ "status": "部分执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M23",
+ "location": "第2章/6.1",
+ "type": "论证-理论悬置",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "6.1增市场势力/交易费用/代理理论回扣",
+ "status": "已执行",
+ "script_loc": "build_chapter_6"
+ },
+ {
+ "id": "M24",
+ "location": "封面",
+ "type": "结构完整性",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "增英文标题页",
+ "status": "已执行",
+ "script_loc": "build_cover"
+ },
+ {
+ "id": "M25",
+ "location": "封面",
+ "type": "结构完整性",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "增学院/专业/学号/姓名/指导教师字段,值交还作者",
+ "status": "已执行",
+ "script_loc": "build_cover"
+ },
+ {
+ "id": "M26",
+ "location": "摘要",
+ "type": "写作-贡献",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "摘要增边际贡献句",
+ "status": "已执行",
+ "script_loc": "build_abstract"
+ },
+ {
+ "id": "M27",
+ "location": "5.3",
+ "type": "论证-因果",
+ "relation": "互补",
+ "tier": "建议改",
+ "source": "双方",
+ "ruling": "杜邦归因软化为‘可能归因…需验证’",
+ "status": "已执行",
+ "script_loc": "build_chapter_5"
+ },
+ {
+ "id": "M28",
+ "location": "5.4",
+ "type": "论证-因果跳跃",
+ "relation": "互补",
+ "tier": "必改",
+ "source": "双方",
+ "ruling": "CAR改多因素、演示性表述,删实证显著性断言",
+ "status": "已执行",
+ "script_loc": "build_chapter_5"
+ },
+ {
+ "id": "M29",
+ "location": "4.3.2",
+ "type": "术语统一",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "统一‘权益结合法(账面价值法)’",
+ "status": "已执行",
+ "script_loc": "build_chapter_4"
+ },
+ {
+ "id": "M30",
+ "location": "5.4标题",
+ "type": "术语规范",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "标题补CAR中文全称",
+ "status": "已执行",
+ "script_loc": "build_chapter_5"
+ },
+ {
+ "id": "M31",
+ "location": "6.3",
+ "type": "论证-局限",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "6.3增幸存者偏差",
+ "status": "已执行",
+ "script_loc": "build_chapter_6"
+ },
+ {
+ "id": "M32",
+ "location": "6.1",
+ "type": "论证-以偏概全",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-B",
+ "ruling": "6.1补美的T年净利率下降事实",
+ "status": "已执行",
+ "script_loc": "build_chapter_6"
+ },
+ {
+ "id": "M33",
+ "location": "英文Abstract",
+ "type": "写作-表达",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-B",
+ "ruling": "改business combinations not under common control",
+ "status": "已执行",
+ "script_loc": "build_abstract_en"
+ },
+ {
+ "id": "M34",
+ "location": "3.1.1",
+ "type": "法规-澄清",
+ "relation": "单方",
+ "tier": "无需改",
+ "source": "5-A",
+ "ruling": "终稿原文已标‘公司分立’,5-A关切已满足",
+ "status": "无需改",
+ "script_loc": null
+ },
+ {
+ "id": "M35",
+ "location": "3.1.1",
+ "type": "法规-补充",
+ "relation": "单方",
+ "tier": "建议改",
+ "source": "5-A",
+ "ruling": "增第142条现金选择权注",
+ "status": "已执行",
+ "script_loc": "build_chapter_3"
+ },
+ {
+ "id": "M36",
+ "location": "表2/3.2",
+ "type": "可核验性",
+ "relation": "单方",
+ "tier": "观察",
+ "source": "5-A",
+ "ruling": "表2已含§条号;全面补注U.S. Code列为可选,未执行",
+ "status": "未执行",
+ "script_loc": null
+ }
+ ],
+ "partial_execution_reasons": {
+ "M14": "为守与M01同源的诚信原则,拒绝伪造2022-2026精确引文;已增Yin(2018)/MacKinlay(1997)/葛家澍林志军(2015)/Jensen&Ruback(1983)至16篇并消除凑数/漏引,近5年占比仍为0,交还作者凭CNKI补2-3篇。",
+ "M18": "选择仅做6.2回扣、保留3.2内容,因3.2中美对比是Phase 2明确要求的核心维度,删减违背上游契约并可能触发新的覆盖不足问题。",
+ "M21": "仅对确有把握的Andrade、Brown&Warner补DOI;其余为书籍/手册章节/JEL综述或DOI不确定者,不臆造,交还作者核验。",
+ "M22": "未新设独立小节,避免在未被批评章节大幅重排而引入新勾稽偏差(遵守不擅自扩张规则)。"
+ },
+ "self_check": {
+ "review_5a_dimensions": {
+ "法律": "已修正《证券法》/《重组办法》/《公司法》;第175条已满足、第142条已补注",
+ "会计": "合并类型判定保留;商誉双口径、后续计量、CAS20/33、EPS归母已落实",
+ "案例": "关键日期到日、宝钢T年口径已澄清",
+ "数据": "已如实改标模拟、撤回实证显著性;数值未改,内部勾稽维持自洽"
+ },
+ "review_5b_dimensions": {
+ "结构": "新增1.3文献综述;封面字段+英文标题(具体值交还作者)",
+ "写作": "引文格式、凑数/漏引、摘要贡献已落实",
+ "论证": "案例标准、过渡、理论回扣、模拟数据披露、幸存者偏差、杜邦/CAR软化已落实;3.2以回扣替代精简",
+ "文献": "16篇/Yin已补/DOI部分;近5年待补",
+ "术语图表": "表编号、CAR中文全称、权益结合法统一全部已改"
+ },
+ "unfulfilled_items_disclosed": [
+ "M14近5年文献",
+ "M21部分DOI",
+ "M18不删3.2",
+ "M22无独立小节",
+ "M25封面具体值",
+ "M36 U.S.Code补注"
+ ]
+ },
+ "scoring_table": {
+ "weights": {
+ "5-A": 0.6,
+ "5-B": 0.4
+ },
+ "dimensions": [
+ {
+ "dimension": "法律法规引用准确性",
+ "owner": "5-A",
+ "max": 25,
+ "before": 17,
+ "after": 22
+ },
+ {
+ "dimension": "会计准则适用与处理",
+ "owner": "5-A",
+ "max": 25,
+ "before": 21,
+ "after": 23
+ },
+ {
+ "dimension": "案例事实与时间线",
+ "owner": "5-A",
+ "max": 25,
+ "before": 20,
+ "after": 22
+ },
+ {
+ "dimension": "数据合理性与勾稽",
+ "owner": "5-A",
+ "max": 15,
+ "before": 5,
+ "after": 8
+ },
+ {
+ "dimension": "整体严谨性",
+ "owner": "5-A",
+ "max": 10,
+ "before": 5,
+ "after": 7
+ },
+ {
+ "dimension": "论文结构完整性",
+ "owner": "5-B",
+ "max": 15,
+ "before": 9,
+ "after": 13
+ },
+ {
+ "dimension": "学术写作规范",
+ "owner": "5-B",
+ "max": 25,
+ "before": 19,
+ "after": 22
+ },
+ {
+ "dimension": "论证逻辑严谨性",
+ "owner": "5-B",
+ "max": 25,
+ "before": 20,
+ "after": 23
+ },
+ {
+ "dimension": "参考文献体系",
+ "owner": "5-B",
+ "max": 20,
+ "before": 12,
+ "after": 15
+ },
+ {
+ "dimension": "术语与图表规范",
+ "owner": "5-B",
+ "max": 15,
+ "before": 11,
+ "after": 14
+ }
+ ],
+ "subtotals": {
+ "5-A": {
+ "before": 68,
+ "after": 82,
+ "max": 100
+ },
+ "5-B": {
+ "before": 71,
+ "after": 87,
+ "max": 100
+ }
+ },
+ "weighted_total": {
+ "before": 69.2,
+ "after": 84.0,
+ "max": 100
+ }
+ },
+ "final_signature": {
+ "project": "中国上市公司并购重组成功案例研究",
+ "version": "v2（Phase 6 修订版）",
+ "basis": "Phase 5-A(GPT-5.5,0.60)+Phase 5-B(GLM-5.1,0.40)双盲审+本阶段整合裁决",
+ "academic_tier": "院校会计学本科毕业论文答辩前评议",
+ "verdict": "修改后通过",
+ "weighted_score": 84.0,
+ "score_before": 69.2,
+ "arbitrator": "Claude-opus-4.7（Phase 6 整合裁决角色）",
+ "date": "2026-05-29",
+ "verdict_rationale": "写作与合规缺陷已系统修复;2026-05-30已通过akshare完成核心财务指标真实化(表4营收/净利润/商誉/ROE→[R]),但CAR及衍生指标仍为[S];近5年文献仍为零,故维持修改后通过而非直接通过。"
+ },
+ "residual_items": [
+ {
+ "id": "R1",
+ "item": "以真实Wind/CSMAR/年报及交易数据替换表3-表5、图1-图2全部模拟数据并保留底稿,据此重算CAR与显著性",
+ "level": "必改",
+ "status": "部分完成(2026-05-30)",
+ "progress": "已通过akshare/东方财富替换表4营收/净利润/商誉/ROE为真实公开数据[R];CAR及[S]标识衍生指标仍待作者以Wind/CSMAR完成",
+ "note": "表4已逐行标注[R]/[S]数据标识;本环境无Wind/CSMAR数据库访问权限"
+ },
+ {
+ "id": "R2",
+ "item": "补2-3篇2022-2026年CSSCI/SSCI文献使近5年占比≥30%",
+ "level": "必改",
+ "note": "为守诚信红线未伪造近年引文;总数已达16篇"
+ },
+ {
+ "id": "R3",
+ "item": "为Betton(2014)、Harford(2014)、MacKinlay(1997)、Yin(2018)核验补全DOI/出版信息",
+ "level": "建议",
+ "note": "不臆造DOI"
+ },
+ {
+ "id": "R4",
+ "item": "填写封面学院、专业、学号、姓名、指导教师具体信息",
+ "level": "建议",
+ "note": "作者个人信息,模板字段已就位"
+ },
+ {
+ "id": "R5",
+ "item": "可将商誉分析提炼为5.x独立小节并酌情精简3.2美国制度纯陈述段",
+ "level": "观察",
+ "note": "当前以口径强化+6.2回扣替代"
+ }
+ ],
+ "academic_integrity_handling": {
+ "issue": "5-A 指出宣称 Wind/CSMAR/年报来源但实为模拟,构成学术不端嫌疑",
+ "disposition": "必改",
+ "actions": [
+ "全文数据来源已升级为混合数据[R]/[S]:真实公开数据(akshare/年报)标[R],估算值标[S],表4已逐行标注数据标识",
+ "撤回'均在5%水平显著''认可重组价值'等作为实证发现的断言,改为演示性、多因素表述",
+ "摘要、英文摘要、6.3研究局限三处已更新为混合数据披露"
+ ],
+ "result": "诚信红线已解除;2026-05-30核心财务指标已真实化(akshare),剩余CAR及衍生指标[S]为质量提升项(R1),不再属诚信问题。"
+ },
+ "deliverables": [
+ {
+ "file": "phase6_integration_review.md",
+ "status": "已产出",
+ "desc": "7部分整合审查报告"
+ },
+ {
+ "file": "phase6_integration_review.json",
+ "status": "本文件",
+ "desc": "整合审查报告结构化版"
+ },
+ {
+ "file": "中国上市公司并购重组成功案例研究_v2.docx",
+ "status": "已生成",
+ "desc": "修订后终稿(约22,558字符),经脚本重生成未手工编辑"
+ },
+ {
+ "file": "generate_docx_v2.py",
+ "status": "已生成",
+ "desc": "与v2.docx一一对应,可重复执行"
+ },
+ {
+ "file": "中国上市公司并购重组成功案例研究.docx (v1)",
+ "status": "保留",
+ "desc": "历史版本未覆盖"
+ },
+ {
+ "file": "generate_docx.py (v1)",
+ "status": "保留",
+ "desc": "历史版本未覆盖"
+ },
+ {
+ "file": "phase6_diff_v1_to_v2.md",
+ "status": "已产出",
+ "desc": "章节级diff摘要"
+ }
+ ],
+ "generated_files": [
+ "phase6_integration_review.md",
+ "phase6_integration_review.json"
+ ]
 }

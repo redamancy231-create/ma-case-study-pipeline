@@ -1,251 +1,251 @@
 {
-  "phase": "8-E",
-  "task": "模拟答辩成绩单",
-  "scorer": "Qwen3.7-Max",
-  "scorer_role": "校外答辩评分专家（零流水线卷入）",
-  "created_date": "2026-05-31",
-  "paper_reference": {
-    "file": "中国上市公司并购重组成功案例研究_v2.md",
-    "final_score_phase7": 84.0,
-    "verdict_phase7": "修改后通过"
-  },
-  "paper_independent_impression": "结构完整、数据标注诚实的211本科案例研究。框架搭建到位（制度—会计—绩效—市场四层），但分析深度停留在描述层：CAR全为模拟、杜邦三因子乘积≠ROE、商誉金额内部不一致、无现金流指标和对照组。84分终审评分合理。",
-  "tier_1_per_reviewer_dimensions": {
-    "weight": 0.60,
-    "reviewers": [
-      {
-        "reviewer": "答辩主席",
-        "model": "Kimi-k2.6",
-        "phase": "8-A",
-        "original_total": null,
-        "original_total_note": "评审原分留空（设计为答辩现场由主席填写）",
-        "my_total": 86,
-        "deviation": null,
-        "dimensions": [
-          {
-            "name": "研究设计的完整性与案例选择逻辑",
-            "max": 35,
-            "reviewer_score": null,
-            "my_score": 30,
-            "deviation": null,
-            "key_evidence": "Q1准确识别2+1结构政策驱动力同质性，优先补境内非同一控制案例；Q4给出四维度成功操作化定义并以华泽钴镍为例说明标准筛选差异"
-          },
-          {
-            "name": "学术贡献与文献对话",
-            "max": 30,
-            "reviewer_score": null,
-            "my_score": 24,
-            "deviation": null,
-            "key_evidence": "Q2提出主解释理论/风险约束理论二分重构，主动提出矩阵化改造方案；交易费用理论在宝钢案例中论证略单薄"
-          },
-          {
-            "name": "学术诚信与数据演进",
-            "max": 25,
-            "reviewer_score": null,
-            "my_score": 23,
-            "deviation": null,
-            "key_evidence": "Q3为整场最出色回答之一（严格溯源规则会让论文更受限但质量更高，具体指出CAR/杜邦/表4各自降级方式）；Q5坦诚承认无CSV底稿、不能现场指到akshare返回行列"
-          },
-          {
-            "name": "结构性自我认知",
-            "max": 10,
-            "reviewer_score": null,
-            "my_score": 9,
-            "deviation": null,
-            "key_evidence": "Q6选择Phase 1锁定数据溯源规则为唯一修改项，理由清晰（诚信是底线优先于质量），推演了连锁改善效果"
-          }
-        ]
-      },
-      {
-        "reviewer": "会计学领域专家",
-        "model": "GLM-5.1",
-        "phase": "8-B",
-        "original_total": 60,
-        "my_total": 67,
-        "deviation": 7,
-        "deviation_rationale": "评审原分60评的是论文现状，我的评分67反映答辩中展示的认知深度。学生的知识储备优于论文呈现，答辩追问释放了论文中未展开的理解层次。",
-        "dimensions": [
-          {
-            "name": "合并类型判定与会计方法",
-            "max": 35,
-            "reviewer_score": 21,
-            "my_score": 23,
-            "deviation": 2,
-            "key_evidence": "Q1正确构建控制链方向并识别追溯重述口径问题；Q2识别PPA问题并引用CAS 33第48-50条分步实现控制；但无法报出每层持股比例和PPA具体构成"
-          },
-          {
-            "name": "商誉确认/后续计量/减值",
-            "max": 30,
-            "reviewer_score": 18,
-            "my_score": 20,
-            "deviation": 2,
-            "key_evidence": "Q3给出三类差额来源分析（汇率折算/PPA调整/其他收购）并提出勾稽表方案；Q4正确质疑正增长率假设与实际收入下降的矛盾，分析不得转回规则对周期性行业的两难"
-          },
-          {
-            "name": "财务指标分析质量",
-            "max": 20,
-            "reviewer_score": 12,
-            "my_score": 13,
-            "deviation": 1,
-            "key_evidence": "Q5直接称杜邦三因子不自洽为硬伤，识别口径混用原因；Q6区分会计并表效应与真实经济协同的三类来源，提出备考合并报表+吨钢数据+同业对照的改进方法"
-          },
-          {
-            "name": "准则知识准确性与完整性",
-            "max": 15,
-            "reviewer_score": 9,
-            "my_score": 11,
-            "deviation": 2,
-            "key_evidence": "Q7准确阐述CAS 33第22条视同一体存续要求及追溯调整影响，讨论库卡资产组认定两种路径（整体vs业务线拆分）及商誉分摊；准则知识储备明显优于论文呈现"
-          }
-        ]
-      },
-      {
-        "reviewer": "实证方法论专家",
-        "model": "Claude-opus-4.7",
-        "phase": "8-C",
-        "original_total": 56,
-        "original_total_note": "基线评分（论文方法论现状），prompt明确说明答辩中可显著上修",
-        "my_total": 76,
-        "deviation": 20,
-        "deviation_rationale": "评审基线56评论文现状，+20分反映学生在Q1-Q8中展示了公式推导、微观结构分析、DID设计和稳健性概念纠正等远超论文呈现的方法论认知。",
-        "dimensions": [
-          {
-            "name": "CAR事件研究设计",
-            "max": 35,
-            "reviewer_score": 20,
-            "my_score": 26,
-            "deviation": 6,
-            "key_evidence": "Q1正确写出Brown-Warner公式并承认σ不一致；Q2全面回应停牌/涨跌停对iid的破坏，辨析BMP在单事件下适用性弱；Q3承认单因子风险并明确测量对象为收购方美的A股"
-          },
-          {
-            "name": "财务指标体系设计",
-            "max": 25,
-            "reviewer_score": 14,
-            "my_score": 19,
-            "deviation": 5,
-            "key_evidence": "Q4直接承认现金流指标缺失是体系短板，提出含金量比率；Q5正确解释换股EPS加权股数时点处理和追溯重述要求，对[S]噪声放大主张锚定[R]科目"
-          },
-          {
-            "name": "杜邦分解与因果推断",
-            "max": 25,
-            "reviewer_score": 13,
-            "my_score": 18,
-            "deviation": 5,
-            "key_evidence": "Q6明确承认杜邦是恒等式非因果工具，识别权益乘数口径漂移（归母vs全部权益）；Q7直接承认无反事实无法做因果识别，勾勒DID设计并坦承实施困难，主张措辞回扫"
-          },
-          {
-            "name": "研究方法的自我认知",
-            "max": 15,
-            "reviewer_score": 9,
-            "my_score": 13,
-            "deviation": 4,
-            "key_evidence": "Q8主动纠正稳健性误解（换窗宽≠稳健性），承认长窗口CAR更大是漂移警讯；二选一明确选行业对照组（因果命题优先于统计精度）；给出真实数据到位后三步排序"
-          }
-        ]
-      }
-    ],
-    "reviewer_mean": 76.3,
-    "weighted_score": 45.8
-  },
-  "tier_2_cross_cutting_dimensions": {
-    "weight": 0.40,
-    "total_raw": 32,
-    "total_max": 40,
-    "normalized_to_100": 80.0,
-    "weighted_score": 32.0,
-    "weighted_score_formula": "(total_raw / total_max) × 100 × weight = (32/40)×100 × 0.40 = 80.0 × 0.40 = 32.0",
-    "dimensions": [
-      {
-        "name": "跨评审逻辑一致性",
-        "max": 15,
-        "score": 12,
-        "summary": "未发现系统性迎合模式。数据溯源、因果推断、杜邦分析三层面上三位评审前的回答一致。扣3分因主席Q4成功定义为事后合理化、商誉不一致暴露论文比学生暗示的更脆弱。"
-      },
-      {
-        "name": "答辩中的学习与成长",
-        "max": 10,
-        "score": 8,
-        "summary": "从主席阶段'展示已知'→会计专家阶段'承认硬伤'→方法论专家阶段'纠正自身'的弧线清晰。扣2分因起点偏高使成长空间有限，部分承认属准备不足而非学习信号。"
-      },
-      {
-        "name": "局限认知的诚实度",
-        "max": 10,
-        "score": 8,
-        "summary": "未使用回避模板，每个局限承认伴随具体改进路径。开场陈述三项局限前置是策略亮点。扣2分因总结陈述与Q6重复（认知在主席阶段定型），且文献综述短板从未主动提及。"
-      },
-      {
-        "name": "口头表达与论证组织",
-        "max": 5,
-        "score": 4,
-        "summary": "先结论后依据模式一致，具体引用充分（表号/数字/准则条文），被追问时能收敛。扣1分因部分回答篇幅偏长、会计假设讨论停留在'应知道'而非'已查证'。"
-      }
-    ]
-  },
-  "final_score": {
-    "tier_1_weighted": 45.8,
-    "tier_2_weighted": 32.0,
-    "total": 77.8,
-    "rounded": 78,
-    "grade": "中等",
-    "grade_scale": {
-      "优秀": "90+",
-      "良好": "80-89",
-      "中等": "70-79",
-      "及格": "60-69",
-      "不通过": "<60"
-    }
-  },
-  "calibration_check": {
-    "check_type": "粗略方向性合理性参考（非同量纲数值一致性校验）",
-    "metric_caveat": "paper_score 测论文质量、defense_score 测答辩人表现，属不同构念/不同量纲，不应期望数值相等；gap 非'偏离基准'",
-    "paper_score": 84.0,
-    "defense_score": 78.0,
-    "gap": -6.0,
-    "same_band": true,
-    "same_band_note": "84（良好）与78（中等）处相邻档且方向可解释，故合理；判定依据是'是否同档+方向可否解释'而非固定±X分阈值",
-    "direction": "答辩略低于论文——论文84分含诚实标注加分，答辩暴露会计精确度和数据底稿实操短板",
-    "anomaly_warning": false
-  },
-  "self_check_anchoring": {
-    "systematic_deviation": {
-      "direction": "整体偏松（相对于评审论文基线分）",
-      "explanation": "评分对象不同：评审原分/基线分评论文现状，我评答辩中学生的认知展示。两种角度均有合理性。",
-      "data": {
-        "chair": {"reviewer": null, "mine": 86, "note": "原分留空"},
-        "accounting": {"reviewer": 60, "mine": 67, "delta": 7},
-        "methodology": {"reviewer": 56, "mine": 76, "delta": 20}
-      }
-    },
-    "max_single_dimension_deviation": {
-      "dimension": "CAR事件研究设计（方法论专家）",
-      "deviation": 6,
-      "rationale": "学生写出Brown-Warner公式、承认σ不一致、识别停牌/涨跌停对iid破坏、辨析BMP适用性，展示了远超论文呈现的方法论理解"
-    },
-    "independence_test": {
-      "would_scores_change": "不会显著变化",
-      "most_independent_dimensions": "主席维度（原分留空）、跨维度综合评分（行为模式分析）、方法论专家维度（回答质量可独立判断）",
-      "most_dependent_dimensions": "会计专家维度——GLM的逐题评分帮助校准了'论文现状vs答辩认知'的差距幅度；无此锚可能给70-72"
-    }
-  },
-  "real_defense_prediction": {
-    "verdict": "通过",
-    "grade": "中等（78分）",
-    "note": "真实答辩中评审可能更宽容，会计专家与方法论专家之间的争议（论文硬伤vs认知深度）会由主席调和",
-    "max_controversy": "方法论专家主张80+（认知深度上修）vs会计专家坚持65-70（PPA/杜邦/商誉为论文硬伤），最终可能'修改后通过'",
-    "conditions": "补商誉勾稽表、统一杜邦口径、补控制链条、保存数据底稿，限期提交修订稿"
-  },
-  "key_findings": [
-    "答辩表现与论文质量存在正向差距——学生知道应该怎么做但受条件限制没做到，不是不知道怎么做",
-    "会计精确度是最薄弱环节——控制链持股比例、PPA构成、杜邦三因子不自洽均暴露'知道方向但说不出数字'的短板",
-    "数据底稿不完整是最大实操风险——无CSV底稿、不能现场指到akshare返回行列",
-    "学生未主动提及文献综述短板——16篇参考文献、缺近五年CSSCI/SSCI，整场答辩未涉及",
-    "成长弧线方向正确但幅度有限——从'谨慎'到'坦诚'而非从'不懂'到'懂'",
-    "开场陈述三项局限前置是有效期望管理策略"
-  ],
-  "paired_files": {
-    "prompt": "phase8e_scoring_qwen_prompt.md",
-    "config": "phase8e_scoring_qwen_config.json",
-    "report_md": "phase8e_defense_score_report.md",
-    "report_json": "phase8e_defense_score_report.json"
-  }
+ "phase": "8-E",
+ "task": "模拟答辩成绩单",
+ "scorer": "Qwen3.7-Max",
+ "scorer_role": "校外答辩评分专家（零流水线卷入）",
+ "created_date": "2026-05-31",
+ "paper_reference": {
+ "file": "中国上市公司并购重组成功案例研究_v2.md",
+ "final_score_phase7": 84.0,
+ "verdict_phase7": "修改后通过"
+ },
+ "paper_independent_impression": "结构完整、数据标注诚实的本科案例研究。框架搭建到位（制度—会计—绩效—市场四层），但分析深度停留在描述层：CAR全为模拟、杜邦三因子乘积≠ROE、商誉金额内部不一致、无现金流指标和对照组。84分终审评分合理。",
+ "tier_1_per_reviewer_dimensions": {
+ "weight": 0.60,
+ "reviewers": [
+ {
+ "reviewer": "答辩主席",
+ "model": "Kimi-k2.6",
+ "phase": "8-A",
+ "original_total": null,
+ "original_total_note": "评审原分留空（设计为答辩现场由主席填写）",
+ "my_total": 86,
+ "deviation": null,
+ "dimensions": [
+ {
+ "name": "研究设计的完整性与案例选择逻辑",
+ "max": 35,
+ "reviewer_score": null,
+ "my_score": 30,
+ "deviation": null,
+ "key_evidence": "Q1准确识别2+1结构政策驱动力同质性，优先补境内非同一控制案例；Q4给出四维度成功操作化定义并以华泽钴镍为例说明标准筛选差异"
+ },
+ {
+ "name": "学术贡献与文献对话",
+ "max": 30,
+ "reviewer_score": null,
+ "my_score": 24,
+ "deviation": null,
+ "key_evidence": "Q2提出主解释理论/风险约束理论二分重构，主动提出矩阵化改造方案；交易费用理论在宝钢案例中论证略单薄"
+ },
+ {
+ "name": "学术诚信与数据演进",
+ "max": 25,
+ "reviewer_score": null,
+ "my_score": 23,
+ "deviation": null,
+ "key_evidence": "Q3为整场最出色回答之一（严格溯源规则会让论文更受限但质量更高，具体指出CAR/杜邦/表4各自降级方式）；Q5坦诚承认无CSV底稿、不能现场指到akshare返回行列"
+ },
+ {
+ "name": "结构性自我认知",
+ "max": 10,
+ "reviewer_score": null,
+ "my_score": 9,
+ "deviation": null,
+ "key_evidence": "Q6选择Phase 1锁定数据溯源规则为唯一修改项，理由清晰（诚信是底线优先于质量），推演了连锁改善效果"
+ }
+ ]
+ },
+ {
+ "reviewer": "会计学领域专家",
+ "model": "GLM-5.1",
+ "phase": "8-B",
+ "original_total": 60,
+ "my_total": 67,
+ "deviation": 7,
+ "deviation_rationale": "评审原分60评的是论文现状，我的评分67反映答辩中展示的认知深度。学生的知识储备优于论文呈现，答辩追问释放了论文中未展开的理解层次。",
+ "dimensions": [
+ {
+ "name": "合并类型判定与会计方法",
+ "max": 35,
+ "reviewer_score": 21,
+ "my_score": 23,
+ "deviation": 2,
+ "key_evidence": "Q1正确构建控制链方向并识别追溯重述口径问题；Q2识别PPA问题并引用CAS 33第48-50条分步实现控制；但无法报出每层持股比例和PPA具体构成"
+ },
+ {
+ "name": "商誉确认/后续计量/减值",
+ "max": 30,
+ "reviewer_score": 18,
+ "my_score": 20,
+ "deviation": 2,
+ "key_evidence": "Q3给出三类差额来源分析（汇率折算/PPA调整/其他收购）并提出勾稽表方案；Q4正确质疑正增长率假设与实际收入下降的矛盾，分析不得转回规则对周期性行业的两难"
+ },
+ {
+ "name": "财务指标分析质量",
+ "max": 20,
+ "reviewer_score": 12,
+ "my_score": 13,
+ "deviation": 1,
+ "key_evidence": "Q5直接称杜邦三因子不自洽为硬伤，识别口径混用原因；Q6区分会计并表效应与真实经济协同的三类来源，提出备考合并报表+吨钢数据+同业对照的改进方法"
+ },
+ {
+ "name": "准则知识准确性与完整性",
+ "max": 15,
+ "reviewer_score": 9,
+ "my_score": 11,
+ "deviation": 2,
+ "key_evidence": "Q7准确阐述CAS 33第22条视同一体存续要求及追溯调整影响，讨论库卡资产组认定两种路径（整体vs业务线拆分）及商誉分摊；准则知识储备明显优于论文呈现"
+ }
+ ]
+ },
+ {
+ "reviewer": "实证方法论专家",
+ "model": "Claude-opus-4.7",
+ "phase": "8-C",
+ "original_total": 56,
+ "original_total_note": "基线评分（论文方法论现状），prompt明确说明答辩中可显著上修",
+ "my_total": 76,
+ "deviation": 20,
+ "deviation_rationale": "评审基线56评论文现状，+20分反映学生在Q1-Q8中展示了公式推导、微观结构分析、DID设计和稳健性概念纠正等远超论文呈现的方法论认知。",
+ "dimensions": [
+ {
+ "name": "CAR事件研究设计",
+ "max": 35,
+ "reviewer_score": 20,
+ "my_score": 26,
+ "deviation": 6,
+ "key_evidence": "Q1正确写出Brown-Warner公式并承认σ不一致；Q2全面回应停牌/涨跌停对iid的破坏，辨析BMP在单事件下适用性弱；Q3承认单因子风险并明确测量对象为收购方美的A股"
+ },
+ {
+ "name": "财务指标体系设计",
+ "max": 25,
+ "reviewer_score": 14,
+ "my_score": 19,
+ "deviation": 5,
+ "key_evidence": "Q4直接承认现金流指标缺失是体系短板，提出含金量比率；Q5正确解释换股EPS加权股数时点处理和追溯重述要求，对[S]噪声放大主张锚定[R]科目"
+ },
+ {
+ "name": "杜邦分解与因果推断",
+ "max": 25,
+ "reviewer_score": 13,
+ "my_score": 18,
+ "deviation": 5,
+ "key_evidence": "Q6明确承认杜邦是恒等式非因果工具，识别权益乘数口径漂移（归母vs全部权益）；Q7直接承认无反事实无法做因果识别，勾勒DID设计并坦承实施困难，主张措辞回扫"
+ },
+ {
+ "name": "研究方法的自我认知",
+ "max": 15,
+ "reviewer_score": 9,
+ "my_score": 13,
+ "deviation": 4,
+ "key_evidence": "Q8主动纠正稳健性误解（换窗宽≠稳健性），承认长窗口CAR更大是漂移警讯；二选一明确选行业对照组（因果命题优先于统计精度）；给出真实数据到位后三步排序"
+ }
+ ]
+ }
+ ],
+ "reviewer_mean": 76.3,
+ "weighted_score": 45.8
+ },
+ "tier_2_cross_cutting_dimensions": {
+ "weight": 0.40,
+ "total_raw": 32,
+ "total_max": 40,
+ "normalized_to_100": 80.0,
+ "weighted_score": 32.0,
+ "weighted_score_formula": "(total_raw / total_max) × 100 × weight = (32/40)×100 × 0.40 = 80.0 × 0.40 = 32.0",
+ "dimensions": [
+ {
+ "name": "跨评审逻辑一致性",
+ "max": 15,
+ "score": 12,
+ "summary": "未发现系统性迎合模式。数据溯源、因果推断、杜邦分析三层面上三位评审前的回答一致。扣3分因主席Q4成功定义为事后合理化、商誉不一致暴露论文比学生暗示的更脆弱。"
+ },
+ {
+ "name": "答辩中的学习与成长",
+ "max": 10,
+ "score": 8,
+ "summary": "从主席阶段'展示已知'→会计专家阶段'承认硬伤'→方法论专家阶段'纠正自身'的弧线清晰。扣2分因起点偏高使成长空间有限，部分承认属准备不足而非学习信号。"
+ },
+ {
+ "name": "局限认知的诚实度",
+ "max": 10,
+ "score": 8,
+ "summary": "未使用回避模板，每个局限承认伴随具体改进路径。开场陈述三项局限前置是策略亮点。扣2分因总结陈述与Q6重复（认知在主席阶段定型），且文献综述短板从未主动提及。"
+ },
+ {
+ "name": "口头表达与论证组织",
+ "max": 5,
+ "score": 4,
+ "summary": "先结论后依据模式一致，具体引用充分（表号/数字/准则条文），被追问时能收敛。扣1分因部分回答篇幅偏长、会计假设讨论停留在'应知道'而非'已查证'。"
+ }
+ ]
+ },
+ "final_score": {
+ "tier_1_weighted": 45.8,
+ "tier_2_weighted": 32.0,
+ "total": 77.8,
+ "rounded": 78,
+ "grade": "中等",
+ "grade_scale": {
+ "优秀": "90+",
+ "良好": "80-89",
+ "中等": "70-79",
+ "及格": "60-69",
+ "不通过": "<60"
+ }
+ },
+ "calibration_check": {
+ "check_type": "粗略方向性合理性参考（非同量纲数值一致性校验）",
+ "metric_caveat": "paper_score 测论文质量、defense_score 测答辩人表现，属不同构念/不同量纲，不应期望数值相等；gap 非'偏离基准'",
+ "paper_score": 84.0,
+ "defense_score": 78.0,
+ "gap": -6.0,
+ "same_band": true,
+ "same_band_note": "84（良好）与78（中等）处相邻档且方向可解释，故合理；判定依据是'是否同档+方向可否解释'而非固定±X分阈值",
+ "direction": "答辩略低于论文——论文84分含诚实标注加分，答辩暴露会计精确度和数据底稿实操短板",
+ "anomaly_warning": false
+ },
+ "self_check_anchoring": {
+ "systematic_deviation": {
+ "direction": "整体偏松（相对于评审论文基线分）",
+ "explanation": "评分对象不同：评审原分/基线分评论文现状，我评答辩中学生的认知展示。两种角度均有合理性。",
+ "data": {
+ "chair": {"reviewer": null, "mine": 86, "note": "原分留空"},
+ "accounting": {"reviewer": 60, "mine": 67, "delta": 7},
+ "methodology": {"reviewer": 56, "mine": 76, "delta": 20}
+ }
+ },
+ "max_single_dimension_deviation": {
+ "dimension": "CAR事件研究设计（方法论专家）",
+ "deviation": 6,
+ "rationale": "学生写出Brown-Warner公式、承认σ不一致、识别停牌/涨跌停对iid破坏、辨析BMP适用性，展示了远超论文呈现的方法论理解"
+ },
+ "independence_test": {
+ "would_scores_change": "不会显著变化",
+ "most_independent_dimensions": "主席维度（原分留空）、跨维度综合评分（行为模式分析）、方法论专家维度（回答质量可独立判断）",
+ "most_dependent_dimensions": "会计专家维度——GLM的逐题评分帮助校准了'论文现状vs答辩认知'的差距幅度；无此锚可能给70-72"
+ }
+ },
+ "real_defense_prediction": {
+ "verdict": "通过",
+ "grade": "中等（78分）",
+ "note": "真实答辩中评审可能更宽容，会计专家与方法论专家之间的争议（论文硬伤vs认知深度）会由主席调和",
+ "max_controversy": "方法论专家主张80+（认知深度上修）vs会计专家坚持65-70（PPA/杜邦/商誉为论文硬伤），最终可能'修改后通过'",
+ "conditions": "补商誉勾稽表、统一杜邦口径、补控制链条、保存数据底稿，限期提交修订稿"
+ },
+ "key_findings": [
+ "答辩表现与论文质量存在正向差距——学生知道应该怎么做但受条件限制没做到，不是不知道怎么做",
+ "会计精确度是最薄弱环节——控制链持股比例、PPA构成、杜邦三因子不自洽均暴露'知道方向但说不出数字'的短板",
+ "数据底稿不完整是最大实操风险——无CSV底稿、不能现场指到akshare返回行列",
+ "学生未主动提及文献综述短板——16篇参考文献、缺近五年CSSCI/SSCI，整场答辩未涉及",
+ "成长弧线方向正确但幅度有限——从'谨慎'到'坦诚'而非从'不懂'到'懂'",
+ "开场陈述三项局限前置是有效期望管理策略"
+ ],
+ "paired_files": {
+ "prompt": "phase8e_scoring_qwen_prompt.md",
+ "config": "phase8e_scoring_qwen_config.json",
+ "report_md": "phase8e_defense_score_report.md",
+ "report_json": "phase8e_defense_score_report.json"
+ }
 }

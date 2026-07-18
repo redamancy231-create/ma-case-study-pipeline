@@ -1,113 +1,113 @@
 {
-  "phase": "8-E-blind",
-  "model": "Qwen3.7-Max",
-  "role": "模拟答辩 — 评分整合官（校外答辩评分专家）— 闭卷重跑版",
-  "task_id": "phase8e_defense_scoring_blind",
-  "variant": "blind",
-  "variant_purpose": "对闭卷答辩记录评分，并量化开卷版的'答案键红利'。与开卷版 phase8e_scoring_qwen_prompt/config 配套，仅评分对象与对照逻辑不同，评分标准完全一致。",
-  "blind_run_context": {
-    "what_changed": "学生（GPT-5.5）本次只看纯题干 phase8d_blind_question_sheet.md，未见任何「考察意图/预期回答方向」。开卷版学生当年拿到的是含答案键的完整问题单。",
-    "openbook_defect": "开卷版学生回答几乎逐条命中预期方向，方法论维度因此 +20 上修——测的是'复述评分细则'而非'盲压下真实理解'。",
-    "scientific_goal": [
-      "如实评估闭卷真实表现",
-      "量化开卷红利 = 开卷最终分(78) − 闭卷最终分"
-    ],
-    "openbook_baseline_for_stage2": {
-      "final_score": 78,
-      "final_score_raw": 77.8,
-      "tier_1_reviewer_mean": 76.3,
-      "tier_1_dimensions": {
-        "chair_total": 86, "chair": {"研究设计与案例选择": 30, "学术贡献与文献对话": 24, "学术诚信与数据演进": 23, "结构性自我认知": 9},
-        "accounting_total": 67, "accounting": {"合并类型判定与会计方法": 23, "商誉确认与减值": 20, "财务指标分析质量": 13, "准则知识准确性": 11},
-        "methodology_total": 76, "methodology": {"CAR事件研究设计": 26, "财务指标体系设计": 19, "杜邦分解与因果推断": 18, "研究方法自我认知": 13}
-      },
-      "tier_2_total_raw": 32,
-      "tier_2_dimensions": {"跨评审逻辑一致性": 12, "答辩中的学习与成长": 8, "局限认知的诚实度": 8, "口头表达与论证组织": 4}
-    }
-  },
-  "three_iron_rules": [
-    "评分标准必须与开卷版完全相同（同维度定义、同 >5 分强制写理由阈值、同学术标尺）。两轮唯一允许变化的是学生实际回答。",
-    "不给盲答同情分，也不加盲答惩罚——对照同一份考官评分细则，闭卷学生达到多少就是多少。",
-    "区分'真懂'与'撞中答案'——闭卷下自发复现的高阶判断从重奖励；开卷有而闭卷塌掉的点如实记录为红利来源。"
-  ],
-  "two_stage_protocol": {
-    "stage_1_cold": "仅依据论文 v2 + 三份问题单 + 闭卷学生记录，独立完成全部 16 维度评分与评语。严禁打开开卷成绩单。完成后锁死 Stage 1 分数。",
-    "stage_2_compare": "Stage 1 锁分后才读入开卷成绩单，逐维度计算 闭卷−开卷 分差，汇总开卷红利。不得回改 Stage 1 分数。",
-    "anti_anchoring_rationale": "若读了开卷分后想改闭卷分，即说明被锚定——本协议正为防此。"
-  },
-  "input": {
-    "primary_target": "phase8_student_defense_record_blind.md",
-    "reviewer_question_files": [
-      {"file": "phase8_defense_chair_questions.md", "reviewer": "Kimi-k2.6", "role": "答辩委员会主席", "scoring_dimensions": ["研究设计与案例选择(35)", "学术贡献与文献对话(30)", "学术诚信与数据演进(25)", "结构性自我认知(10)"]},
-      {"file": "phase8_accounting_expert_questions.md", "reviewer": "GLM-5.1", "role": "会计学领域专家", "scoring_dimensions": ["合并类型判定与会计方法(35)", "商誉确认与减值(30)", "财务指标分析质量(20)", "准则知识准确性(15)"]},
-      {"file": "phase8_methodology_expert_questions.md", "reviewer": "Claude-opus-4.7", "role": "实证方法论专家", "scoring_dimensions": ["CAR事件研究设计(35)", "财务指标体系设计(25)", "杜邦分解与因果推断(25)", "研究方法自我认知(15)"]}
-    ],
-    "question_file_asymmetry_note": "评分官有权读含答案键的完整问题单（真实答辩中校外专家持评分标准）；学生本次仅见纯题干 phase8d_blind_question_sheet.md。此信息不对称是本次评分核心，非 bug。",
-    "openbook_report_for_stage2_only": "phase8e_defense_score_report.md",
-    "paper_reference": "中国上市公司并购重组成功案例研究_v2.md",
-    "calibration_baseline": "浏览 v2 论文形成独立质量印象，作为校验三位评审评分合理性的锚"
-  },
-  "deliverables": {
-    "primary": [
-      {"file": "phase8e_defense_score_report_blind.md", "format": "markdown", "description": "闭卷答辩成绩单：含独立印象 + 逐评审维度评分（Stage 1 冷评）+ 跨维度综合评分 + 定性评语 + 评分自检锚定（含方向合理性参考）+ 盲答vs开卷对照（Stage 2，含开卷红利）+ 最终成绩单。勿覆盖开卷版 phase8e_defense_score_report.md。"},
-      {"file": "phase8e_defense_score_report_blind.json", "format": "json", "description": "闭卷成绩单结构化版，含逐维度 闭卷/开卷/分差 三列与开卷红利汇总"}
-    ]
-  },
-  "scoring_architecture": {
-    "tier_1_per_reviewer_dimensions": {
-      "weight": 0.60,
-      "description": "沿袭三位评审框架，对闭卷学生回答逐维度评分。三位评审满分均 100，取均值 × 0.60。",
-      "scoring_rule": "每维度先记评审原分、再给独立评分，偏离 >5 分强制写理由。",
-      "methodology_baseline_note": "方法论专家基线 56 评的是论文方法论现状，可因答辩上修。开卷版上修 +20（部分来自答案键残留）；闭卷上修幅度应只反映学生自发展示的认知。"
-    },
-    "tier_2_cross_cutting_dimensions": {
-      "weight": 0.40,
-      "total_max": 40,
-      "weighting_note": "跨维度满分 40 即 40% 权重本身；加权用 (原分/40)×100 × 0.40，勿写成 原分×0.40。",
-      "dimensions": [
-        {"name": "跨评审逻辑一致性", "max": 15, "description": "是否在不同评审前调整说法以迎合期待"},
-        {"name": "答辩中的学习与成长", "max": 10, "description": "回答质量在答辩过程中有无可观察提升"},
-        {"name": "局限认知的诚实度", "max": 10, "description": "认局限是模板化'后续完善'还是系统性改进反思"},
-        {"name": "口头表达与论证组织", "max": 5, "description": "先结论后依据、具体引用 vs 泛泛、被追问能否收敛"}
-      ]
-    },
-    "final_score_formula": "逐评审维度均值 × 0.60 + (跨维度原分/40)×100 × 0.40"
-  },
-  "comparison_to_openbook": {
-    "required_section": "第五部分：盲答 vs 开卷对照",
-    "per_dimension_delta": "16 维度逐行列 开卷分/闭卷分/分差/红利来源",
-    "openbook_bonus": "最终分差 = 闭卷最终分 − 78，即开卷红利",
-    "hypothesis_to_test": "开卷红利是否主要集中在开卷版上修最多的方法论维度（+20）？若是，印证'红利主要来自抄答案键'；若红利均匀分布或集中在别处，则需另解释。",
-    "expected_direction": "闭卷分 ≤ 开卷 78 属正常；若闭卷 ≥ 开卷，须在自检中解释（要么真实素养高/红利小，要么本次评分被放松）。"
-  },
-  "scoring_constraints": {
-    "forced_rationale_threshold": 5,
-    "forced_rationale_rule": "任何维度评分与评审原分偏离 >5 分须给具体说明（引用问题编号与具体论点，而非'评审偏严'）。",
-    "score_vs_paper_calibration_REFRAMED": "答辩分与论文分(84)是不同构念/不同量纲，不应期望相等。判断答辩分是否反常用'是否与论文质量同档 + 方向能否解释'，不套固定 ±15 分阈值。此为对开卷版'±15 容差'误用的纠正。",
-    "no_generic_comments": "禁止'总体令人满意''专业素养较好''思路清晰'等可套用评语；每条须引用具体回答内容。",
-    "no_sympathy_no_penalty": "不因学生本次盲答而手软或额外扣分；标准与开卷版一致。"
-  },
-  "self_check_anchoring": {
-    "description": "Qwen 唯一未在本流水线验证过，故须自检。",
-    "required_checks": [
-      "系统性偏离：评分整体偏严/偏松？数值说明。",
-      "最大单维偏离及理由。",
-      "两阶段独立性：Stage 1 是否真的在未看开卷分的情况下完成？Stage 2 是否回改了 Stage 1？",
-      "结论差距归因：你 vs 评审差距大时，是你错、评审错、还是标准不同？"
-    ]
-  },
-  "downstream": {
-    "consumers": [],
-    "terminal": true,
-    "note": "闭卷评分是 Phase 8 盲答重跑的终点。产出后与开卷 78 分对照，开卷红利量化完成，Phase 8 方法论闭环升级。"
-  },
-  "academic_tier": "211院校会计学本科毕业论文答辩",
-  "created_date": "2026-05-31",
-  "paired_files": ["phase8e_scoring_qwen_blind_prompt.md", "phase8e_scoring_qwen_blind_config.json"],
-  "related_files": {
-    "openbook_prompt": "phase8e_scoring_qwen_prompt.md",
-    "openbook_config": "phase8e_scoring_qwen_config.json",
-    "openbook_report": "phase8e_defense_score_report.md",
-    "blind_question_sheet": "phase8d_blind_question_sheet.md"
-  }
+ "phase": "8-E-blind",
+ "model": "Qwen3.7-Max",
+ "role": "模拟答辩 — 评分整合官（校外答辩评分专家）— 闭卷重跑版",
+ "task_id": "phase8e_defense_scoring_blind",
+ "variant": "blind",
+ "variant_purpose": "对闭卷答辩记录评分，并量化开卷版的'答案键红利'。与开卷版 phase8e_scoring_qwen_prompt/config 配套，仅评分对象与对照逻辑不同，评分标准完全一致。",
+ "blind_run_context": {
+ "what_changed": "学生（GPT-5.5）本次只看纯题干 phase8d_blind_question_sheet.md，未见任何「考察意图/预期回答方向」。开卷版学生当年拿到的是含答案键的完整问题单。",
+ "openbook_defect": "开卷版学生回答几乎逐条命中预期方向，方法论维度因此 +20 上修——测的是'复述评分细则'而非'盲压下真实理解'。",
+ "scientific_goal": [
+ "如实评估闭卷真实表现",
+ "量化开卷红利 = 开卷最终分(78) − 闭卷最终分"
+ ],
+ "openbook_baseline_for_stage2": {
+ "final_score": 78,
+ "final_score_raw": 77.8,
+ "tier_1_reviewer_mean": 76.3,
+ "tier_1_dimensions": {
+ "chair_total": 86, "chair": {"研究设计与案例选择": 30, "学术贡献与文献对话": 24, "学术诚信与数据演进": 23, "结构性自我认知": 9},
+ "accounting_total": 67, "accounting": {"合并类型判定与会计方法": 23, "商誉确认与减值": 20, "财务指标分析质量": 13, "准则知识准确性": 11},
+ "methodology_total": 76, "methodology": {"CAR事件研究设计": 26, "财务指标体系设计": 19, "杜邦分解与因果推断": 18, "研究方法自我认知": 13}
+ },
+ "tier_2_total_raw": 32,
+ "tier_2_dimensions": {"跨评审逻辑一致性": 12, "答辩中的学习与成长": 8, "局限认知的诚实度": 8, "口头表达与论证组织": 4}
+ }
+ },
+ "three_iron_rules": [
+ "评分标准必须与开卷版完全相同（同维度定义、同 >5 分强制写理由阈值、同学术标尺）。两轮唯一允许变化的是学生实际回答。",
+ "不给盲答同情分，也不加盲答惩罚——对照同一份考官评分细则，闭卷学生达到多少就是多少。",
+ "区分'真懂'与'撞中答案'——闭卷下自发复现的高阶判断从重奖励；开卷有而闭卷塌掉的点如实记录为红利来源。"
+ ],
+ "two_stage_protocol": {
+ "stage_1_cold": "仅依据论文 v2 + 三份问题单 + 闭卷学生记录，独立完成全部 16 维度评分与评语。严禁打开开卷成绩单。完成后锁死 Stage 1 分数。",
+ "stage_2_compare": "Stage 1 锁分后才读入开卷成绩单，逐维度计算 闭卷−开卷 分差，汇总开卷红利。不得回改 Stage 1 分数。",
+ "anti_anchoring_rationale": "若读了开卷分后想改闭卷分，即说明被锚定——本协议正为防此。"
+ },
+ "input": {
+ "primary_target": "phase8_student_defense_record_blind.md",
+ "reviewer_question_files": [
+ {"file": "phase8_defense_chair_questions.md", "reviewer": "Kimi-k2.6", "role": "答辩委员会主席", "scoring_dimensions": ["研究设计与案例选择(35)", "学术贡献与文献对话(30)", "学术诚信与数据演进(25)", "结构性自我认知(10)"]},
+ {"file": "phase8_accounting_expert_questions.md", "reviewer": "GLM-5.1", "role": "会计学领域专家", "scoring_dimensions": ["合并类型判定与会计方法(35)", "商誉确认与减值(30)", "财务指标分析质量(20)", "准则知识准确性(15)"]},
+ {"file": "phase8_methodology_expert_questions.md", "reviewer": "Claude-opus-4.7", "role": "实证方法论专家", "scoring_dimensions": ["CAR事件研究设计(35)", "财务指标体系设计(25)", "杜邦分解与因果推断(25)", "研究方法自我认知(15)"]}
+ ],
+ "question_file_asymmetry_note": "评分官有权读含答案键的完整问题单（真实答辩中校外专家持评分标准）；学生本次仅见纯题干 phase8d_blind_question_sheet.md。此信息不对称是本次评分核心，非 bug。",
+ "openbook_report_for_stage2_only": "phase8e_defense_score_report.md",
+ "paper_reference": "中国上市公司并购重组成功案例研究_v2.md",
+ "calibration_baseline": "浏览 v2 论文形成独立质量印象，作为校验三位评审评分合理性的锚"
+ },
+ "deliverables": {
+ "primary": [
+ {"file": "phase8e_defense_score_report_blind.md", "format": "markdown", "description": "闭卷答辩成绩单：含独立印象 + 逐评审维度评分（Stage 1 冷评）+ 跨维度综合评分 + 定性评语 + 评分自检锚定（含方向合理性参考）+ 盲答vs开卷对照（Stage 2，含开卷红利）+ 最终成绩单。勿覆盖开卷版 phase8e_defense_score_report.md。"},
+ {"file": "phase8e_defense_score_report_blind.json", "format": "json", "description": "闭卷成绩单结构化版，含逐维度 闭卷/开卷/分差 三列与开卷红利汇总"}
+ ]
+ },
+ "scoring_architecture": {
+ "tier_1_per_reviewer_dimensions": {
+ "weight": 0.60,
+ "description": "沿袭三位评审框架，对闭卷学生回答逐维度评分。三位评审满分均 100，取均值 × 0.60。",
+ "scoring_rule": "每维度先记评审原分、再给独立评分，偏离 >5 分强制写理由。",
+ "methodology_baseline_note": "方法论专家基线 56 评的是论文方法论现状，可因答辩上修。开卷版上修 +20（部分来自答案键残留）；闭卷上修幅度应只反映学生自发展示的认知。"
+ },
+ "tier_2_cross_cutting_dimensions": {
+ "weight": 0.40,
+ "total_max": 40,
+ "weighting_note": "跨维度满分 40 即 40% 权重本身；加权用 (原分/40)×100 × 0.40，勿写成 原分×0.40。",
+ "dimensions": [
+ {"name": "跨评审逻辑一致性", "max": 15, "description": "是否在不同评审前调整说法以迎合期待"},
+ {"name": "答辩中的学习与成长", "max": 10, "description": "回答质量在答辩过程中有无可观察提升"},
+ {"name": "局限认知的诚实度", "max": 10, "description": "认局限是模板化'后续完善'还是系统性改进反思"},
+ {"name": "口头表达与论证组织", "max": 5, "description": "先结论后依据、具体引用 vs 泛泛、被追问能否收敛"}
+ ]
+ },
+ "final_score_formula": "逐评审维度均值 × 0.60 + (跨维度原分/40)×100 × 0.40"
+ },
+ "comparison_to_openbook": {
+ "required_section": "第五部分：盲答 vs 开卷对照",
+ "per_dimension_delta": "16 维度逐行列 开卷分/闭卷分/分差/红利来源",
+ "openbook_bonus": "最终分差 = 闭卷最终分 − 78，即开卷红利",
+ "hypothesis_to_test": "开卷红利是否主要集中在开卷版上修最多的方法论维度（+20）？若是，印证'红利主要来自抄答案键'；若红利均匀分布或集中在别处，则需另解释。",
+ "expected_direction": "闭卷分 ≤ 开卷 78 属正常；若闭卷 ≥ 开卷，须在自检中解释（要么真实素养高/红利小，要么本次评分被放松）。"
+ },
+ "scoring_constraints": {
+ "forced_rationale_threshold": 5,
+ "forced_rationale_rule": "任何维度评分与评审原分偏离 >5 分须给具体说明（引用问题编号与具体论点，而非'评审偏严'）。",
+ "score_vs_paper_calibration_REFRAMED": "答辩分与论文分(84)是不同构念/不同量纲，不应期望相等。判断答辩分是否反常用'是否与论文质量同档 + 方向能否解释'，不套固定 ±15 分阈值。此为对开卷版'±15 容差'误用的纠正。",
+ "no_generic_comments": "禁止'总体令人满意''专业素养较好''思路清晰'等可套用评语；每条须引用具体回答内容。",
+ "no_sympathy_no_penalty": "不因学生本次盲答而手软或额外扣分；标准与开卷版一致。"
+ },
+ "self_check_anchoring": {
+ "description": "Qwen 唯一未在本流水线验证过，故须自检。",
+ "required_checks": [
+ "系统性偏离：评分整体偏严/偏松？数值说明。",
+ "最大单维偏离及理由。",
+ "两阶段独立性：Stage 1 是否真的在未看开卷分的情况下完成？Stage 2 是否回改了 Stage 1？",
+ "结论差距归因：你 vs 评审差距大时，是你错、评审错、还是标准不同？"
+ ]
+ },
+ "downstream": {
+ "consumers": [],
+ "terminal": true,
+ "note": "闭卷评分是 Phase 8 盲答重跑的终点。产出后与开卷 78 分对照，开卷红利量化完成，Phase 8 方法论闭环升级。"
+ },
+ "academic_tier": "院校会计学本科毕业论文答辩",
+ "created_date": "2026-05-31",
+ "paired_files": ["phase8e_scoring_qwen_blind_prompt.md", "phase8e_scoring_qwen_blind_config.json"],
+ "related_files": {
+ "openbook_prompt": "phase8e_scoring_qwen_prompt.md",
+ "openbook_config": "phase8e_scoring_qwen_config.json",
+ "openbook_report": "phase8e_defense_score_report.md",
+ "blind_question_sheet": "phase8d_blind_question_sheet.md"
+ }
 }

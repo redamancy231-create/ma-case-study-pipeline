@@ -1,218 +1,218 @@
 {
-  "phase": "5-B",
-  "model": "GLM-5.1",
-  "role": "交叉复审-学术规范与写作层",
-  "task_id": "phase5b_cross_review_academic_writing",
-  "role_rotation": {
-    "previous_role": "Phase 2 法律/会计领域专家审核",
-    "rotation_rationale": "领域专家不复审自己出具过的条款结论（避免自审偏差）；改审与法律/会计条款无直接重叠的论文写作规范层",
-    "companion_review": {
-      "phase": "5-A",
-      "model": "GPT-5.5",
-      "scope": "法律合规+会计准则+案例事实+数据合理性",
-      "coordination": "两份审查独立产出、互不沟通，避免共识偏差"
-    }
-  },
-  "input": {
-    "primary_target": "中国上市公司并购重组成功案例研究.docx",
-    "reference_files": [
-      "phase1_design.md",
-      "phase2_expert_review.md",
-      "phase3_draft_report.md",
-      "项目复盘归档报告.md",
-      "项目复盘归档报告.json"
-    ],
-    "authority_hierarchy": {
-      "rank_1": "211院校经管类毕业论文评审通用规范",
-      "rank_2": "GB/T 7714-2015、APA 7th 引文标准",
-      "rank_3": "docx终稿（审查对象本体）",
-      "phase2_review_status": "仅用于追溯；不得用作本阶段判断依据，不得为自己旧结论辩护"
-    }
-  },
-  "output": {
-    "file": "phase5b_glm5.1_review.md",
-    "format": "markdown",
-    "encoding": "UTF-8",
-    "sections": [
-      "审查概述",
-      "第1部分 论文结构完整性与对方案执行度（权重15%）",
-      "第2部分 学术写作规范（权重25%）",
-      "第3部分 论证逻辑严谨性（权重25%）",
-      "第4部分 参考文献体系（权重20%）",
-      "第5部分 术语统一与图表规范（权重15%）",
-      "重大问题清单（重大/重要/一般分级）",
-      "修改建议清单（章节顺序，改前→改后对照）",
-      "综合评分表与结论"
-    ]
-  },
-  "review_dimensions": {
-    "dim_1_structure_completeness": {
-      "weight": 0.15,
-      "required_elements": [
-        "封面（题目/学院/专业/学号/姓名/导师/日期）",
-        "中文摘要（200-400字，含背景/方法/结论）",
-        "中文关键词（3-8个）",
-        "英文标题",
-        "Abstract",
-        "Keywords",
-        "目录（自动生成，含三级标题与页码）",
-        "引言/绪论（背景/意义/方法/结构/综述）",
-        "文献综述（211多数院校要求独立成章或小节）",
-        "理论基础",
-        "制度/政策环境",
-        "案例/实证分析",
-        "结论与建议（结论/建议/局限/未来方向）",
-        "参考文献（≥15篇，部分院校≥20）",
-        "致谢（视院校要求）",
-        "附录（视需要）"
-      ],
-      "phase1_execution_check": "对照phase1_design.md大纲，核验落地度"
-    },
-    "dim_2_academic_writing": {
-      "weight": 0.25,
-      "abstract_quality": [
-        "中文摘要含背景/方法/结论/贡献四要素",
-        "避免'本文'自指过多、口语化、过度宣称",
-        "Abstract语法/时态（一般现在时为主）/被动语态恰当",
-        "无中式英语",
-        "关键词中英文一一对应，避免'研究''分析'宽泛词"
-      ],
-      "language_norms": [
-        "口语化表达（'我们认为''值得一提''非常''很'）",
-        "第一人称滥用（允许'本文''笔者'，慎用'我'）",
-        "修辞过度（'无与伦比''史无前例''开创性'）",
-        "冗余赘述",
-        "时态/语态不一致"
-      ],
-      "citation_norms": [
-        "正文引用(作者,年)格式齐全",
-        "无凑数文献",
-        "无漏引",
-        "引用密度合理（本科毕业论文8000-15000字，引用15-30次）"
-      ],
-      "paragraph_norms": [
-        "每段有主题句",
-        "章节间有过渡段",
-        "避免'标题-堆砌-下个标题'的无组织段落"
-      ]
-    },
-    "dim_3_argumentation_logic": {
-      "weight": 0.25,
-      "overall_chain": "概念界定→理论基础→制度环境→案例呈现→财务分析→经验启示",
-      "chapter_checks": {
-        "chapter_2": "概念/理论是否为后续提供工具？避免'列举但不再使用'",
-        "chapter_3": "制度是否为案例合规分析提供框架？避免仅作背景陈列",
-        "chapter_4": "案例选择标准是否说明？三案例是否覆盖不同重组类型且与第2章分类对应",
-        "chapter_5": "分析框架是否承接第2章理论与Phase 2推荐指标？避免'数据展示但缺解释'",
-        "chapter_6": "结论是否由前文自然推导？避免'前文未论证但结论直接得出'的跳跃"
-      },
-      "argument_match_checks": [
-        "数据是否充分支撑结论",
-        "避免以偏概全（单一指标得全局结论）",
-        "区分相关性与因果性"
-      ],
-      "limitation_reflection": [
-        "承认模拟数据/小样本/案例选择偏差等局限",
-        "提出未来研究方向",
-        "避免过度宣称研究贡献"
-      ]
-    },
-    "dim_4_references": {
-      "weight": 0.20,
-      "quantity_and_quality": {
-        "total_count": "≥15篇（部分院校≥20）",
-        "cssci_sci_ratio": "≥50%",
-        "last_5_years_ratio": "≥30%",
-        "foreign_literature": "≥3篇",
-        "academic_paper_ratio": "≥80%",
-        "web_press_ratio": "≤10% 或不使用"
-      },
-      "gb_t_7714_2015_format": {
-        "journal": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
-        "book": "作者. 书名[M]. 版次. 出版地: 出版社, 年: 起止页码.",
-        "thesis": "作者. 题名[D]. 城市: 学校, 年.",
-        "web": "作者. 题名[EB/OL]. (发布日期)[引用日期]. URL.",
-        "punctuation_check": "西文标点/空格/引号规范"
-      },
-      "apa_7th_format": {
-        "author_order": "姓在前名缩写在后，多作者用&连接末位",
-        "italics": "期刊名斜体，卷号斜体，期号不斜体",
-        "doi": "是否给出",
-        "case_rules": "句首大写vs标题大写"
-      },
-      "correspondence_check": [
-        "正文(作者,年)在参考文献列表中可找到",
-        "参考文献条目在正文中被引用",
-        "中英文文献分开排列（中文按拼音/姓氏笔画；英文按字母）"
-      ]
-    },
-    "dim_5_terminology_and_figures": {
-      "weight": 0.15,
-      "terminology_pairs_to_check": [
-        "并购重组/M&A/兼并收购",
-        "吸收合并/新设合并/控股合并",
-        "同一控制下企业合并/权益结合法",
-        "商誉/Goodwill/合并价差",
-        "累计超额收益率/CAR/累积异常收益",
-        "购买法/购买会计法/Purchase Method"
-      ],
-      "figure_table_norms": [
-        "表序与图序分别编号",
-        "表题在上方居中",
-        "图题在下方居中",
-        "每表/图下方标注数据来源",
-        "必要时使用'注：'",
-        "学术规范优先三线表",
-        "正文有'如表1所示''见图1'引导"
-      ],
-      "numeric_symbol_norms": [
-        "阿拉伯数字与汉字数字使用规范",
-        "货币单位（元/亿元/万元）统一",
-        "百分比表示（%/百分之）一致",
-        "中英文标点全角/半角"
-      ]
-    }
-  },
-  "evaluation_rubric": {
-    "standard": "211院校会计学本科毕业论文写作规范盲审表",
-    "reference_policy": [
-      "教育部《普通高等学校本科毕业论文（设计）抽检办法（试行）》（教督〔2020〕5号）",
-      "211院校经管类毕业论文写作规范通用条款",
-      "GB/T 7714-2015 信息与文献参考文献著录规则",
-      "APA Publication Manual 7th Edition"
-    ],
-    "scoring_table": {
-      "论文结构完整性": 15,
-      "学术写作规范": 25,
-      "论证逻辑严谨性": 25,
-      "参考文献体系": 20,
-      "术语与图表规范": 15,
-      "total": 100
-    },
-    "conclusion_tiers": {
-      "pass": "≥85分，写作达211本科毕业论文质量基准",
-      "revise_pass": "70-84分，列必须修改项+建议修改项",
-      "return_rewrite": "<70分，存在系统性缺陷（如缺文献综述、参考文献<15篇、引文格式混乱）"
-    },
-    "scope_note": "本审查覆盖学术规范与写作层（约占总盲审分30-40%），合规与事实层由Phase 5-A独立评分",
-    "calibration_note": "评价基线是'够不够发答辩通知书'，而非'够不够发CSSCI'；不过度苛求但守住硬伤底线"
-  },
-  "constraints": {
-    "no_self_defense": "Phase 2前置结论作者不得为旧结论辩护；遇与终稿不一致时记录'待5-A裁决'",
-    "no_overlap_with_5a": "法律条款/会计准则/案例事实/数据合理性不归本阶段；遇到一笔带过",
-    "no_vague_criticism": "禁止'建议进一步完善''应当深化论述'等空话；每条意见可执行",
-    "blind_review_posture": "假设为匿名211会计学本科毕业论文",
-    "calibration": "不以期刊论文标准过度苛求；但文献综述缺失、参考文献<15、引文格式混乱必扣分"
-  },
-  "metadata": {
-    "project": "中国上市公司并购重组成功案例研究",
-    "phase_name": "多模型交叉复审-学术规范与写作层",
-    "discipline": "会计学",
-    "academic_tier": "211院校本科毕业论文盲审标准",
-    "review_target_file": "中国上市公司并购重组成功案例研究.docx",
-    "review_target_size_kb": 231,
-    "created": "2026-05-29",
-    "depends_on_phase": [1, 2, 3, 4],
-    "blocks_phase": "如有Phase 6整合裁决环节则前置依赖"
-  }
+ "phase": "5-B",
+ "model": "GLM-5.1",
+ "role": "交叉复审-学术规范与写作层",
+ "task_id": "phase5b_cross_review_academic_writing",
+ "role_rotation": {
+ "previous_role": "Phase 2 法律/会计领域专家审核",
+ "rotation_rationale": "领域专家不复审自己出具过的条款结论（避免自审偏差）；改审与法律/会计条款无直接重叠的论文写作规范层",
+ "companion_review": {
+ "phase": "5-A",
+ "model": "GPT-5.5",
+ "scope": "法律合规+会计准则+案例事实+数据合理性",
+ "coordination": "两份审查独立产出、互不沟通，避免共识偏差"
+ }
+ },
+ "input": {
+ "primary_target": "中国上市公司并购重组成功案例研究.docx",
+ "reference_files": [
+ "phase1_design.md",
+ "phase2_expert_review.md",
+ "phase3_draft_report.md",
+ "项目复盘归档报告.md",
+ "项目复盘归档报告.json"
+ ],
+ "authority_hierarchy": {
+ "rank_1": "院校经管类毕业论文评审通用规范",
+ "rank_2": "GB/T 7714-2015、APA 7th 引文标准",
+ "rank_3": "docx终稿（审查对象本体）",
+ "phase2_review_status": "仅用于追溯；不得用作本阶段判断依据，不得为自己旧结论辩护"
+ }
+ },
+ "output": {
+ "file": "phase5b_glm5.1_review.md",
+ "format": "markdown",
+ "encoding": "UTF-8",
+ "sections": [
+ "审查概述",
+ "第1部分 论文结构完整性与对方案执行度（权重15%）",
+ "第2部分 学术写作规范（权重25%）",
+ "第3部分 论证逻辑严谨性（权重25%）",
+ "第4部分 参考文献体系（权重20%）",
+ "第5部分 术语统一与图表规范（权重15%）",
+ "重大问题清单（重大/重要/一般分级）",
+ "修改建议清单（章节顺序，改前→改后对照）",
+ "综合评分表与结论"
+ ]
+ },
+ "review_dimensions": {
+ "dim_1_structure_completeness": {
+ "weight": 0.15,
+ "required_elements": [
+ "封面（题目/学院/专业/学号/姓名/导师/日期）",
+ "中文摘要（200-400字，含背景/方法/结论）",
+ "中文关键词（3-8个）",
+ "英文标题",
+ "Abstract",
+ "Keywords",
+ "目录（自动生成，含三级标题与页码）",
+ "引言/绪论（背景/意义/方法/结构/综述）",
+ "文献综述（多数院校要求独立成章或小节）",
+ "理论基础",
+ "制度/政策环境",
+ "案例/实证分析",
+ "结论与建议（结论/建议/局限/未来方向）",
+ "参考文献（≥15篇，部分院校≥20）",
+ "致谢（视院校要求）",
+ "附录（视需要）"
+ ],
+ "phase1_execution_check": "对照phase1_design.md大纲，核验落地度"
+ },
+ "dim_2_academic_writing": {
+ "weight": 0.25,
+ "abstract_quality": [
+ "中文摘要含背景/方法/结论/贡献四要素",
+ "避免'本文'自指过多、口语化、过度宣称",
+ "Abstract语法/时态（一般现在时为主）/被动语态恰当",
+ "无中式英语",
+ "关键词中英文一一对应，避免'研究''分析'宽泛词"
+ ],
+ "language_norms": [
+ "口语化表达（'我们认为''值得一提''非常''很'）",
+ "第一人称滥用（允许'本文''笔者'，慎用'我'）",
+ "修辞过度（'无与伦比''史无前例''开创性'）",
+ "冗余赘述",
+ "时态/语态不一致"
+ ],
+ "citation_norms": [
+ "正文引用(作者,年)格式齐全",
+ "无凑数文献",
+ "无漏引",
+ "引用密度合理（本科毕业论文8000-15000字，引用15-30次）"
+ ],
+ "paragraph_norms": [
+ "每段有主题句",
+ "章节间有过渡段",
+ "避免'标题-堆砌-下个标题'的无组织段落"
+ ]
+ },
+ "dim_3_argumentation_logic": {
+ "weight": 0.25,
+ "overall_chain": "概念界定→理论基础→制度环境→案例呈现→财务分析→经验启示",
+ "chapter_checks": {
+ "chapter_2": "概念/理论是否为后续提供工具？避免'列举但不再使用'",
+ "chapter_3": "制度是否为案例合规分析提供框架？避免仅作背景陈列",
+ "chapter_4": "案例选择标准是否说明？三案例是否覆盖不同重组类型且与第2章分类对应",
+ "chapter_5": "分析框架是否承接第2章理论与Phase 2推荐指标？避免'数据展示但缺解释'",
+ "chapter_6": "结论是否由前文自然推导？避免'前文未论证但结论直接得出'的跳跃"
+ },
+ "argument_match_checks": [
+ "数据是否充分支撑结论",
+ "避免以偏概全（单一指标得全局结论）",
+ "区分相关性与因果性"
+ ],
+ "limitation_reflection": [
+ "承认模拟数据/小样本/案例选择偏差等局限",
+ "提出未来研究方向",
+ "避免过度宣称研究贡献"
+ ]
+ },
+ "dim_4_references": {
+ "weight": 0.20,
+ "quantity_and_quality": {
+ "total_count": "≥15篇（部分院校≥20）",
+ "cssci_sci_ratio": "≥50%",
+ "last_5_years_ratio": "≥30%",
+ "foreign_literature": "≥3篇",
+ "academic_paper_ratio": "≥80%",
+ "web_press_ratio": "≤10% 或不使用"
+ },
+ "gb_t_7714_2015_format": {
+ "journal": "作者. 题名[J]. 期刊名, 年, 卷(期): 起止页码.",
+ "book": "作者. 书名[M]. 版次. 出版地: 出版社, 年: 起止页码.",
+ "thesis": "作者. 题名[D]. 城市: 学校, 年.",
+ "web": "作者. 题名[EB/OL]. (发布日期)[引用日期]. URL.",
+ "punctuation_check": "西文标点/空格/引号规范"
+ },
+ "apa_7th_format": {
+ "author_order": "姓在前名缩写在后，多作者用&连接末位",
+ "italics": "期刊名斜体，卷号斜体，期号不斜体",
+ "doi": "是否给出",
+ "case_rules": "句首大写vs标题大写"
+ },
+ "correspondence_check": [
+ "正文(作者,年)在参考文献列表中可找到",
+ "参考文献条目在正文中被引用",
+ "中英文文献分开排列（中文按拼音/姓氏笔画；英文按字母）"
+ ]
+ },
+ "dim_5_terminology_and_figures": {
+ "weight": 0.15,
+ "terminology_pairs_to_check": [
+ "并购重组/M&A/兼并收购",
+ "吸收合并/新设合并/控股合并",
+ "同一控制下企业合并/权益结合法",
+ "商誉/Goodwill/合并价差",
+ "累计超额收益率/CAR/累积异常收益",
+ "购买法/购买会计法/Purchase Method"
+ ],
+ "figure_table_norms": [
+ "表序与图序分别编号",
+ "表题在上方居中",
+ "图题在下方居中",
+ "每表/图下方标注数据来源",
+ "必要时使用'注：'",
+ "学术规范优先三线表",
+ "正文有'如表1所示''见图1'引导"
+ ],
+ "numeric_symbol_norms": [
+ "阿拉伯数字与汉字数字使用规范",
+ "货币单位（元/亿元/万元）统一",
+ "百分比表示（%/百分之）一致",
+ "中英文标点全角/半角"
+ ]
+ }
+ },
+ "evaluation_rubric": {
+ "standard": "院校会计学本科毕业论文写作规范盲审表",
+ "reference_policy": [
+ "教育部《普通高等学校本科毕业论文（设计）抽检办法（试行）》（教督〔2020〕5号）",
+ "院校经管类毕业论文写作规范通用条款",
+ "GB/T 7714-2015 信息与文献参考文献著录规则",
+ "APA Publication Manual 7th Edition"
+ ],
+ "scoring_table": {
+ "论文结构完整性": 15,
+ "学术写作规范": 25,
+ "论证逻辑严谨性": 25,
+ "参考文献体系": 20,
+ "术语与图表规范": 15,
+ "total": 100
+ },
+ "conclusion_tiers": {
+ "pass": "≥85分，写作达本科毕业论文质量基准",
+ "revise_pass": "70-84分，列必须修改项+建议修改项",
+ "return_rewrite": "<70分，存在系统性缺陷（如缺文献综述、参考文献<15篇、引文格式混乱）"
+ },
+ "scope_note": "本审查覆盖学术规范与写作层（约占总盲审分30-40%），合规与事实层由Phase 5-A独立评分",
+ "calibration_note": "评价基线是'够不够发答辩通知书'，而非'够不够发CSSCI'；不过度苛求但守住硬伤底线"
+ },
+ "constraints": {
+ "no_self_defense": "Phase 2前置结论作者不得为旧结论辩护；遇与终稿不一致时记录'待5-A裁决'",
+ "no_overlap_with_5a": "法律条款/会计准则/案例事实/数据合理性不归本阶段；遇到一笔带过",
+ "no_vague_criticism": "禁止'建议进一步完善''应当深化论述'等空话；每条意见可执行",
+ "blind_review_posture": "假设为匿名会计学本科毕业论文",
+ "calibration": "不以期刊论文标准过度苛求；但文献综述缺失、参考文献<15、引文格式混乱必扣分"
+ },
+ "metadata": {
+ "project": "中国上市公司并购重组成功案例研究",
+ "phase_name": "多模型交叉复审-学术规范与写作层",
+ "discipline": "会计学",
+ "academic_tier": "院校本科毕业论文盲审标准",
+ "review_target_file": "中国上市公司并购重组成功案例研究.docx",
+ "review_target_size_kb": 231,
+ "created": "2026-05-29",
+ "depends_on_phase": [1, 2, 3, 4],
+ "blocks_phase": "如有Phase 6整合裁决环节则前置依赖"
+ }
 }
