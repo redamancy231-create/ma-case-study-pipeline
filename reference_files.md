@@ -1,6 +1,6 @@
 # 关键文件索引
 
-> 最后更新: 2026-07-02（GitHub 页面优化完成）
+> 最后更新: 2026-07-18（211/985 标签清理闭合）
 
 ## 代码
 - [generate_docx_v2.py](scripts/generate_docx_v2.py) — v2 论文 docx 生成脚本
