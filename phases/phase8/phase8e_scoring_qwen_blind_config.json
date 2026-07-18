@@ -101,7 +101,7 @@
  "terminal": true,
  "note": "闭卷评分是 Phase 8 盲答重跑的终点。产出后与开卷 78 分对照，开卷红利量化完成，Phase 8 方法论闭环升级。"
  },
- "academic_tier": "院校会计学本科毕业论文答辩",
+ "academic_tier": "会计学本科毕业论文答辩",
  "created_date": "2026-05-31",
  "paired_files": ["phase8e_scoring_qwen_blind_prompt.md", "phase8e_scoring_qwen_blind_config.json"],
  "related_files": {

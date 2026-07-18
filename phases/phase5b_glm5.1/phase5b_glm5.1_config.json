@@ -23,7 +23,7 @@
  "项目复盘归档报告.json"
  ],
  "authority_hierarchy": {
- "rank_1": "院校经管类毕业论文评审通用规范",
+ "rank_1": "经管类毕业论文评审通用规范",
  "rank_2": "GB/T 7714-2015、APA 7th 引文标准",
  "rank_3": "docx终稿（审查对象本体）",
  "phase2_review_status": "仅用于追溯；不得用作本阶段判断依据，不得为自己旧结论辩护"
@@ -174,10 +174,10 @@
  }
  },
  "evaluation_rubric": {
- "standard": "院校会计学本科毕业论文写作规范盲审表",
+ "standard": "会计学本科毕业论文写作规范盲审表",
  "reference_policy": [
  "教育部《普通高等学校本科毕业论文（设计）抽检办法（试行）》（教督〔2020〕5号）",
- "院校经管类毕业论文写作规范通用条款",
+ "经管类毕业论文写作规范通用条款",
  "GB/T 7714-2015 信息与文献参考文献著录规则",
  "APA Publication Manual 7th Edition"
  ],
@@ -208,7 +208,7 @@
  "project": "中国上市公司并购重组成功案例研究",
  "phase_name": "多模型交叉复审-学术规范与写作层",
  "discipline": "会计学",
- "academic_tier": "院校本科毕业论文盲审标准",
+ "academic_tier": "本科毕业论文盲审标准",
  "review_target_file": "中国上市公司并购重组成功案例研究.docx",
  "review_target_size_kb": 231,
  "created": "2026-05-29",

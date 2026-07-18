@@ -7,7 +7,7 @@
  "paired_markdown_file": "phase6_integration_review.md",
  "review_target": "中国上市公司并购重组成功案例研究.docx",
  "created_date": "2026-05-29",
- "academic_tier": "院校会计学本科毕业论文答辩前评议",
+ "academic_tier": "会计学本科毕业论文答辩前评议",
  "integration_basis": [
  {
  "phase": "5-A",
@@ -590,7 +590,7 @@
  "project": "中国上市公司并购重组成功案例研究",
  "version": "v2（Phase 6 修订版）",
  "basis": "Phase 5-A(GPT-5.5,0.60)+Phase 5-B(GLM-5.1,0.40)双盲审+本阶段整合裁决",
- "academic_tier": "院校会计学本科毕业论文答辩前评议",
+ "academic_tier": "会计学本科毕业论文答辩前评议",
  "verdict": "修改后通过",
  "weighted_score": 84.0,
  "score_before": 69.2,

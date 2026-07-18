@@ -7,7 +7,7 @@
  "version": "v2（Phase 6 修订版）",
  "phase": 6,
  "discipline": "会计学",
- "academic_tier": "院校会计学本科毕业论文",
+ "academic_tier": "会计学本科毕业论文",
  "created": "2026-05-29",
  "generator_script": "generate_docx_v2.py",
  "based_on": "中国上市公司并购重组成功案例研究.docx（v1, Phase 4）",

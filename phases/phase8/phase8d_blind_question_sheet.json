@@ -22,14 +22,14 @@
  "examiner": "会计学领域专家",
  "model": "GLM-5.1",
  "layer": "准则层",
- "role_note": " 院校会计学系副教授，研究方向企业并购与合并财务报表。",
+ "role_note": " 会计学系副教授，研究方向企业并购与合并财务报表。",
  "question_ids": ["accounting_Q1", "accounting_Q2", "accounting_Q3", "accounting_Q4", "accounting_Q5", "accounting_Q6", "accounting_Q7"]
  },
  "methodology": {
  "examiner": "实证方法论专家",
  "model": "Claude-opus-4.7",
  "layer": "方法层",
- "role_note": " 院校财务与金融学系副教授，研究方向实证公司金融与事件研究方法论。",
+ "role_note": " 财务与金融学系副教授，研究方向实证公司金融与事件研究方法论。",
  "group_note": "题组前提：以下问题不质疑'如实标注模拟/估算'的诚实性；检验的是方法框架本身是否站得住——假设明天把所有 [S] 换成真实日度行情与细分财务数据，这套设计能否产出可信的统计与因果结论。",
  "question_ids": ["methodology_Q1", "methodology_Q2", "methodology_Q3", "methodology_Q4", "methodology_Q5", "methodology_Q6", "methodology_Q7", "methodology_Q8"]
  }

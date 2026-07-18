@@ -115,7 +115,7 @@
  "terminal": true,
  "note": "Phase 8-E 是整个 Phase 8 模拟答辩的终点。产出成绩单后，Phase 8 闭环；可选后续：人工复核成绩单、将答辩记录作为写作方法论的一部分归档。"
  },
- "academic_tier": "院校会计学本科毕业论文答辩",
+ "academic_tier": "会计学本科毕业论文答辩",
  "created_date": "2026-05-31",
  "paired_files": ["phase8e_scoring_qwen_prompt.md", "phase8e_scoring_qwen_config.json"]
 }
