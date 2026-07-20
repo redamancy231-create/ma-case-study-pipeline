@@ -156,6 +156,7 @@ python generate_docx_v2.py
 - [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 加速度量策略核心（DTW 37× / pattern match 61×）
 - [**docx-pipeline**](https://github.com/redamancy231-create/docx-pipeline) — Markdown → 中文 DOCX 泛化管道，经 3 轮异后端审查闭合
 - [**claude-skills**](https://github.com/redamancy231-create/claude-skills) — 3 个实战验证的 Claude Code Skill
+- [**methodology-handbook**](https://github.com/redamancy231-create/methodology-handbook) — 50 条 AI 协作踩坑速查手册；本项目流水线是该手册方法论在完整学术场景中的实证
 
 ---
 
