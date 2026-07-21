@@ -60,9 +60,19 @@ jobs:
 
           tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
           paths = [Path(item.decode("utf-8")) for item in tracked if item and item.lower().endswith(b".json")]
+          # 跳过已有 _corrected.json 勘误 sidecar 的原始无效 JSON（历史证据保留）
           failures = []
+          skipped = []
 
           for path in paths:
+              stem = path.stem
+              if stem.endswith("_corrected"):
+                  continue  # corrected sidecar 自身正常检查
+              corrected = path.with_stem(stem + "_corrected")
+              if corrected.exists():
+                  print(f"SKIP: {path} (corrected sidecar exists: {corrected})")
+                  skipped.append(path)
+                  continue
               try:
                   with path.open(encoding="utf-8") as handle:
                       json.load(handle)
@@ -72,7 +82,10 @@ jobs:
                   print(f"ERROR: {path}: {error}", file=sys.stderr)
 
           with open(Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]), "a", encoding="utf-8") as summary:
-              summary.write(f"- JSON syntax: **{len(paths) - len(failures)}/{len(paths)} files passed**.\n")
+              summary.write(f"- JSON syntax: **{len(paths) - len(failures) - len(skipped)}/{len(paths) - len(skipped)} files passed**")
+              if skipped:
+                  summary.write(f" ({len(skipped)} skipped with corrected sidecar)")
+              summary.write(".\n")
 
           if failures:
               sys.exit(1)
