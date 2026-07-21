@@ -169,9 +169,22 @@ jobs:
               [[ "$target" == */.git/* ]] && continue
               [[ "$target" == /* ]] && continue
 
+              web_target=$target
+              while [[ "$web_target" == ../* ]]; do
+                web_target=${web_target#../}
+              done
+              [[ "$web_target" == issues/* ]] && continue
+              [[ "$web_target" == pull/* ]] && continue
+              [[ "$web_target" == compare/* ]] && continue
+              [[ "$web_target" == discussions/* ]] && continue
+
               checked=$((checked + 1))
               resolved=$(dirname "$file")/$target
-              if [ ! -f "$resolved" ]; then
+              if [ ! -f "$resolved" ] && [ ! -d "$resolved" ]; then
+                resolved=$target
+              fi
+
+              if [ ! -f "$resolved" ] && [ ! -d "$resolved" ]; then
                 echo "::error file=$file,title=Broken Markdown link::Local target '$link' does not exist."
                 echo "ERROR: $file -> $link"
                 failed=$((failed + 1))
@@ -191,7 +204,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          manifest=$(git ls-tree -r --name-only HEAD)
+          manifest=$(git -c core.quotepath=false ls-tree -r --name-only HEAD)
           required=(README.md en/README.md zh-Hant/README.md LICENSE CITATION.cff)
           failed=0
 
