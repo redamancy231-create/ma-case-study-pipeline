@@ -75,11 +75,11 @@ graph LR
 │
 ├── 中国上市公司并购重组成功案例研究_v2.md + .json ← 论文终稿（带缺陷标注）
 │
-├── phases/ ← 完整流水线快照（29 文件）
+├── phases/ ← 完整流水线快照（59 文件）
 │ ├── phase1_kimi_k2.6/ │ 方案设计
 │ ├── phase2_glm5.1/ │ 领域专家审核
 │ ├── phase3_gpt5.5/ │ 内容撰稿
-│ ├── phase4_claude_opus4.7/ │ 总装交付
+│ ├── phase4_claude_opus4.7/ │ 总装交付（注：仅含 prompt + config，交付物未保留）
 │ ├── phase5a_gpt5.5/ │ 交叉复审（合规事实层）
 │ ├── phase5b_glm5.1/ │ 交叉复审（学术规范层）
 │ ├── phase6_claude_opus4.7/ │ 整合裁决+修订

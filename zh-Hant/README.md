@@ -75,11 +75,11 @@ graph LR
 │
 ├── 中国上市公司并购重组成功案例研究_v2.md + .json ← 論文終稿（帶缺陷標註）
 │
-├── phases/ ← 完整流水線快照（29 文件）
+├── phases/ ← 完整流水線快照（59 文件）
 │ ├── phase1_kimi_k2.6/ │ 方案設計
 │ ├── phase2_glm5.1/ │ 領域專家審覈
 │ ├── phase3_gpt5.5/ │ 內容撰稿
-│ ├── phase4_claude_opus4.7/ │ 總裝交付
+│ ├── phase4_claude_opus4.7/ │ 總裝交付（註：僅含 prompt + config，交付物未保留）
 │ ├── phase5a_gpt5.5/ │ 交叉複審（合規事實層）
 │ ├── phase5b_glm5.1/ │ 交叉複審（學術規範層）
 │ ├── phase6_claude_opus4.7/ │ 整合裁決+修訂
@@ -156,6 +156,7 @@ python generate_docx_v2.py
 - [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 加速重構；同樣強調跨後端驗證和工程方法的可復現性
 - [**docx-pipeline**](https://github.com/redamancy231-create/docx-pipeline) — Markdown → 中文 DOCX 泛化管道，經 3 輪異後端審查閉合
 - [**claude-skills**](https://github.com/redamancy231-create/claude-skills) — 3 個實戰驗證的 Claude Code Skill
+- [**methodology-handbook**](https://github.com/redamancy231-create/methodology-handbook) — 50 條 AI 協作踩坑速查手冊；本項目流水線是該手冊方法論在完整學術場景中的實證
 
 ---
 

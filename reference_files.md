@@ -1,6 +1,6 @@
 # 关键文件索引
 
-> 最后更新: 2026-07-18（211/985 标签清理闭合）
+> 最后更新: 2026-07-21（P0/P1 勘误闭合）
 
 ## 代码
 - [generate_docx_v2.py](scripts/generate_docx_v2.py) — v2 论文 docx 生成脚本
@@ -25,3 +25,8 @@
 - [CITATION.cff](CITATION.cff) — GitHub 原生引用元数据
 - [docs/social-preview.png](docs/social-preview.png) — 自定义 Social Preview 图片（1280×640）
 - [scripts/generate_og_image.py](scripts/generate_og_image.py) — OG 图片生成脚本
+
+## Git 历史敏感信息确认
+- 2026-07-21 已扫描全部 257 个唯一历史 blob（254 个文本、3 个二进制）；敏感关键词共命中 6 处，均为 `gh auth token` 或 `token + 插件启用` 等概念性描述，凭据形态匹配为 0。
+- `project_status.md`：8 个历史 blob 中仅 2 个版本出现普通术语 `token`，未包含令牌值、密码、API 密钥或私钥。
+- `_reviews/retrospect_2026-07-02.md`：1 个历史 blob，未命中敏感关键词或凭据形态。

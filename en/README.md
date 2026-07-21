@@ -75,11 +75,11 @@ graph LR
 │
 ├── 中国上市公司并购重组成功案例研究_v2.md + .json ← Final paper (with defect annotations)
 │
-├── phases/ ← Complete pipeline snapshot (29 files)
+├── phases/ ← Complete pipeline snapshot (59 files)
 │ ├── phase1_kimi_k2.6/ │ Design blueprint
 │ ├── phase2_glm5.1/ │ Domain expert review
 │ ├── phase3_gpt5.5/ │ Drafting
-│ ├── phase4_claude_opus4.7/ │ Assembly + delivery
+│ ├── phase4_claude_opus4.7/ │ Assembly + delivery (note: prompt + config only; deliverable not retained)
 │ ├── phase5a_gpt5.5/ │ Cross-review (compliance & facts)
 │ ├── phase5b_glm5.1/ │ Cross-review (academic standards)
 │ ├── phase6_claude_opus4.7/ │ Integration ruling + revision
@@ -155,6 +155,7 @@ python generate_docx_v2.py
 - [**etf-pattern-match-pybind11**](https://github.com/redamancy231-create/etf-pattern-match-pybind11) — pybind11/C++20 acceleration refactor; same emphasis on cross-backend verification and engineering reproducibility
 - [**docx-pipeline**](https://github.com/redamancy231-create/docx-pipeline) — Markdown → Chinese DOCX pipeline; closed after 3 rounds of cross-backend review
 - [**claude-skills**](https://github.com/redamancy231-create/claude-skills) — 3 battle-tested Claude Code Skills
+- [**methodology-handbook**](https://github.com/redamancy231-create/methodology-handbook) — 50 battle-tested AI collaboration lessons; this pipeline serves as the handbook's empirical validation in a full academic scenario
 
 ---
 
