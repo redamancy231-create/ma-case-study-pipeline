@@ -1,0 +1,226 @@
+name: Repository Integrity
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '37 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  repository-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out complete repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install YAML parser
+        run: python3 -m pip install --disable-pip-version-check pyyaml
+
+      - name: Validate UTF-8 decoding
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          extensions = {".md", ".json", ".yml", ".yaml", ".py", ".cff", ".txt"}
+          tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          paths = [Path(item.decode("utf-8")) for item in tracked if item and Path(item.decode("utf-8")).suffix.lower() in extensions]
+          failures = []
+
+          for path in paths:
+              try:
+                  path.read_text(encoding="utf-8")
+                  print(f"OK: {path}")
+              except (UnicodeDecodeError, OSError) as error:
+                  failures.append((path, error))
+                  print(f"ERROR: {path}: {error}", file=sys.stderr)
+
+          with open(Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]), "a", encoding="utf-8") as summary:
+              summary.write("## Repository Integrity Report\n\n")
+              summary.write(f"- UTF-8 decoding: **{len(paths) - len(failures)}/{len(paths)} files passed**.\n")
+
+          if failures:
+              sys.exit(1)
+          PY
+
+      - name: Validate JSON syntax
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import subprocess
+          import sys
+
+          tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          paths = [Path(item.decode("utf-8")) for item in tracked if item and item.lower().endswith(b".json")]
+          failures = []
+
+          for path in paths:
+              try:
+                  with path.open(encoding="utf-8") as handle:
+                      json.load(handle)
+                  print(f"OK: {path}")
+              except (json.JSONDecodeError, OSError) as error:
+                  failures.append((path, error))
+                  print(f"ERROR: {path}: {error}", file=sys.stderr)
+
+          with open(Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]), "a", encoding="utf-8") as summary:
+              summary.write(f"- JSON syntax: **{len(paths) - len(failures)}/{len(paths)} files passed**.\n")
+
+          if failures:
+              sys.exit(1)
+          PY
+
+      - name: Validate YAML and CFF syntax
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          import sys
+          import yaml
+
+          extensions = {".yml", ".yaml", ".cff"}
+          tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          paths = [Path(item.decode("utf-8")) for item in tracked if item and Path(item.decode("utf-8")).suffix.lower() in extensions]
+          failures = []
+
+          for path in paths:
+              try:
+                  with path.open(encoding="utf-8") as handle:
+                      yaml.safe_load(handle)
+                  print(f"OK: {path}")
+              except (yaml.YAMLError, OSError) as error:
+                  failures.append((path, error))
+                  print(f"ERROR: {path}: {error}", file=sys.stderr)
+
+          with open(Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]), "a", encoding="utf-8") as summary:
+              summary.write(f"- YAML/CFF syntax: **{len(paths) - len(failures)}/{len(paths)} files passed**.\n")
+
+          if failures:
+              sys.exit(1)
+          PY
+
+      - name: Validate Python AST
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import ast
+          import subprocess
+          import sys
+
+          tracked = subprocess.check_output(["git", "ls-files", "-z"]).split(b"\0")
+          paths = [Path(item.decode("utf-8")) for item in tracked if item and item.lower().endswith(b".py")]
+          failures = []
+
+          for path in paths:
+              try:
+                  ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+                  print(f"OK: {path}")
+              except (SyntaxError, UnicodeDecodeError, OSError) as error:
+                  failures.append((path, error))
+                  print(f"ERROR: {path}: {error}", file=sys.stderr)
+
+          with open(Path(__import__("os").environ["GITHUB_STEP_SUMMARY"]), "a", encoding="utf-8") as summary:
+              summary.write(f"- Python AST: **{len(paths) - len(failures)}/{len(paths)} files passed**.\n")
+
+          if failures:
+              sys.exit(1)
+          PY
+
+      - name: Validate local Markdown links
+        shell: bash
+        run: |
+          set -u -o pipefail
+
+          checked=0
+          failed=0
+
+          while IFS= read -r -d '' file; do
+            while IFS= read -r token; do
+              link=${token#](}
+              link=${link%)}
+
+              if [[ "$link" == \<*\> ]]; then
+                link=${link#<}
+                link=${link%>}
+              elif [[ "$link" =~ ^([^[:space:]]+)[[:space:]]+[\"\'] ]]; then
+                link=${BASH_REMATCH[1]}
+              fi
+
+              [ -z "$link" ] && continue
+              [[ "$link" == \#* ]] && continue
+              [[ "$link" =~ ^https?:// ]] && continue
+              [[ "$link" =~ ^// ]] && continue
+              [[ "$link" =~ ^[a-zA-Z][a-zA-Z0-9+.-]*: ]] && continue
+
+              target=${link%%#*}
+              target=${target%%\?*}
+              [ -z "$target" ] && continue
+              [[ "$target" == .git/* ]] && continue
+              [[ "$target" == */.git/* ]] && continue
+              [[ "$target" == /* ]] && continue
+
+              checked=$((checked + 1))
+              resolved=$(dirname "$file")/$target
+              if [ ! -f "$resolved" ]; then
+                echo "::error file=$file,title=Broken Markdown link::Local target '$link' does not exist."
+                echo "ERROR: $file -> $link"
+                failed=$((failed + 1))
+              else
+                echo "OK: $file -> $link"
+              fi
+            done < <(grep -oE '\]\([^)]*\)' "$file" || true)
+          done < <(git ls-files -z '*.md')
+
+          echo "- Markdown local links: **$((checked - failed))/$checked links passed**." >> "$GITHUB_STEP_SUMMARY"
+          if [ "$failed" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Validate tracked-file manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          manifest=$(git ls-tree -r --name-only HEAD)
+          required=(README.md en/README.md zh-Hant/README.md LICENSE CITATION.cff)
+          failed=0
+
+          for file in "${required[@]}"; do
+            if ! grep -Fxq "$file" <<< "$manifest"; then
+              echo "::error file=$file,title=Missing critical file::$file is not tracked at HEAD."
+              failed=1
+            else
+              echo "OK: $file"
+            fi
+          done
+
+          if grep -Fxq 'project_status.md' <<< "$manifest"; then
+            echo "::error file=project_status.md,title=Unexpected tracked file::project_status.md must remain untracked."
+            failed=1
+          else
+            echo "OK: project_status.md is not tracked"
+          fi
+
+          {
+            echo "- Critical-file manifest: **$([ "$failed" -eq 0 ] && echo passed || echo failed)**."
+            echo ""
+            echo "### Tracked files at HEAD"
+            echo ""
+            echo '```text'
+            printf '%s\n' "$manifest"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$failed" -ne 0 ]; then
+            exit 1
+          fi

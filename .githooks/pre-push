@@ -1,12 +1,13 @@
 #!/bin/bash
-# Pre-push 敏感信息检测
-# 部署: git config core.hooksPath .githooks
-set -e
+# 预推送敏感信息与绝对路径检测。
+# 部署方法：git config core.hooksPath .githooks
+# 局限：hook 不会随 git clone 自动启用，每个本地克隆都必须单独执行上述部署命令。
+set -euo pipefail
 
 PATTERNS=(
-    'C:/Users/[^/]+'
-    'C:\\Users\\[^\\]+'
-    '/home/[^/]+'
+    'C:/Users/[^/[:space:]]+'
+    'C:\\Users\\[^\\[:space:]]+'
+    '/home/[^/[:space:]]+'
     'E:/workspace/projects'
     'E:\\workspace\\projects'
     'E:/Downloads'
@@ -17,36 +18,82 @@ PATTERNS=(
 ALLOWLIST=(
     'CC BY 4.0'
     'noreply@anthropic.com'
-    'acerolaorion'
+    'Acerolaorion'
     'LICENSE'
-    'PUBLISHING.md'
     'redamancy231-create'
     'github.com/redamancy231-create'
 )
 
+ZERO_SHA='0000000000000000000000000000000000000000'
 FOUND=0
+temp_files=$(mktemp)
+trap 'rm -f "$temp_files"' EXIT
 
-while read local_ref local_sha remote_ref remote_sha; do
-    [ "$local_sha" = "0000000000000000000000000000000000000000" ] && continue
-    files=$(git diff --name-only "$remote_sha" "$local_sha" 2>/dev/null || git diff --name-only "$local_sha")
-    for file in $files; do
-        [ ! -f "$file" ] && continue
-        # 跳过 hook 自身、.git 目录、.githooks 目录
-        [[ "$file" == .githooks/* ]] && continue
-        [[ "$file" == .git/* ]] && continue
+while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
+    [ -z "${local_ref:-}" ] && continue
 
-        for pattern in "${PATTERNS[@]}"; do
-            # 构建 allowlist 的 grep -v 过滤
-            allowlist_regex=$(IFS='|'; echo "${ALLOWLIST[*]}")
-            matches=$(grep -n -E "$pattern" "$file" 2>/dev/null | grep -v -E "$allowlist_regex" || true)
+    # 删除远程分支时没有本地内容需要扫描。
+    [ "$local_sha" = "$ZERO_SHA" ] && continue
 
-            if [ -n "$matches" ]; then
-                echo "[BLOCKED] $file: 匹配模式 '$pattern'"
-                echo "$matches" | head -5
-                FOUND=1
-            fi
-        done
-    done
+    # 首次推送扫描所有未出现在任一远程跟踪分支中的提交；普通推送扫描整个推送区间。
+    if [ "$remote_sha" = "$ZERO_SHA" ]; then
+        commits=$(git rev-list --reverse "$local_sha" --not --remotes)
+    else
+        commits=$(git rev-list --reverse "${remote_sha}..${local_sha}")
+    fi
+
+    while IFS= read -r commit; do
+        [ -z "$commit" ] && continue
+
+        git diff-tree --root --no-commit-id --name-only -r -z "$commit" > "$temp_files"
+
+        # 文件名使用 NUL 分隔，可安全处理空格。
+        while IFS= read -r -d '' file; do
+            [ -z "$file" ] && continue
+            [[ "$file" == .githooks/* ]] && continue
+            [[ "$file" == .git/* ]] && continue
+
+            # 逐提交检查新增行，确保“先加入秘密、后删除”仍会被拦截。
+            added_lines=$(git diff-tree --root --no-commit-id --no-ext-diff --no-renames --unified=0 -r -p "$commit" -- "$file" \
+                | grep '^+' \
+                | grep -v '^+++' \
+                || true)
+
+            [ -z "$added_lines" ] && continue
+
+            for pattern in "${PATTERNS[@]}"; do
+                matches=$(printf '%s\n' "$added_lines" | grep -n -E "$pattern" || true)
+                [ -z "$matches" ] && continue
+
+                filtered=''
+                while IFS= read -r match_line; do
+                    allowed=false
+                    for allowed_str in "${ALLOWLIST[@]}"; do
+                        if [[ "$match_line" == *"$allowed_str"* ]]; then
+                            allowed=true
+                            break
+                        fi
+                    done
+
+                    if [ "$allowed" = false ]; then
+                        filtered+="$match_line"$'\n'
+                    fi
+                done <<< "$matches"
+
+                if [ -n "$filtered" ]; then
+                    echo "[BLOCKED] $file @ $commit: 匹配模式 '$pattern'"
+                    shown=0
+                    while IFS= read -r filtered_line; do
+                        [ -z "$filtered_line" ] && continue
+                        echo "$filtered_line"
+                        shown=$((shown + 1))
+                        [ "$shown" -ge 5 ] && break
+                    done <<< "$filtered"
+                    FOUND=1
+                fi
+            done
+        done < "$temp_files"
+    done <<< "$commits"
 done
 
 if [ "$FOUND" -eq 1 ]; then
@@ -58,5 +105,4 @@ if [ "$FOUND" -eq 1 ]; then
     exit 1
 fi
 
-echo "Pre-push OK — 未检测到敏感信息"
-exit 0
+echo "Pre-push OK - 未检测到敏感信息"

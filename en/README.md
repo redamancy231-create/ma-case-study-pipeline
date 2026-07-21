@@ -28,6 +28,20 @@
 
 ---
 
+## 📑 Contents
+
+- [⚠️ Important Disclaimer](#⚠️-important-disclaimer)
+- [Pipeline Overview](#pipeline-overview)
+- [Directory Structure](#directory-structure)
+- [Quick Start](#quick-start)
+- [Key Numbers](#key-numbers)
+- [Method Core: Five Iron Rules](#method-core-five-iron-rules)
+- [Related Projects](#related-projects)
+- [License](#license)
+- [Citation](#citation)
+
+---
+
 ## Pipeline Overview
 
 ```mermaid
@@ -60,20 +74,25 @@ graph LR
 ├── README.md ← Chinese (zh-CN) original
 ├── en/README.md ← English translation (this file)
 ├── zh-Hant/README.md ← Traditional Chinese translation
-├── LICENSE ← CC BY 4.0
-├── CLAUDE.md ← AI collaboration guide for this project
 │
-├── 流水线复用包/ ← ★ Most valuable asset
+├── [meta] LICENSE ← CC BY 4.0
+├── [meta] CLAUDE.md ← AI collaboration guide for this project
+├── [meta] CHANGELOG.md ← Version history
+├── [meta] CONTRIBUTING.md ← Contribution guide
+├── [meta] CITATION.cff ← Citation metadata
+├── [meta] reference_files.md ← Key file index
+│
+├── [methodology] 流水线复用包/ ← ★ Most valuable asset
 │ ├── 多模型论文流水线_playbook.md │ Method playbook (5 iron rules + Phase 0-9)
 │ ├── 多模型论文流水线_playbook.json │ Machine-readable version
 │ └── 阶段模板件.md │ Parameterized prompt+config templates
 │
-├── 数据溯源方案模板.md + .json ← 4-tier data provenance specification
+├── [methodology] 数据溯源方案模板.md + .json ← 4-tier data provenance specification
 │
-├── 项目复盘归档报告.md + .json ← Full project retrospective (v3.0, CLOSED-FINAL)
-├── 起点评估分析.md + .json ← Methodological reflection (4-model + red-team)
+├── [deliverable] 项目复盘归档报告.md + .json ← Full project retrospective (v3.0, CLOSED-FINAL)
+├── [deliverable] 起点评估分析.md + .json ← Methodological reflection (4-model + red-team)
 │
-├── 中国上市公司并购重组成功案例研究_v2.md + .json ← Final paper (with defect annotations)
+├── [deliverable] 中国上市公司并购重组成功案例研究_v2.md + .json ← Final paper (with defect annotations)
 │
 ├── phases/ ← Complete pipeline snapshot (59 files)
 │ ├── phase1_kimi_k2.6/ │ Design blueprint
@@ -95,6 +114,8 @@ graph LR
 ```
 
 > **Note**: `.docx` binary files are excluded from Git. Download from [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases).
+> 
+> **🌐 Translation Scope**: Core methodology files (README, playbook, phase templates) are available in three languages (zh-CN / English / 正體中文). The paper and analysis reports (case study v2, retrospective, baseline assessment, data provenance template) are Chinese-only — the paper is a product of Chinese-language case study research, and translating the paper itself has limited value. See [`en/`](.) and [`zh-Hant/`](../zh-Hant/) for translated files.
 
 ---
 

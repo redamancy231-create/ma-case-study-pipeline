@@ -2,8 +2,18 @@ name: Translation Drift Check
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'README.md'
+      - 'en/README.md'
+      - 'zh-Hant/README.md'
+      - '流水线复用包/多模型论文流水线_playbook.md'
+      - 'en/多模型论文流水线_playbook.md'
+      - 'zh-Hant/多模型论文流水线_playbook.md'
+      - '流水线复用包/阶段模板件.md'
+      - 'en/阶段模板件.md'
+      - 'zh-Hant/阶段模板件.md'
   schedule:
     - cron: '37 9 * * 1'
   workflow_dispatch:
@@ -12,50 +22,157 @@ jobs:
   check-drift:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository history
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Check translation file freshness
+      - name: Layer 1 - report translation freshness
+        shell: bash
         run: |
-          echo "## Translation Drift Report" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          set -u -o pipefail
 
-          DRIFT_LIMIT_DAYS=14
-          SECONDS_PER_DAY=86400
-          DRIFT_DETECTED=false
+          echo "## Translation Drift Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Layer 1: freshness reminders (non-blocking)" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
 
-          ROOT_DATE=$(git log -1 --format=%ct -- README.md)
-          ROOT_DATE_HUMAN=$(git log -1 --format=%ci -- README.md)
-          echo "**Root README.md** last modified: $ROOT_DATE_HUMAN" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+          drift_limit_days=14
+          seconds_per_day=86400
+          warning_count=0
+          pairs=(
+            "README.md|en/README.md"
+            "README.md|zh-Hant/README.md"
+            "流水线复用包/多模型论文流水线_playbook.md|en/多模型论文流水线_playbook.md"
+            "流水线复用包/多模型论文流水线_playbook.md|zh-Hant/多模型论文流水线_playbook.md"
+            "流水线复用包/阶段模板件.md|en/阶段模板件.md"
+            "流水线复用包/阶段模板件.md|zh-Hant/阶段模板件.md"
+          )
 
-          for LANG in en zh-Hant; do
-            FILE="${LANG}/README.md"
-            if [ ! -f "$FILE" ]; then
-              echo "- ⚠️ **$FILE** not found — skipping" >> $GITHUB_STEP_SUMMARY
+          for pair in "${pairs[@]}"; do
+            IFS='|' read -r source_file translation_file <<< "$pair"
+
+            if [ ! -f "$source_file" ]; then
+              echo "::warning file=$source_file,title=Missing source file::$source_file is missing; freshness could not be checked."
+              echo "- ⚠️ Source file \`$source_file\` is missing; skipped \`$translation_file\`." >> "$GITHUB_STEP_SUMMARY"
+              warning_count=$((warning_count + 1))
               continue
             fi
 
-            LANG_DATE=$(git log -1 --format=%ct -- "$FILE")
-            LANG_DATE_HUMAN=$(git log -1 --format=%ci -- "$FILE")
-            DRIFT=$(( ($ROOT_DATE - $LANG_DATE) / $SECONDS_PER_DAY ))
+            if [ ! -f "$translation_file" ]; then
+              echo "::warning file=$translation_file,title=Missing translation::$translation_file is missing."
+              echo "- ⚠️ Translation \`$translation_file\` is missing." >> "$GITHUB_STEP_SUMMARY"
+              warning_count=$((warning_count + 1))
+              continue
+            fi
 
-            if [ $DRIFT -gt $DRIFT_LIMIT_DAYS ]; then
-              echo "- 🔴 **$FILE** is **$DRIFT days** behind root README.md (last modified: $LANG_DATE_HUMAN)" >> $GITHUB_STEP_SUMMARY
-              echo "::warning file=$FILE,title=Translation Drift::$FILE is $DRIFT days behind root README.md. Please update the translation."
-              DRIFT_DETECTED=true
-            elif [ $DRIFT -gt 0 ]; then
-              echo "- 🟢 **$FILE** is $DRIFT days behind root README.md — within $DRIFT_LIMIT_DAYS day limit" >> $GITHUB_STEP_SUMMARY
+            source_epoch=$(git log -1 --format=%ct -- "$source_file" || true)
+            translation_epoch=$(git log -1 --format=%ct -- "$translation_file" || true)
+            source_human=$(git log -1 --format=%ci -- "$source_file" || true)
+            translation_human=$(git log -1 --format=%ci -- "$translation_file" || true)
+
+            if [ -z "$source_epoch" ] || [ -z "$translation_epoch" ]; then
+              echo "::warning file=$translation_file,title=Missing history::Could not determine last-modified time for $source_file or $translation_file."
+              echo "- ⚠️ Could not read Git history for \`$source_file\` → \`$translation_file\`." >> "$GITHUB_STEP_SUMMARY"
+              warning_count=$((warning_count + 1))
+              continue
+            fi
+
+            drift_seconds=$((source_epoch - translation_epoch))
+            drift_days=$((drift_seconds / seconds_per_day))
+
+            if [ "$drift_seconds" -gt $((drift_limit_days * seconds_per_day)) ]; then
+              echo "::warning file=$translation_file,title=Translation drift::$translation_file is $drift_days days behind $source_file."
+              echo "- ⚠️ \`$translation_file\` is **$drift_days days** behind \`$source_file\` (source: $source_human; translation: $translation_human)." >> "$GITHUB_STEP_SUMMARY"
+              warning_count=$((warning_count + 1))
+            elif [ "$drift_seconds" -gt 0 ]; then
+              echo "- OK \`$translation_file\` is $drift_days days behind \`$source_file\`, within the $drift_limit_days-day reminder threshold." >> "$GITHUB_STEP_SUMMARY"
             else
-              echo "- ✅ **$FILE** is up to date (last modified: $LANG_DATE_HUMAN)" >> $GITHUB_STEP_SUMMARY
+              echo "- OK \`$translation_file\` is not older than \`$source_file\` (translation: $translation_human)." >> "$GITHUB_STEP_SUMMARY"
             fi
           done
 
-          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Freshness warnings: **$warning_count**. These reminders do not fail the job." >> "$GITHUB_STEP_SUMMARY"
 
-          if [ "$DRIFT_DETECTED" = true ]; then
-            echo "**⚠️ Action required:** one or more translation files exceed the $DRIFT_LIMIT_DAYS-day drift limit." >> $GITHUB_STEP_SUMMARY
-          else
-            echo "**✅ All translation files are within the $DRIFT_LIMIT_DAYS-day drift limit.**" >> $GITHUB_STEP_SUMMARY
+      - name: Layer 2 - enforce README structural consistency
+        shell: bash
+        run: |
+          set -u -o pipefail
+
+          readmes=(README.md en/README.md zh-Hant/README.md)
+          failed=0
+
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Layer 2: README structural gate" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          for file in "${readmes[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "::error file=$file,title=Missing README::$file is required for the structural consistency gate."
+              echo "- ERROR Missing required file \`$file\`." >> "$GITHUB_STEP_SUMMARY"
+              failed=1
+            fi
+          done
+
+          if [ "$failed" -eq 0 ]; then
+            root_links=$(grep -c "github.com/redamancy231-create" README.md || true)
+            en_links=$(grep -c "github.com/redamancy231-create" en/README.md || true)
+            zh_hant_links=$(grep -c "github.com/redamancy231-create" zh-Hant/README.md || true)
+
+            echo "| README | Related-project link lines |" >> "$GITHUB_STEP_SUMMARY"
+            echo "|---|---:|" >> "$GITHUB_STEP_SUMMARY"
+            echo "| \`README.md\` | $root_links |" >> "$GITHUB_STEP_SUMMARY"
+            echo "| \`en/README.md\` | $en_links |" >> "$GITHUB_STEP_SUMMARY"
+            echo "| \`zh-Hant/README.md\` | $zh_hant_links |" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+
+            if [ "$root_links" -ne "$en_links" ] || [ "$root_links" -ne "$zh_hant_links" ]; then
+              echo "::error title=Related-project count mismatch::README link-line counts differ: root=$root_links, en=$en_links, zh-Hant=$zh_hant_links."
+              echo "- ERROR Related-project counts are inconsistent." >> "$GITHUB_STEP_SUMMARY"
+              failed=1
+            else
+              echo "- OK Related-project counts are consistent." >> "$GITHUB_STEP_SUMMARY"
+            fi
+
+            marker_names=("68-to-84" "78-to-75" "22.5K" "16 references")
+            marker_patterns=('68.*84' '78.*75' '22\.5K' '16[[:space:]]*(篇|references?)')
+
+            for index in "${!marker_patterns[@]}"; do
+              present=0
+              present_files=()
+              for file in "${readmes[@]}"; do
+                if grep -Eq "${marker_patterns[$index]}" "$file"; then
+                  present=$((present + 1))
+                  present_files+=("$file")
+                fi
+              done
+
+              if [ "$present" -ne 0 ] && [ "$present" -ne 3 ]; then
+                joined=$(IFS=', '; echo "${present_files[*]}")
+                echo "::error title=Key-number mismatch::Marker ${marker_names[$index]} is present in $present of 3 README files: $joined."
+                echo "- ERROR Marker **${marker_names[$index]}** is inconsistent ($present/3 present)." >> "$GITHUB_STEP_SUMMARY"
+                failed=1
+              else
+                echo "- OK Marker **${marker_names[$index]}** has consistent presence ($present/3)." >> "$GITHUB_STEP_SUMMARY"
+              fi
+            done
+
+            for file in "${readmes[@]}"; do
+              if ! grep -Eq '⚠️|Important Disclaimer' "$file"; then
+                echo "::error file=$file,title=Missing disclaimer::$file does not contain the required disclaimer section marker."
+                echo "- ERROR \`$file\` is missing a disclaimer section." >> "$GITHUB_STEP_SUMMARY"
+                failed=1
+              else
+                echo "- OK \`$file\` contains a disclaimer section." >> "$GITHUB_STEP_SUMMARY"
+              fi
+            done
           fi
+
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$failed" -ne 0 ]; then
+            echo "**Result: FAILED.** README structures are inconsistent." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+          echo "**Result: PASSED.** README structures are consistent." >> "$GITHUB_STEP_SUMMARY"
