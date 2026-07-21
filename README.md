@@ -183,7 +183,12 @@ python generate_docx_v2.py
 
 ## 许可证
 
-本项目采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可证。你可以自由分享、改编，但需注明出处。
+本项目采用**分层许可**：
+
+- **文档、数据、图表**（README、playbook、论文、报告、模板、JSON 配置、图片）：[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — 可自由分享、改编，需注明出处
+- **代码**（`scripts/*.py`、`.githooks/pre-push`）：[MIT](LICENSE-CODE) — 可自由使用、修改、分发，需保留版权声明
+
+详见 [`LICENSE`](LICENSE)（CC BY 4.0）和 [`LICENSE-CODE`](LICENSE-CODE)（MIT）。
 
 ---
 

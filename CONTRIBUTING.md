@@ -21,4 +21,5 @@
 - 演示项目——已知论文含 3 处标注缺陷，请先读 README
 
 ## 许可
-贡献内容默认继承本仓库 CC BY 4.0 许可。
+- 文档、数据、图表 → CC BY 4.0；代码（`scripts/*.py`、`.githooks/pre-push`）→ MIT。详见 [`LICENSE`](LICENSE) 和 [`LICENSE-CODE`](LICENSE-CODE)。
+- 贡献内容默认继承对应文件类型的许可。

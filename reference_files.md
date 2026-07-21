@@ -14,7 +14,8 @@
 - [en/README.md](en/README.md) — 英文 README
 - [zh-Hant/README.md](zh-Hant/README.md) — 繁体中文 README
 - [CLAUDE.md](CLAUDE.md) — AI 协作项目指南
-- [LICENSE](LICENSE) — CC BY 4.0
+- [LICENSE](LICENSE) — CC BY 4.0（文档/数据/图表）
+- [LICENSE-CODE](LICENSE-CODE) — MIT（Python 脚本、Shell hook）
 - [项目复盘归档报告.md](项目复盘归档报告.md) — 完整项目复盘 v3.0
 - [起点评估分析.md](起点评估分析.md) — 方法论反思
 - [中国上市公司并购重组成功案例研究_v2.md](中国上市公司并购重组成功案例研究_v2.md) — 论文终稿

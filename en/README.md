@@ -182,7 +182,12 @@ python generate_docx_v2.py
 
 ## License
 
-This project is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). You are free to share and adapt, with attribution.
+This project uses a **split license**:
+
+- **Documentation, data, and figures** (README, playbook, paper, reports, templates, JSON configs, images): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — share and adapt freely, with attribution
+- **Code** (`scripts/*.py`, `.githooks/pre-push`): [MIT](LICENSE-CODE) — use, modify, and distribute freely, retaining the copyright notice
+
+See [`LICENSE`](LICENSE) (CC BY 4.0) and [`LICENSE-CODE`](LICENSE-CODE) (MIT) for details.
 
 ---
 

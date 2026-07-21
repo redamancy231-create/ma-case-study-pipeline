@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.0] — 2026-07-02（First Public Release）
+## [CLOSED-FINAL] — 2026-07-02（First Public Release）
 
 > **版本说明**：本仓库存在四个独立版本轴 —— GitHub Release v1.0 / 论文修订 v2 / 归档编号 v3.0 / 复用包 v1.2。CHANGELOG 记录公开 Release 历史，内部迭代详见 `项目复盘归档报告.md`。
 
@@ -30,4 +30,4 @@
 
 ### 许可
 
-- CC BY 4.0
+- 文档/数据：CC BY 4.0；代码：MIT（分层许可）
