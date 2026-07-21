@@ -108,9 +108,12 @@ graph LR
 ├── scripts/ ← Paper generation scripts
 │ └── generate_docx_v2.py │ v2 generation (Phase 6 revision; v1 script deprecated)
 │
-└── figures/ ← Paper figures
- ├── figure1_roe_trend.png
- └── figure2_car.png
+├── figures/ ← Paper figures
+│ ├── figure1_roe_trend.png
+│ └── figure2_car.png
+│
+└── docs/ ← Project docs
+  └── fork-modification-directions.md ← Fork modification guide
 ```
 
 > **Note**: `.docx` binary files are excluded from Git. Download from [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases).

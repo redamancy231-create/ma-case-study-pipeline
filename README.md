@@ -108,9 +108,12 @@ graph LR
 ├── scripts/ ← 论文生成脚本
 │ └── generate_docx_v2.py │ v2 生成（Phase 6 修订版；v1 脚本已废弃）
 │
-└── figures/ ← 论文图表
- ├── figure1_roe_trend.png
- └── figure2_car.png
+├── figures/ ← 论文图表
+│ ├── figure1_roe_trend.png
+│ └── figure2_car.png
+│
+└── docs/ ← 项目文档
+  └── fork-modification-directions.md ← Fork 修改方向全景分析
 ```
 
 > **注**：`.docx` 二进制文件不包含在 Git 仓库中，可通过 [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases) 下载。
