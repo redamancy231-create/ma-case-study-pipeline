@@ -215,6 +215,8 @@ python generate_docx_v2.py
 | 先了解不该做什么 | → §12 反模式（10 条，本项目实际踩过的坑） |
 
 > **不知道怎么选？** 文档开头的**决策树**（3 个问题）可以在 30 秒内帮你定位起点。
+>
+> **🔧 想要自动化执行引擎？** 本仓库提供方法论设计和实证证据，但不包含可安装的执行引擎。如果你需要一套能在 Claude Code 中直接运行的学术流水线（自动调度、状态追踪、诚信验证），可搭配第三方工具 [Academic Research Skills](https://github.com/Imbad0202/academic-research-skills)（ARS, v3.19.0）使用——ARS 是可安装的 Claude Code 技能套件，本仓库是方法论手册与实证证据，两者互补。详见 `fork-modification-directions.md` §13。
 
 ---
 
