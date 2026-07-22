@@ -6,13 +6,15 @@
 
 [![中文](https://img.shields.io/badge/lang-中文-red)](../README.md)
 [![English](https://img.shields.io/badge/lang-English-blue)](../en/README.md)
-[![正體中文](https://img.shields.io/badge/lang-正體中文-green)]()
+[![正體中文](https://img.shields.io/badge/lang-正體中文-green)]()]
 
 > **A battle-tested, multi-model collaborative academic pipeline — from research design through blind peer review, defense simulation, and open/closed-book controlled experiment.**
 >
 > 一條經過實戰驗證的多模型協同學術生產流水線——從選題設計、交叉盲審、答辯模擬到開卷/盲答對照實驗。**這不是一篇可送審的論文，而是一套可移植的方法演示。**
 
 > **📎 關於命名**：本倉庫的短名是 `ma-case-study-pipeline`（M&A Case Study Pipeline），側重**方法/流水線**；專案的完整中文標題是「中国上市公司并购重组成功案例研究」，側重**內容/案例**。二者指向同一個專案——案例研究是流水線的"測試用例"，流水線才是核心交付物。倉庫以方法命名，是因為這套流水線可以被移植到任何學術寫作任務中，不限於併購重組。
+
+> **📂 計劃 Fork 本專案？** 先讀 [`docs/fork-modification-directions.md`](docs/fork-modification-directions.md) —— 12 個修改方向的全景分析（v2.0，經 GPT-5.6-Sol 獨立審查）。含**決策樹**（3 個問題 30 秒定位你的起點）、**實作門檻排序表**（11 個可直接開工的方向）、和 **10 條反模式**（本專案實際踩過的坑）。
 
 ---
 
@@ -37,6 +39,7 @@
 - [關鍵數字](#關鍵數字)
 - [方法論核心：五條鐵律](#方法論核心五條鐵律)
 - [關聯項目](#關聯項目)
+- [📂 Fork 修改指南](#-fork-修改指南)
 - [許可證](#許可證)
 - [引用](#引用)
 
@@ -113,7 +116,7 @@ graph LR
 │ └── figure2_car.png
 │
 └── docs/ ← 項目文檔
-  └── fork-modification-directions.md ← Fork 修改方向全景分析
+  └── fork-modification-directions.md ← ★ Fork 修改方向全景分析（詳見下方 §📂）
 ```
 
 > **注**：`.docx` 二進制文件不包含在 Git 倉庫中，可通過 [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases) 下載。
@@ -146,6 +149,17 @@ pip install python-docx matplotlib numpy
 cd scripts
 python generate_docx_v2.py
 ```
+
+### 如果你想 Fork 並修改
+
+→ **[`docs/fork-modification-directions.md`](docs/fork-modification-directions.md)** — Fork 修改方向全景分析（v2.0，經 GPT-5.6-Sol 獨立審查）
+
+這份 25K 字的文件涵蓋了 fork 後**所有可能的修改方向**，按實作門檻和外部依賴分組：
+- **可直接開工**（11 個方向）：換領域複用、教學/工作坊、審查方法論泛化、工程化 M1-M2 等
+- **需要外部資料**（12 個方向）：修復論文缺陷、法學遷移、多語言擴展、GitHub Pages 等
+- **純元研究**（5 個方向）：開卷/盲答方法論文、對齊稅量化、流水線脆弱性測試等
+
+內含**決策樹**（3 個問題 30 秒定位起點）、**前置知識假設表**、**反模式清單**（10 條，本專案實際踩過的坑）和**安全隱私治理**章節。
 
 ---
 
@@ -181,6 +195,28 @@ python generate_docx_v2.py
 - [**docx-pipeline**](https://github.com/redamancy231-create/docx-pipeline) — Markdown → 中文 DOCX 泛化管道，經 3 輪異後端審查閉合
 - [**claude-skills**](https://github.com/redamancy231-create/claude-skills) — 3 個實戰驗證的 Claude Code Skill
 - [**methodology-handbook**](https://github.com/redamancy231-create/methodology-handbook) — 50 條 AI 協作踩坑速查手冊；本項目流水線是該手冊方法論在完整學術場景中的實證
+
+---
+
+## 📂 Fork 修改指南
+
+**[`docs/fork-modification-directions.md`](docs/fork-modification-directions.md)**（v2.0 · ~25K 字 · 經 GPT-5.6-Sol 獨立審查）
+
+這是一份 **fork 後的全景導航文件**——涵蓋 12 個修改方向，從「換領域複用流水線」到「工程化為 CLI 工具」。每個方向標註了實作門檻、外部依賴和獨立價值，方便你按自己的資源和目標選擇起點。
+
+| 如果你想要... | 從這裡開始 |
+|-------------|-----------|
+| 用這套流水線寫其他學科的論文 | → §1 換領域複用（法學/金融實證/電腦系統/公共政策） |
+| 把 M&A 論文修成可送審的真論文 | → §2 把論文「做真」（商譽/杜邦/CAR/文獻） |
+| 只要方法論模板，不要 M&A 論文 | → §3 精簡為純方法論模板 |
+| 改進流水線本身 | → §4 擴展流水線 / §6 方法論改進 |
+| 教學/培訓用 | → §5 教學/培訓用途 |
+| 做成可執行工具 | → §11 工程化方向（Validator→Scaffolder→Runner→Provenance） |
+| 先了解不該做什麼 | → §12 反模式（10 條，本專案實際踩過的坑） |
+
+> **不知道怎麼選？** 文件開頭的**決策樹**（3 個問題）可以在 30 秒內幫你定位起點。
+>
+> **🔧 想要自動化執行引擎？** 本倉庫提供方法論設計和實證證據，但不包含可安裝的執行引擎。如果你需要一套能在 Claude Code 中直接運行的學術流水線（自動調度、狀態追蹤、誠信驗證），可搭配第三方工具 [Academic Research Skills](https://github.com/Imbad0202/academic-research-skills)（ARS, v3.19.0）使用——ARS 是可安裝的 Claude Code 技能套件，本倉庫是方法論手冊與實證證據，兩者互補。詳見 `fork-modification-directions.md` §13。
 
 ---
 
