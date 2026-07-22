@@ -14,6 +14,8 @@
 
 > **📎 关于命名**：本仓库的短名是 `ma-case-study-pipeline`（M&A Case Study Pipeline），侧重**方法/流水线**；项目的完整中文标题是"中国上市公司并购重组成功案例研究"，侧重**内容/案例**。二者指向同一个项目——案例研究是流水线的"测试用例"，流水线才是核心交付物。仓库以方法命名，是因为这套流水线可以被移植到任何学术写作任务中，不限于并购重组。
 
+> **📂 计划 Fork 本项目？** 先读 [`docs/fork-modification-directions.md`](docs/fork-modification-directions.md) —— 12 个修改方向的全景分析（v2.0，经 GPT-5.6-Sol 独立审查）。含**决策树**（3 个问题 30 秒定位你的起点）、**实现门槛排序表**（11 个可直接开工的方向）、和 **10 条反模式**（本项目实际踩过的坑）。
+
 ---
 
 ## ⚠️ 重要免责声明
@@ -37,6 +39,7 @@
 - [关键数字](#关键数字)
 - [方法论核心：五条铁律](#方法论核心五条铁律)
 - [关联项目](#关联项目)
+- [📂 Fork 修改指南](#📂-fork-修改指南)
 - [许可证](#许可证)
 - [引用](#引用)
 
@@ -113,11 +116,11 @@ graph LR
 │ └── figure2_car.png
 │
 └── docs/ ← 项目文档
-  └── fork-modification-directions.md ← Fork 修改方向全景分析
+  └── fork-modification-directions.md ← ★ Fork 修改方向全景分析（详见下方 §📂）
 ```
 
 > **注**：`.docx` 二进制文件不包含在 Git 仓库中，可通过 [GitHub Releases](https://github.com/redamancy231-create/ma-case-study-pipeline/releases) 下载。
-> 
+>
 > **🌐 翻译范围**：核心方法论文件（README、playbook、阶段模板件）提供三语言版本（简体中文 / English / 正體中文）。论文正文和分析报告（案例研究 v2、项目复盘、起点评估、数据溯源方案）仅提供中文原文——论文是中文案例研究的产物，翻译论文本身意义有限。详见 [`en/`](en/) 和 [`zh-Hant/`](zh-Hant/) 目录。
 
 ---
@@ -146,6 +149,17 @@ pip install python-docx matplotlib numpy
 cd scripts
 python generate_docx_v2.py
 ```
+
+### 如果你想 Fork 并修改
+
+→ **[`docs/fork-modification-directions.md`](docs/fork-modification-directions.md)** — Fork 修改方向全景分析（v2.0，经 GPT-5.6-Sol 独立审查）
+
+这份 25K 字的文档覆盖了 fork 后**所有可能的修改方向**，按实现门槛和外部依赖分组：
+- **可直接开工**（11 个方向）：换领域复用、教学/工作坊、审查方法论泛化、工程化 M1-M2 等
+- **需要外部资料**（12 个方向）：修复论文缺陷、法学迁移、多语言扩展、GitHub Pages 等
+- **纯元研究**（5 个方向）：开卷/盲答方法论文、对齐税量化、流水线脆弱性测试等
+
+内含**决策树**（3 个问题 30 秒定位起点）、**前置知识假设表**、**反模式清单**（10 条，本项目实际踩过的坑）和**安全隐私治理**章节。
 
 ---
 
@@ -184,6 +198,26 @@ python generate_docx_v2.py
 
 ---
 
+## 📂 Fork 修改指南
+
+**[`docs/fork-modification-directions.md`](docs/fork-modification-directions.md)**（v2.0 · ~25K 字 · 经 GPT-5.6-Sol 独立审查）
+
+这是一份 **fork 后的全景导航文档**——覆盖 12 个修改方向，从"换领域复用流水线"到"工程化为 CLI 工具"。每个方向标注了实现门槛、外部依赖和独立价值，方便你按自己的资源和目标选择起点。
+
+| 如果你想要... | 从这里开始 |
+|-------------|-----------|
+| 用这套流水线写其他学科的论文 | → §1 换领域复用（法学/金融实证/计算机系统/公共政策） |
+| 把 M&A 论文修成可送审的真论文 | → §2 把论文"做真"（商誉/杜邦/CAR/文献） |
+| 只要方法论模板，不要 M&A 论文 | → §3 精简为纯方法论模板 |
+| 改进流水线本身 | → §4 扩展流水线 / §6 方法论改进 |
+| 教学/培训用 | → §5 教学/培训用途 |
+| 做成可执行工具 | → §11 工程化方向（Validator→Scaffolder→Runner→Provenance） |
+| 先了解不该做什么 | → §12 反模式（10 条，本项目实际踩过的坑） |
+
+> **不知道怎么选？** 文档开头的**决策树**（3 个问题）可以在 30 秒内帮你定位起点。
+
+---
+
 ## 许可证
 
 本项目采用**分层许可**：
@@ -213,4 +247,4 @@ python generate_docx_v2.py
 
 ---
 
-*生成模型：DeepSeek-V4-Pro（via Claude Code CLI） · 2026-07-02*
+*生成模型：DeepSeek-V4-Pro（via Claude Code CLI） · 2026-07-22*
