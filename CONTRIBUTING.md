@@ -14,6 +14,8 @@
 3. 修改后发起 Pull Request
 
 > **本项目为 CLOSED-FINAL 状态。** 修改论文内容、流水线阶段产物、已知缺陷的 PR 不会被合并。文档错误修正和方法论描述改进欢迎提交。
+>
+> **📂 计划 Fork 后做大幅修改？** 先读 [`docs/fork-modification-directions.md`](docs/fork-modification-directions.md) —— Fork 修改方向全景分析（v2.0），覆盖 12 个方向、决策树、实现门槛排序和反模式清单。
 
 ## 行为准则
 - 批评对准内容，不针对人
