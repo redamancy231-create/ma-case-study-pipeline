@@ -1,6 +1,6 @@
 # 关键文件索引
 
-> 最后更新: 2026-07-21（全量 19 项改进闭合 + fork 方向文档）
+> 最后更新: 2026-07-23（GPT-5.6-Sol 审查修正闭合 + GitNexus 深度分析）
 
 ## 代码
 - [generate_docx_v2.py](scripts/generate_docx_v2.py) — v2 论文 docx 生成脚本
@@ -28,6 +28,7 @@
 - [en/多模型论文流水线_playbook.md](en/多模型论文流水线_playbook.md) — 英文 playbook
 - [zh-Hant/多模型论文流水线_playbook.md](zh-Hant/多模型论文流水线_playbook.md) — 繁体中文 playbook
 - [docs/fork-modification-directions.md](docs/fork-modification-directions.md) — Fork 修改方向全景分析 v2.0
+- [GitNexus分析报告_2026-07-23.md](GitNexus分析报告_2026-07-23.md) — GitNexus 图分析 + 异后端审查闭环
 - [docs/social-preview.png](docs/social-preview.png) — 自定义 Social Preview 图片（1280×640）
 
 ## CI / 治理
